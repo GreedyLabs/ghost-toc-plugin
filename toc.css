@@ -11,7 +11,9 @@
     width: var(--greedylabs-ghost-toc-width, 240px);
     max-height: calc(100vh - var(--greedylabs-ghost-toc-top, 100px) - 24px);
     overflow-y: auto;
-    overscroll-behavior: contain;
+    /* No overscroll containment: when the list is long enough to scroll
+       internally, the wheel still chains to the page at the boundaries so the
+       main content keeps scrolling. */
     z-index: 50;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         "Helvetica Neue", Arial, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
