@@ -175,9 +175,19 @@
             // to `cfg.top` — still get swept and activated in order.
             var vh = window.innerHeight;
             var offset = cfg.top;
-            var maxScroll = document.documentElement.scrollHeight - vh;
-            var distToBottom = Math.max(0, maxScroll - window.scrollY);
-            var line = offset + Math.max(0, (vh - offset) - distToBottom);
+            var scrollY = window.scrollY;
+            var maxScroll = Math.max(0, document.documentElement.scrollHeight - vh);
+            var line = offset;
+
+            // Only descend the line near the bottom when the last heading can't
+            // otherwise reach `offset` (i.e. there isn't a full screen of content
+            // below it). With enough content below (comments/footer/…) the line
+            // stays fixed → precise, no premature switching.
+            var lastDocTop = headings[headings.length - 1].getBoundingClientRect().top + scrollY;
+            if (lastDocTop - offset > maxScroll + 1) {
+                var distToBottom = Math.max(0, maxScroll - scrollY);
+                line = offset + Math.max(0, (vh - offset) - distToBottom);
+            }
 
             var idx = 0;
             for (var i = 0; i < headings.length; i++) {
