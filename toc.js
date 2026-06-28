@@ -158,17 +158,8 @@
             panel.style.top = Math.round(top) + 'px';
         }
 
-        layout();
-        var ticking = false;
-        function onScroll() {
-            if (ticking) { return; }
-            ticking = true;
-            window.requestAnimationFrame(function () { verticalAlign(); ticking = false; });
-        }
-        window.addEventListener('resize', layout);
-        window.addEventListener('scroll', onScroll, { passive: true });
-
-        var activeId = null, visible = {};
+        // --- active section: single activation line (precise) + bottom-snap ---
+        var activeId = null;
         function setActive(id) {
             if (id === activeId) { return; }
             if (activeId && linkMap[activeId]) { linkMap[activeId].classList.remove(ACTIVE); }
@@ -176,33 +167,43 @@
             if (id && linkMap[id]) { linkMap[id].classList.add(ACTIVE); }
         }
 
-        var observer = null;
-        if ('IntersectionObserver' in window) {
-            observer = new IntersectionObserver(function (entries) {
-                entries.forEach(function (e) {
-                    if (e.isIntersecting) { visible[e.target.id] = true; }
-                    else { delete visible[e.target.id]; }
-                });
-                var current = null, i;
-                for (i = 0; i < headings.length; i++) {
-                    if (visible[headings[i].id]) { current = headings[i].id; break; }
-                }
-                if (!current) {
-                    for (i = headings.length - 1; i >= 0; i--) {
-                        if (headings[i].getBoundingClientRect().top < cfg.top + 20) { current = headings[i].id; break; }
-                    }
-                }
-                if (current) { setActive(current); }
-            }, { rootMargin: '-' + cfg.top + 'px 0px -70% 0px', threshold: 0 });
-            headings.forEach(function (h) { observer.observe(h); });
+        function updateActive() {
+            // Active = the last heading whose top has crossed the reading line.
+            // The line sits at `cfg.top` normally (precise, flips exactly as a
+            // heading passes it). Within the final viewport it descends toward the
+            // bottom of the screen so the tail headings — which can never scroll up
+            // to `cfg.top` — still get swept and activated in order.
+            var vh = window.innerHeight;
+            var offset = cfg.top;
+            var maxScroll = document.documentElement.scrollHeight - vh;
+            var distToBottom = Math.max(0, maxScroll - window.scrollY);
+            var line = offset + Math.max(0, (vh - offset) - distToBottom);
+
+            var idx = 0;
+            for (var i = 0; i < headings.length; i++) {
+                if (headings[i].getBoundingClientRect().top <= line + 1) { idx = i; }
+                else { break; }
+            }
+            setActive(headings[idx].id);
         }
+
+        layout();
+        updateActive();
+        var ticking = false;
+        function onScroll() {
+            if (ticking) { return; }
+            ticking = true;
+            window.requestAnimationFrame(function () { verticalAlign(); updateActive(); ticking = false; });
+        }
+        function onResize() { layout(); updateActive(); }
+        window.addEventListener('resize', onResize);
+        window.addEventListener('scroll', onScroll, { passive: true });
 
         return {
             element: panel,
             destroy: function () {
-                window.removeEventListener('resize', layout);
+                window.removeEventListener('resize', onResize);
                 window.removeEventListener('scroll', onScroll);
-                if (observer) { observer.disconnect(); }
                 if (panel.parentNode) { panel.parentNode.removeChild(panel); }
             }
         };
