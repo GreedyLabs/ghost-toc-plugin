@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>ghost-toc-plugin — Ghost 浮动目录(TOC)组件 · 配置与演示</title>
+    <meta name="description" content="用一行代码为你的 Ghost 博客添加浮动目录(TOC)。修改选项、实时预览并复制嵌入代码。开源(MIT)。">
+    <meta name="author" content="GreedyLabs">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ghost-toc-plugin.greedylabs.kr/zh/">
+    <meta name="theme-color" content="#1a73e8">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a73e8'/%3E%3Cg fill='white'%3E%3Crect x='8' y='9' width='12' height='2.5' rx='1.25'/%3E%3Crect x='8' y='15' width='16' height='2.5' rx='1.25'/%3E%3Crect x='8' y='21' width='10' height='2.5' rx='1.25'/%3E%3C/g%3E%3C/svg%3E">
+
+    <link rel="alternate" hreflang="ko" href="https://ghost-toc-plugin.greedylabs.kr/ko/">
+    <link rel="alternate" hreflang="en" href="https://ghost-toc-plugin.greedylabs.kr/en/">
+    <link rel="alternate" hreflang="ja" href="https://ghost-toc-plugin.greedylabs.kr/ja/">
+    <link rel="alternate" hreflang="zh" href="https://ghost-toc-plugin.greedylabs.kr/zh/">
+    <link rel="alternate" hreflang="es" href="https://ghost-toc-plugin.greedylabs.kr/es/">
+    <link rel="alternate" hreflang="fr" href="https://ghost-toc-plugin.greedylabs.kr/fr/">
+    <link rel="alternate" hreflang="de" href="https://ghost-toc-plugin.greedylabs.kr/de/">
+    <link rel="alternate" hreflang="pt" href="https://ghost-toc-plugin.greedylabs.kr/pt/">
+    <link rel="alternate" hreflang="hi" href="https://ghost-toc-plugin.greedylabs.kr/hi/">
+    <link rel="alternate" hreflang="x-default" href="https://ghost-toc-plugin.greedylabs.kr/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="ghost-toc-plugin">
+    <meta property="og:title" content="ghost-toc-plugin — Ghost 浮动目录(TOC)组件 · 配置与演示">
+    <meta property="og:description" content="用一行代码为你的 Ghost 博客添加浮动目录(TOC)。修改选项、实时预览并复制嵌入代码。开源(MIT)。">
+    <meta property="og:url" content="https://ghost-toc-plugin.greedylabs.kr/zh/">
+    <meta property="og:image" content="https://ghost-toc-plugin.greedylabs.kr/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="zh_CN">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ghost-toc-plugin — Ghost 浮动目录(TOC)组件 · 配置与演示">
+    <meta name="twitter:description" content="用一行代码为你的 Ghost 博客添加浮动目录(TOC)。修改选项、实时预览并复制嵌入代码。开源(MIT)。">
+    <meta name="twitter:image" content="https://ghost-toc-plugin.greedylabs.kr/og-image.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ghost-toc-plugin",
+      "description": "用一行代码为你的 Ghost 博客添加浮动目录(TOC)。修改选项、实时预览并复制嵌入代码。开源(MIT)。",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Web (Ghost)",
+      "url": "https://ghost-toc-plugin.greedylabs.kr/zh/",
+      "codeRepository": "https://github.com/GreedyLabs/ghost-toc-plugin",
+      "license": "https://opensource.org/licenses/MIT",
+      "author": { "@type": "Organization", "name": "GreedyLabs" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+    </script>
+
+    <link rel="stylesheet" href="/toc.css">
+    <link rel="stylesheet" href="/demo.css">
+
+    <script defer src="https://umami.greedylabs.kr/script.js"
+            data-website-id="ffcc7476-be44-4af2-8a9a-4a232dc31a0d"></script>
+</head>
+<body>
+    <aside class="panel">
+        <h1>ghost-toc-plugin</h1>
+        <nav class="langs" aria-label="语言">
+            <a href="/ko/" hreflang="ko">한국어</a>
+            <a href="/en/" hreflang="en">English</a>
+            <a href="/ja/" hreflang="ja">日本語</a>
+            <a href="/zh/" hreflang="zh" class="on">中文</a>
+            <a href="/es/" hreflang="es">Español</a>
+            <a href="/fr/" hreflang="fr">Français</a>
+            <a href="/de/" hreflang="de">Deutsch</a>
+            <a href="/pt/" hreflang="pt">Português</a>
+            <a href="/hi/" hreflang="hi">हिन्दी</a>
+        </nav>
+        <p class="sub">修改任意选项，预览和下方代码会即时更新。</p>
+
+        <div class="field">
+            <label for="f-content">正文选择器 <span style="font-weight:400;color:var(--ui-muted)">(用于代码 · 预览使用演示正文)</span></label>
+            <input type="text" id="f-content" value=".gh-content">
+        </div>
+        <div class="field">
+            <label for="f-headings">标题级别</label>
+            <input type="text" id="f-headings" value="h2,h3">
+        </div>
+        <div class="field">
+            <label for="f-title">标题 <span style="font-weight:400;color:var(--ui-muted)">(留空则隐藏)</span></label>
+            <input type="text" id="f-title" value="目录">
+        </div>
+        <div class="field">
+            <label for="f-position">位置</label>
+            <select id="f-position">
+                <option value="right" selected>右侧</option>
+                <option value="left">左侧</option>
+            </select>
+        </div>
+
+        <div class="field check">
+            <input type="checkbox" id="f-useThemeAccent" checked>
+            <label for="f-useThemeAccent">自动使用 Ghost 主题强调色</label>
+        </div>
+        <div class="field">
+            <label for="f-accent">强调色 <span style="font-weight:400;color:var(--ui-muted)">(取消上方勾选时)</span></label>
+            <input type="color" id="f-accent" value="#1a73e8" disabled>
+        </div>
+
+        <div class="field row">
+            <div><label for="f-minWidth">最小宽度</label><input type="number" id="f-minWidth" value="1200" step="10"></div>
+            <div><label for="f-width">面板宽度</label><input type="number" id="f-width" value="240" step="10"></div>
+        </div>
+        <div class="field row">
+            <div><label for="f-gap">间距</label><input type="number" id="f-gap" value="28" step="2"></div>
+            <div><label for="f-top">顶部偏移</label><input type="number" id="f-top" value="100" step="10"></div>
+        </div>
+
+        <div class="code">
+            <div class="code-head"><strong>嵌入代码</strong><button class="copy" id="copy">复制</button></div>
+            <pre><code id="snippet"></code></pre>
+            <p class="hint">粘贴到 Ghost → Settings → Code injection → Site Footer。默认自动使用主题强调色。</p>
+        </div>
+    </aside>
+
+    <div class="demo-hero">封面图区域 — 目录从这里下方开始</div>
+
+    <article class="demo-article">
+        <h1>ghost-toc-plugin 预览</h1>
+        <p>在左侧面板修改选项。目录会实时重新渲染，嵌入代码也随之更新。滚动时会高亮当前所在的章节。</p>
+
+        <h2>开始之前</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+
+        <h2>安装方法</h2>
+        <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim.</p>
+        <h3>代码注入</h3>
+        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt neque porro.</p>
+        <h3>选项设置</h3>
+        <p>Quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore.</p>
+
+        <h2>自定义</h2>
+        <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur autem.</p>
+        <h3>颜色</h3>
+        <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat.</p>
+        <h3>位置</h3>
+        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+
+        <h2>结语</h2>
+        <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
+        <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>
+    </article>
+
+    <section class="demo-comments">
+        <h2 class="demo-comments-title">评论</h2>
+        <script src="https://giscus.app/client.js"
+                data-repo="GreedyLabs/giscus-comment"
+                data-repo-id="R_kgDOTHbOrw"
+                data-category="ghost-toc-plugin.greedylabs.kr"
+                data-category-id="DIC_kwDOTHbOr84DAEUn"
+                data-mapping="pathname"
+                data-strict="1"
+                data-reactions-enabled="1"
+                data-emit-metadata="0"
+                data-input-position="top"
+                data-theme="preferred_color_scheme"
+                data-lang="zh-CN"
+                data-loading="lazy"
+                crossorigin="anonymous"
+                async>
+        </script>
+    </section>
+
+    <script src="/toc.js" data-auto="false"></script>
+    <script>window.GTOC_I18N = {"copy":"复制","copyDone":"已复制","defaultTitle":"目录"};</script>
+    <script src="/demo.js"></script>
+</body>
+</html>

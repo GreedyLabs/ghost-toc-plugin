@@ -5,6 +5,8 @@
 (function () {
     var CDN = 'https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1';
     var DEF = window.GreedyLabsGhostTOC.defaults;
+    // per-page localized strings (set by each generated /<lang>/index.html)
+    var I = window.GTOC_I18N || { copy: '복사', copyDone: '복사됨', defaultTitle: '목차' };
     var instance = null;
     var $ = function (id) { return document.getElementById(id); };
 
@@ -86,12 +88,12 @@
             position: o.position,
             headings: o.headings,
             useThemeAccent: o.useThemeAccent,
-            customTitle: o.title !== '목차',
+            customTitle: o.title !== I.defaultTitle,
             hidden: o.title === ''
         });
         navigator.clipboard.writeText($('snippet').textContent).then(function () {
-            btn.textContent = '복사됨'; btn.classList.add('ok');
-            setTimeout(function () { btn.textContent = '복사'; btn.classList.remove('ok'); }, 1500);
+            btn.textContent = I.copyDone; btn.classList.add('ok');
+            setTimeout(function () { btn.textContent = I.copy; btn.classList.remove('ok'); }, 1500);
         });
     });
 

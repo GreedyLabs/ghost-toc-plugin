@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>ghost-toc-plugin — Sommaire flottant pour Ghost · configurateur &amp; démo</title>
+    <meta name="description" content="Ajoutez un sommaire flottant à votre blog Ghost en une ligne de code. Réglez les options, prévisualisez en direct et copiez le code. Open source (MIT).">
+    <meta name="author" content="GreedyLabs">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ghost-toc-plugin.greedylabs.kr/fr/">
+    <meta name="theme-color" content="#1a73e8">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a73e8'/%3E%3Cg fill='white'%3E%3Crect x='8' y='9' width='12' height='2.5' rx='1.25'/%3E%3Crect x='8' y='15' width='16' height='2.5' rx='1.25'/%3E%3Crect x='8' y='21' width='10' height='2.5' rx='1.25'/%3E%3C/g%3E%3C/svg%3E">
+
+    <link rel="alternate" hreflang="ko" href="https://ghost-toc-plugin.greedylabs.kr/ko/">
+    <link rel="alternate" hreflang="en" href="https://ghost-toc-plugin.greedylabs.kr/en/">
+    <link rel="alternate" hreflang="ja" href="https://ghost-toc-plugin.greedylabs.kr/ja/">
+    <link rel="alternate" hreflang="zh" href="https://ghost-toc-plugin.greedylabs.kr/zh/">
+    <link rel="alternate" hreflang="es" href="https://ghost-toc-plugin.greedylabs.kr/es/">
+    <link rel="alternate" hreflang="fr" href="https://ghost-toc-plugin.greedylabs.kr/fr/">
+    <link rel="alternate" hreflang="de" href="https://ghost-toc-plugin.greedylabs.kr/de/">
+    <link rel="alternate" hreflang="pt" href="https://ghost-toc-plugin.greedylabs.kr/pt/">
+    <link rel="alternate" hreflang="hi" href="https://ghost-toc-plugin.greedylabs.kr/hi/">
+    <link rel="alternate" hreflang="x-default" href="https://ghost-toc-plugin.greedylabs.kr/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="ghost-toc-plugin">
+    <meta property="og:title" content="ghost-toc-plugin — Sommaire flottant pour Ghost · configurateur &amp; démo">
+    <meta property="og:description" content="Ajoutez un sommaire flottant à votre blog Ghost en une ligne de code. Réglez les options, prévisualisez en direct et copiez le code. Open source (MIT).">
+    <meta property="og:url" content="https://ghost-toc-plugin.greedylabs.kr/fr/">
+    <meta property="og:image" content="https://ghost-toc-plugin.greedylabs.kr/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ghost-toc-plugin — Sommaire flottant pour Ghost · configurateur &amp; démo">
+    <meta name="twitter:description" content="Ajoutez un sommaire flottant à votre blog Ghost en une ligne de code. Réglez les options, prévisualisez en direct et copiez le code. Open source (MIT).">
+    <meta name="twitter:image" content="https://ghost-toc-plugin.greedylabs.kr/og-image.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ghost-toc-plugin",
+      "description": "Ajoutez un sommaire flottant à votre blog Ghost en une ligne de code. Réglez les options, prévisualisez en direct et copiez le code. Open source (MIT).",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Web (Ghost)",
+      "url": "https://ghost-toc-plugin.greedylabs.kr/fr/",
+      "codeRepository": "https://github.com/GreedyLabs/ghost-toc-plugin",
+      "license": "https://opensource.org/licenses/MIT",
+      "author": { "@type": "Organization", "name": "GreedyLabs" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+    </script>
+
+    <link rel="stylesheet" href="/toc.css">
+    <link rel="stylesheet" href="/demo.css">
+
+    <script defer src="https://umami.greedylabs.kr/script.js"
+            data-website-id="ffcc7476-be44-4af2-8a9a-4a232dc31a0d"></script>
+</head>
+<body>
+    <aside class="panel">
+        <h1>ghost-toc-plugin</h1>
+        <nav class="langs" aria-label="Langue">
+            <a href="/ko/" hreflang="ko">한국어</a>
+            <a href="/en/" hreflang="en">English</a>
+            <a href="/ja/" hreflang="ja">日本語</a>
+            <a href="/zh/" hreflang="zh">中文</a>
+            <a href="/es/" hreflang="es">Español</a>
+            <a href="/fr/" hreflang="fr" class="on">Français</a>
+            <a href="/de/" hreflang="de">Deutsch</a>
+            <a href="/pt/" hreflang="pt">Português</a>
+            <a href="/hi/" hreflang="hi">हिन्दी</a>
+        </nav>
+        <p class="sub">Modifiez une option pour mettre à jour l'aperçu et le code ci-dessous instantanément.</p>
+
+        <div class="field">
+            <label for="f-content">Sélecteur de contenu <span style="font-weight:400;color:var(--ui-muted)">(pour le code · l'aperçu utilise le corps démo)</span></label>
+            <input type="text" id="f-content" value=".gh-content">
+        </div>
+        <div class="field">
+            <label for="f-headings">Titres</label>
+            <input type="text" id="f-headings" value="h2,h3">
+        </div>
+        <div class="field">
+            <label for="f-title">Titre <span style="font-weight:400;color:var(--ui-muted)">(vide = masqué)</span></label>
+            <input type="text" id="f-title" value="Sommaire">
+        </div>
+        <div class="field">
+            <label for="f-position">Position</label>
+            <select id="f-position">
+                <option value="right" selected>Droite</option>
+                <option value="left">Gauche</option>
+            </select>
+        </div>
+
+        <div class="field check">
+            <input type="checkbox" id="f-useThemeAccent" checked>
+            <label for="f-useThemeAccent">Utiliser automatiquement la couleur d'accent du thème Ghost</label>
+        </div>
+        <div class="field">
+            <label for="f-accent">Couleur d'accent <span style="font-weight:400;color:var(--ui-muted)">(si la case ci-dessus est décochée)</span></label>
+            <input type="color" id="f-accent" value="#1a73e8" disabled>
+        </div>
+
+        <div class="field row">
+            <div><label for="f-minWidth">Largeur min.</label><input type="number" id="f-minWidth" value="1200" step="10"></div>
+            <div><label for="f-width">Largeur du panneau</label><input type="number" id="f-width" value="240" step="10"></div>
+        </div>
+        <div class="field row">
+            <div><label for="f-gap">Écart</label><input type="number" id="f-gap" value="28" step="2"></div>
+            <div><label for="f-top">Décalage haut</label><input type="number" id="f-top" value="100" step="10"></div>
+        </div>
+
+        <div class="code">
+            <div class="code-head"><strong>Code d'intégration</strong><button class="copy" id="copy">Copier</button></div>
+            <pre><code id="snippet"></code></pre>
+            <p class="hint">Collez dans Ghost → Settings → Code injection → Site Footer. Par défaut, utilise la couleur d'accent de votre thème.</p>
+        </div>
+    </aside>
+
+    <div class="demo-hero">Zone de l'image à la une — le sommaire commence en dessous</div>
+
+    <article class="demo-article">
+        <h1>Aperçu de ghost-toc-plugin</h1>
+        <p>Modifiez les options dans le panneau de gauche. Le sommaire se redessine en direct et le code d'intégration se met à jour. Faites défiler pour voir la section courante mise en évidence.</p>
+
+        <h2>Pour commencer</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+
+        <h2>Installation</h2>
+        <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim.</p>
+        <h3>Injection de code</h3>
+        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt neque porro.</p>
+        <h3>Options</h3>
+        <p>Quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore.</p>
+
+        <h2>Personnalisation</h2>
+        <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur autem.</p>
+        <h3>Couleurs</h3>
+        <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat.</p>
+        <h3>Position</h3>
+        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+
+        <h2>Conclusion</h2>
+        <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
+        <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>
+    </article>
+
+    <section class="demo-comments">
+        <h2 class="demo-comments-title">Commentaires</h2>
+        <script src="https://giscus.app/client.js"
+                data-repo="GreedyLabs/giscus-comment"
+                data-repo-id="R_kgDOTHbOrw"
+                data-category="ghost-toc-plugin.greedylabs.kr"
+                data-category-id="DIC_kwDOTHbOr84DAEUn"
+                data-mapping="pathname"
+                data-strict="1"
+                data-reactions-enabled="1"
+                data-emit-metadata="0"
+                data-input-position="top"
+                data-theme="preferred_color_scheme"
+                data-lang="fr"
+                data-loading="lazy"
+                crossorigin="anonymous"
+                async>
+        </script>
+    </section>
+
+    <script src="/toc.js" data-auto="false"></script>
+    <script>window.GTOC_I18N = {"copy":"Copier","copyDone":"Copié","defaultTitle":"Sommaire"};</script>
+    <script src="/demo.js"></script>
+</body>
+</html>

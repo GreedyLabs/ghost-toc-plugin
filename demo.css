@@ -61,3 +61,9 @@ pre { margin: 0; background: #0f172a; color: #e2e8f0; padding: 12px; border-radi
     .panel, .panel.panel--right { position: static; width: auto; max-height: none; margin: 16px; box-shadow: none; }
     .demo-article { margin-top: 16px; }
 }
+
+/* language switcher (i18n) */
+.langs { display: flex; flex-wrap: wrap; gap: 4px 10px; margin: 0 0 14px; font-size: 12px; }
+.langs a { color: var(--ui-muted); text-decoration: none; }
+.langs a.on { color: var(--ui-fg); font-weight: 700; }
+.langs a:hover { color: var(--ui-fg); }
