@@ -52,11 +52,18 @@
         .demo-hero { max-width: 1080px; margin: 24px auto 0; height: 340px; border-radius: 14px;
             background: #f1f3f5; color: #adb5bd; border: 1px solid #e9ecef;
             display: flex; align-items: center; justify-content: center; font-weight: 500; letter-spacing: .02em; }
-        .demo-article { max-width: 720px; margin: 40px auto 60vh; padding: 0 24px; }
+        .demo-article { max-width: 720px; margin: 40px auto 48px; padding: 0 24px; }
         .demo-article h1 { font-size: 2.2rem; }
         .demo-article h2 { margin-top: 2.4em; font-size: 1.6rem; }
         .demo-article h3 { margin-top: 1.6em; font-size: 1.25rem; }
         .demo-article p { margin: 1em 0; color: #444; }
+
+        /* Comments — same column width as the article so the layout stays aligned.
+           giscus injects a .giscus container holding the .giscus-frame iframe. */
+        .demo-comments { max-width: 720px; margin: 0 auto; padding: 24px 24px 120px; border-top: 1px solid #e9ecef; }
+        .demo-comments-title { font-size: 1.4rem; margin: 0 0 16px; }
+        .demo-comments .giscus,
+        .demo-comments .giscus-frame { width: 100%; }
 
         @media (max-width: 1100px) {
             .panel, .panel.panel--right { position: static; width: auto; max-height: none; margin: 16px; box-shadow: none; }
@@ -143,6 +150,26 @@
         <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
         <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>
     </article>
+
+    <section class="demo-comments">
+        <h2 class="demo-comments-title">댓글</h2>
+        <script src="https://giscus.app/client.js"
+                data-repo="GreedyLabs/giscus-comment"
+                data-repo-id="R_kgDOTHbOrw"
+                data-category="ghost-toc-plugin.greedylabs.kr"
+                data-category-id="DIC_kwDOTHbOr84DAEUn"
+                data-mapping="pathname"
+                data-strict="1"
+                data-reactions-enabled="1"
+                data-emit-metadata="0"
+                data-input-position="top"
+                data-theme="preferred_color_scheme"
+                data-lang="ko"
+                data-loading="lazy"
+                crossorigin="anonymous"
+                async>
+        </script>
+    </section>
 
     <script src="./toc.js" data-auto="false"></script>
     <script>
