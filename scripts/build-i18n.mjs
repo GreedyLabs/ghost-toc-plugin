@@ -48,10 +48,13 @@ function hreflangs(currentUrl) {
   return links.join('\n');
 }
 
-function langSwitch(cur) {
-  return ORDER.map(
-    (l) => `<a href="/${l}/" hreflang="${l}"${l === cur ? ' class="on"' : ''}>${esc(data.langs[l].name)}</a>`
-  ).join('\n            ');
+function langSwitch(cur, t) {
+  const opts = ORDER.map(
+    (l) => `<option value="/${l}/"${l === cur ? ' selected' : ''}>${esc(data.langs[l].name)}</option>`
+  ).join('\n                ');
+  return `<select id="lang-select" class="lang-select" aria-label="${escAttr(t.langLabel)}">
+                ${opts}
+            </select>`;
 }
 
 function page(lang) {
@@ -116,9 +119,7 @@ ${hreflangs(url)}
 <body>
     <aside class="panel">
         <h1>ghost-toc-plugin</h1>
-        <nav class="langs" aria-label="${escAttr(t.langLabel)}">
-            ${langSwitch(lang)}
-        </nav>
+        ${langSwitch(lang, t)}
         <p class="sub">${esc(t.panelSub)}</p>
 
         <div class="field">

@@ -97,5 +97,9 @@
         });
     });
 
+    // language dropdown → navigate to the selected /<lang>/
+    var langSel = $('lang-select');
+    if (langSel) { langSel.addEventListener('change', function () { location.href = this.value; }); }
+
     render();
 })();

@@ -63,7 +63,8 @@ pre { margin: 0; background: #0f172a; color: #e2e8f0; padding: 12px; border-radi
 }
 
 /* language switcher (i18n) */
-.langs { display: flex; flex-wrap: wrap; gap: 4px 10px; margin: 0 0 14px; font-size: 12px; }
-.langs a { color: var(--ui-muted); text-decoration: none; }
-.langs a.on { color: var(--ui-fg); font-weight: 700; }
-.langs a:hover { color: var(--ui-fg); }
+.lang-select {
+    width: 100%; margin: 0 0 14px; padding: 6px 8px;
+    border: 1px solid var(--ui-border); border-radius: 7px;
+    font: inherit; font-size: 13px; background: #fff; color: var(--ui-fg); cursor: pointer;
+}
