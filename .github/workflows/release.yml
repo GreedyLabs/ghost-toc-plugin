@@ -1,0 +1,41 @@
+name: Release
+
+# On every vX.Y.Z tag: publish a GitHub Release and refresh jsDelivr so the
+# floating refs (@1, @latest, @vMAJOR) serve the new version immediately instead
+# of waiting for jsDelivr's ~12h range-cache to expire. We never *move* tags —
+# each release is a new immutable version, which keeps jsDelivr caches clean.
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" \
+            --repo "${GITHUB_REPOSITORY}" \
+            --title "${GITHUB_REF_NAME}" \
+            --generate-notes \
+            || echo "Release ${GITHUB_REF_NAME} already exists — skipping."
+
+      - name: Refresh jsDelivr caches (exact + floating refs)
+        run: |
+          TAG="${GITHUB_REF_NAME}"               # vX.Y.Z
+          MAJOR="${TAG#v}"; MAJOR="${MAJOR%%.*}" # X
+          REPO="${GITHUB_REPOSITORY}"
+          for file in toc.js toc.min.js toc.css; do
+            for ref in "${TAG}" "v${MAJOR}" "${MAJOR}" "latest"; do
+              url="https://purge.jsdelivr.net/gh/${REPO}@${ref}/${file}"
+              code=$(curl -s -o /dev/null -w '%{http_code}' "$url" || echo 000)
+              echo "purge @${ref}/${file} -> ${code}"
+            done
+          done

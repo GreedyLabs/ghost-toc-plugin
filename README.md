@@ -20,15 +20,17 @@ but works on any HTML page.
 Add this once. For **Ghost**: Settings → Code injection → **Site Footer**.
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@v1.0.0/toc.css">
-<script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@v1.0.0/toc.min.js"
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.css">
+<script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
         data-content=".gh-content"
         data-headings="h2,h3"
         data-position="right"
         data-title="목차"></script>
 ```
 
-> Use a pinned version (`@v1.0.0`) in production. jsDelivr also serves an
+> `@1` always resolves to the latest `v1.x.x` release (jsDelivr refreshes it within
+> ~12h; our release workflow purges it instantly). Pin an exact version like
+> `@v1.0.1` if you need fully reproducible builds. jsDelivr also serves an
 > auto-minified build — just add `.min`: `.../toc.min.js`.
 
 ## Options
