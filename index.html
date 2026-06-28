@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ghost-toc-plugin — 설정 & 미리보기</title>
+    <link rel="stylesheet" href="./toc.css">
+    <!-- Umami analytics (this demo page only — the distributed widget stays tracking-free) -->
+    <script defer src="https://umami.greedylabs.kr/script.js"
+            data-website-id="ffcc7476-be44-4af2-8a9a-4a232dc31a0d"></script>
+    <style>
+        /* Simulate a Ghost site so the "auto theme accent" option previews a real color */
+        :root { --ghost-accent-color: #3b82f6; --ui-border: #e5e7eb; --ui-bg: #fff; --ui-fg: #111827; --ui-muted: #6b7280; }
+        * { box-sizing: border-box; }
+        body { margin: 0; color: var(--ui-fg); line-height: 1.7;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; }
+
+        /* control panel floats over a margin; it moves to the side OPPOSITE the TOC */
+        .panel {
+            position: fixed; left: 16px; top: 16px; width: 300px;
+            max-height: calc(100vh - 32px); overflow: auto; z-index: 1000;
+            background: var(--ui-bg); border: 1px solid var(--ui-border); border-radius: 12px;
+            padding: 16px; box-shadow: 0 6px 24px rgba(0,0,0,.08); font-size: 13px;
+        }
+        .panel.panel--right { left: auto; right: 16px; }
+        .panel h1 { font-size: 15px; margin: 0 0 4px; }
+        .panel .sub { color: var(--ui-muted); font-size: 12px; margin: 0 0 14px; }
+        .field { margin-bottom: 11px; }
+        .field label { display: block; font-weight: 600; margin-bottom: 4px; }
+        .field input[type=text], .field input[type=number], .field select {
+            width: 100%; padding: 6px 8px; border: 1px solid var(--ui-border);
+            border-radius: 7px; font: inherit; font-size: 13px;
+        }
+        .field.row { display: flex; gap: 8px; align-items: flex-end; }
+        .field.row > div { flex: 1; }
+        .field.check { display: flex; align-items: center; gap: 8px; }
+        .field.check label { margin: 0; font-weight: 600; }
+        input[type=color] { width: 100%; height: 32px; padding: 2px; border: 1px solid var(--ui-border); border-radius: 7px; background: #fff; }
+        input[type=color]:disabled { opacity: .4; }
+
+        .code { margin-top: 14px; }
+        .code-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+        .code-head strong { font-size: 12px; }
+        .copy { font: inherit; font-size: 12px; padding: 4px 10px; border: 1px solid var(--ui-border);
+            background: #f9fafb; border-radius: 7px; cursor: pointer; }
+        .copy:hover { background: #f3f4f6; }
+        .copy.ok { background: #ecfdf5; border-color: #a7f3d0; color: #047857; }
+        pre { margin: 0; background: #0f172a; color: #e2e8f0; padding: 12px; border-radius: 8px;
+            font-size: 11.5px; line-height: 1.5; overflow: auto; white-space: pre-wrap; word-break: break-all; }
+        .hint { color: var(--ui-muted); font-size: 11.5px; margin-top: 8px; }
+
+        .demo-hero { max-width: 1080px; margin: 24px auto 0; height: 340px; border-radius: 14px;
+            background: #f1f3f5; color: #adb5bd; border: 1px solid #e9ecef;
+            display: flex; align-items: center; justify-content: center; font-weight: 500; letter-spacing: .02em; }
+        .demo-article { max-width: 720px; margin: 40px auto 60vh; padding: 0 24px; }
+        .demo-article h1 { font-size: 2.2rem; }
+        .demo-article h2 { margin-top: 2.4em; font-size: 1.6rem; }
+        .demo-article h3 { margin-top: 1.6em; font-size: 1.25rem; }
+        .demo-article p { margin: 1em 0; color: #444; }
+
+        @media (max-width: 1100px) {
+            .panel, .panel.panel--right { position: static; width: auto; max-height: none; margin: 16px; box-shadow: none; }
+            .demo-article { margin-top: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <aside class="panel">
+        <h1>ghost-toc-plugin</h1>
+        <p class="sub">옵션을 바꾸면 미리보기와 아래 코드가 즉시 갱신됩니다.</p>
+
+        <div class="field">
+            <label for="f-content">본문 선택자 <span style="font-weight:400;color:var(--ui-muted)">(코드용 · 미리보기는 데모 본문)</span></label>
+            <input type="text" id="f-content" value=".gh-content">
+        </div>
+        <div class="field">
+            <label for="f-headings">헤딩</label>
+            <input type="text" id="f-headings" value="h2,h3">
+        </div>
+        <div class="field">
+            <label for="f-title">제목 <span style="font-weight:400;color:var(--ui-muted)">(비우면 숨김)</span></label>
+            <input type="text" id="f-title" value="목차">
+        </div>
+        <div class="field">
+            <label for="f-position">위치</label>
+            <select id="f-position">
+                <option value="right" selected>오른쪽</option>
+                <option value="left">왼쪽</option>
+            </select>
+        </div>
+
+        <div class="field check">
+            <input type="checkbox" id="f-useThemeAccent" checked>
+            <label for="f-useThemeAccent">Ghost 테마 강조색 자동 사용</label>
+        </div>
+        <div class="field">
+            <label for="f-accent">강조색 <span style="font-weight:400;color:var(--ui-muted)">(위 체크 해제 시)</span></label>
+            <input type="color" id="f-accent" value="#1a73e8" disabled>
+        </div>
+
+        <div class="field row">
+            <div><label for="f-minWidth">최소 너비</label><input type="number" id="f-minWidth" value="1200" step="10"></div>
+            <div><label for="f-width">패널 너비</label><input type="number" id="f-width" value="240" step="10"></div>
+        </div>
+        <div class="field row">
+            <div><label for="f-gap">간격</label><input type="number" id="f-gap" value="28" step="2"></div>
+            <div><label for="f-top">상단 여백</label><input type="number" id="f-top" value="100" step="10"></div>
+        </div>
+
+        <div class="code">
+            <div class="code-head"><strong>임베드 코드</strong><button class="copy" id="copy">복사</button></div>
+            <pre><code id="snippet"></code></pre>
+            <p class="hint">Ghost: Settings → Code injection → <b>Site Footer</b> 에 붙여넣기.
+            기본값은 <b>Ghost 테마 강조색을 자동으로 사용</b>합니다 — 따로 설정할 필요 없습니다.</p>
+        </div>
+    </aside>
+
+    <div class="demo-hero">대표 이미지 (feature image) 영역 — 목차는 이 아래부터 시작합니다</div>
+
+    <article class="demo-article">
+        <h1>ghost-toc-plugin 미리보기</h1>
+        <p>왼쪽 패널에서 옵션을 바꿔보세요. 목차가 실시간으로 다시 그려지고, 임베드 코드도 함께 갱신됩니다. 스크롤하면 현재 섹션이 강조됩니다.</p>
+
+        <h2>들어가며</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+
+        <h2>설치 방법</h2>
+        <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim.</p>
+        <h3>코드 인젝션</h3>
+        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt neque porro.</p>
+        <h3>옵션 설정</h3>
+        <p>Quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore.</p>
+
+        <h2>커스터마이즈</h2>
+        <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur autem.</p>
+        <h3>색상</h3>
+        <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat.</p>
+        <h3>위치</h3>
+        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+
+        <h2>마치며</h2>
+        <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
+        <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>
+    </article>
+
+    <script src="./toc.js" data-auto="false"></script>
+    <script>
+        var CDN = 'https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@v1.0.0';
+        var DEF = window.GreedyLabsGhostTOC.defaults;
+        var instance = null;
+        var $ = function (id) { return document.getElementById(id); };
+
+        // Safe Umami event tracker (no-op if the script is blocked/unloaded)
+        function track(name, data) {
+            try { if (window.umami && window.umami.track) { window.umami.track(name, data); } } catch (e) {}
+        }
+
+        function read() {
+            return {
+                content: $('f-content').value.trim() || '.gh-content',
+                headings: $('f-headings').value.trim() || 'h2,h3',
+                title: $('f-title').value,
+                position: $('f-position').value,
+                useThemeAccent: $('f-useThemeAccent').checked,
+                accent: $('f-accent').value,
+                minWidth: parseInt($('f-minWidth').value, 10) || DEF.minWidth,
+                width: parseInt($('f-width').value, 10) || DEF.width,
+                gap: parseInt($('f-gap').value, 10) || DEF.gap,
+                top: parseInt($('f-top').value, 10) || DEF.top
+            };
+        }
+
+        function render() {
+            var o = read();
+            $('f-accent').disabled = o.useThemeAccent;
+            // move the control panel to the side opposite the TOC so it's always visible
+            document.querySelector('.panel').classList.toggle('panel--right', o.position === 'left');
+
+            if (instance) { instance.destroy(); instance = null; }
+            instance = window.GreedyLabsGhostTOC.create({
+                content: '.demo-article',
+                headings: o.headings, title: o.title, position: o.position,
+                accent: o.useThemeAccent ? undefined : o.accent,
+                minWidth: o.minWidth, width: o.width, gap: o.gap, top: o.top
+            });
+            updateSnippet(o);
+        }
+
+        function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+        function updateSnippet(o) {
+            var a = [];
+            a.push('data-content="' + esc(o.content) + '"');
+            a.push('data-headings="' + esc(o.headings) + '"');
+            a.push('data-position="' + esc(o.position) + '"');
+            a.push('data-title="' + esc(o.title) + '"');
+            if (!o.useThemeAccent) { a.push('data-accent="' + esc(o.accent) + '"'); }
+            if (o.minWidth !== DEF.minWidth) { a.push('data-min-width="' + o.minWidth + '"'); }
+            if (o.width !== DEF.width) { a.push('data-width="' + o.width + '"'); }
+            if (o.gap !== DEF.gap) { a.push('data-gap="' + o.gap + '"'); }
+            if (o.top !== DEF.top) { a.push('data-top="' + o.top + '"'); }
+
+            var code =
+                '<link rel="stylesheet" href="' + CDN + '/toc.css">\n' +
+                '<script src="' + CDN + '/toc.min.js"\n        ' +
+                a.join('\n        ') + '><\/script>';
+            $('snippet').textContent = code;
+        }
+
+        ['f-content','f-headings','f-title','f-position','f-useThemeAccent','f-accent','f-minWidth','f-width','f-gap','f-top']
+            .forEach(function (id) {
+                var el = $(id);
+                el.addEventListener('input', render);
+                // 'change' = committed value (fires once on blur/select), so it's the
+                // right granularity for analytics — one event per actual adjustment.
+                el.addEventListener('change', function () {
+                    render();
+                    track('config_change', {
+                        field: id.slice(2), // strip "f-"
+                        value: String(el.type === 'checkbox' ? el.checked : el.value).slice(0, 60)
+                    });
+                });
+            });
+
+        $('copy').addEventListener('click', function () {
+            var btn = this, o = read();
+            track('copy_code', {
+                position: o.position,
+                headings: o.headings,
+                useThemeAccent: o.useThemeAccent,
+                customTitle: o.title !== '목차',
+                hidden: o.title === ''
+            });
+            navigator.clipboard.writeText($('snippet').textContent).then(function () {
+                btn.textContent = '복사됨'; btn.classList.add('ok');
+                setTimeout(function () { btn.textContent = '복사'; btn.classList.remove('ok'); }, 1500);
+            });
+        });
+
+        render();
+    </script>
+</body>
+</html>

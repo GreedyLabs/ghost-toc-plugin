@@ -1,0 +1,93 @@
+/*!
+ * ghost-toc-plugin — styles. Self-contained: the default colors already match a
+ * typical Ghost (Source) palette, and the active color follows the site's
+ * --ghost-accent-color automatically. Override any of the --greedylabs-ghost-toc-*
+ * variables to customize. MIT License.
+ * https://github.com/GreedyLabs/ghost-toc-plugin
+ */
+.greedylabs-ghost-toc {
+    position: fixed;
+    top: var(--greedylabs-ghost-toc-top, 100px);
+    width: var(--greedylabs-ghost-toc-width, 240px);
+    max-height: calc(100vh - var(--greedylabs-ghost-toc-top, 100px) - 24px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    z-index: 50;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    /* left is set inline by the script; display toggles when there's room */
+}
+
+.greedylabs-ghost-toc__title {
+    margin: 0 0 12px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--greedylabs-ghost-toc-muted, rgba(0, 0, 0, 0.55));
+}
+
+.greedylabs-ghost-toc__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-left: 2px solid var(--greedylabs-ghost-toc-border, rgba(0, 0, 0, 0.08));
+}
+
+.greedylabs-ghost-toc__item {
+    margin: 0;
+    padding: 0;
+}
+
+.greedylabs-ghost-toc__link {
+    display: block;
+    padding: 5px 0 5px 16px;
+    margin-left: -2px;
+    border-left: 2px solid transparent;
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--greedylabs-ghost-toc-muted, rgba(0, 0, 0, 0.55));
+    text-decoration: none;
+    transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.greedylabs-ghost-toc__item--h3 .greedylabs-ghost-toc__link,
+.greedylabs-ghost-toc__item--h4 .greedylabs-ghost-toc__link {
+    padding-left: 28px;
+    font-size: 13px;
+}
+
+.greedylabs-ghost-toc__item--h4 .greedylabs-ghost-toc__link {
+    padding-left: 40px;
+}
+
+.greedylabs-ghost-toc__link:hover {
+    color: var(--greedylabs-ghost-toc-fg, #15171a);
+}
+
+.greedylabs-ghost-toc__link--active {
+    /* Priority: explicit override → Ghost's theme accent (auto) → blue fallback */
+    color: var(--greedylabs-ghost-toc-accent, var(--ghost-accent-color, #1a73e8));
+    border-left-color: var(--greedylabs-ghost-toc-accent, var(--ghost-accent-color, #1a73e8));
+    font-weight: 600;
+}
+
+@media (prefers-color-scheme: dark) {
+    .greedylabs-ghost-toc__title,
+    .greedylabs-ghost-toc__link {
+        color: var(--greedylabs-ghost-toc-muted, rgba(255, 255, 255, 0.64));
+    }
+    .greedylabs-ghost-toc__list {
+        border-left-color: var(--greedylabs-ghost-toc-border, rgba(255, 255, 255, 0.15));
+    }
+    .greedylabs-ghost-toc__link:hover {
+        color: var(--greedylabs-ghost-toc-fg, #fff);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
