@@ -48,13 +48,21 @@ function hreflangs(currentUrl) {
   return links.join('\n');
 }
 
-function langSwitch(cur, t) {
+function langSwitch(cur) {
   const opts = ORDER.map(
     (l) => `<option value="/${l}/"${l === cur ? ' selected' : ''}>${esc(data.langs[l].name)}</option>`
-  ).join('\n                ');
-  return `<select id="lang-select" class="lang-select" aria-label="${escAttr(t.langLabel)}">
-                ${opts}
-            </select>`;
+  ).join('\n                    ');
+  return `<select id="lang-select">
+                    ${opts}
+                </select>`;
+}
+
+function themeSwitch(t) {
+  return `<select id="theme-select">
+                    <option value="system">${esc(t.themeSystem)}</option>
+                    <option value="light">${esc(t.themeLight)}</option>
+                    <option value="dark">${esc(t.themeDark)}</option>
+                </select>`;
 }
 
 function page(lang) {
@@ -74,6 +82,17 @@ function page(lang) {
     <link rel="canonical" href="${url}">
     <meta name="theme-color" content="#1a73e8">
     <link rel="icon" href="${FAVICON}">
+
+    <!-- Set the theme before paint to avoid a flash (system unless the user chose one) -->
+    <script>
+      (function () {
+        try {
+          var m = localStorage.getItem('gtoc-theme') || 'system';
+          var dark = m === 'dark' || (m === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+          document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+        } catch (e) {}
+      })();
+    </script>
 
 ${hreflangs(url)}
 
@@ -110,6 +129,7 @@ ${hreflangs(url)}
     }
     </script>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5/400.css">
     <link rel="stylesheet" href="/toc.css">
     <link rel="stylesheet" href="/demo.css">
 
@@ -119,8 +139,18 @@ ${hreflangs(url)}
 <body>
     <aside class="panel">
         <h1>ghost-toc-plugin</h1>
-        ${langSwitch(lang, t)}
-        <p class="sub">${esc(t.panelSub)}</p>
+        <div class="panel-meta">
+            <div class="field row">
+                <div>
+                    <label for="lang-select">${esc(t.langLabel)}</label>
+                    ${langSwitch(lang)}
+                </div>
+                <div>
+                    <label for="theme-select">${esc(t.themeLabel)}</label>
+                    ${themeSwitch(t)}
+                </div>
+            </div>
+        </div>
 
         <div class="field">
             <label for="f-content">${esc(t.lblContent)} <span style="font-weight:400;color:var(--ui-muted)">${esc(t.hintContent)}</span></label>
@@ -164,6 +194,11 @@ ${hreflangs(url)}
             <div class="code-head"><strong>${esc(t.embedLabel)}</strong><button class="copy" id="copy">${esc(t.copy)}</button></div>
             <pre><code id="snippet"></code></pre>
             <p class="hint">${esc(t.hint)}</p>
+        </div>
+
+        <div class="panel-support">
+            <p>${esc(t.support)}</p>
+            <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="daeho.ro" data-color="#FFDD00" data-emoji="" data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff"></script>
         </div>
     </aside>
 

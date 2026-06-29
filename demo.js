@@ -108,5 +108,47 @@
     var langSel = $('lang-select');
     if (langSel) { langSel.addEventListener('change', function () { location.href = this.value; }); }
 
+    // theme switcher: light / dark / system. "system" follows the OS and reacts
+    // to OS changes live; the chosen mode is persisted. Light/dark set on <html>
+    // drive both the demo page and the TOC widget (via its CSS variables); giscus
+    // is kept in sync over postMessage.
+    var themeSel = $('theme-select');
+    var mql = window.matchMedia('(prefers-color-scheme: dark)');
+    function effectiveTheme(mode) { return mode === 'system' ? (mql.matches ? 'dark' : 'light') : mode; }
+    function syncGiscus(theme) {
+        var f = document.querySelector('iframe.giscus-frame');
+        if (f && f.contentWindow) {
+            f.contentWindow.postMessage({ giscus: { setConfig: { theme: theme } } }, 'https://giscus.app');
+        }
+    }
+    function applyTheme(mode) {
+        document.documentElement.setAttribute('data-theme', effectiveTheme(mode));
+        syncGiscus(mode === 'system' ? 'preferred_color_scheme' : effectiveTheme(mode));
+    }
+    if (themeSel) {
+        var saved = 'system';
+        try { saved = localStorage.getItem('gtoc-theme') || 'system'; } catch (e) {}
+        themeSel.value = saved;
+        applyTheme(saved);
+        themeSel.addEventListener('change', function () {
+            try { localStorage.setItem('gtoc-theme', this.value); } catch (e) {}
+            applyTheme(this.value);
+            track('theme_change', { theme: this.value });
+        });
+        mql.addEventListener('change', function () {
+            if (themeSel.value === 'system') { applyTheme('system'); }
+        });
+        // giscus loads lazily — push the current theme once it's ready (its
+        // initial data-theme is preferred_color_scheme, which only matches "system").
+        var giscusSynced = false;
+        window.addEventListener('message', function (e) {
+            if (e.origin !== 'https://giscus.app' || giscusSynced) { return; }
+            if (e.data && e.data.giscus) {
+                giscusSynced = true;
+                if (themeSel.value !== 'system') { syncGiscus(effectiveTheme(themeSel.value)); }
+            }
+        });
+    }
+
     render();
 })();

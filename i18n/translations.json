@@ -15,14 +15,16 @@
       "lblAccent": "강조색", "hintAccent": "(위 체크 해제 시)",
       "lblMinWidth": "최소 너비", "lblWidth": "패널 너비", "lblGap": "간격", "lblTop": "상단 여백",
       "embedLabel": "임베드 코드", "copy": "복사", "copyDone": "복사됨",
-      "hint": "Ghost 관리자 → Settings → Code injection → Site Footer 에 붙여넣기. 기본값은 테마 강조색을 자동으로 사용합니다.",
+      "hint": "Ghost 관리자 → Settings → Code injection → Site Footer 에 붙여넣기.",
       "defaultTitle": "목차",
       "heroText": "대표 이미지(feature image) 영역 — 목차는 이 아래부터 시작합니다",
       "demoTitle": "ghost-toc-plugin 미리보기",
       "demoIntro": "왼쪽 패널에서 옵션을 바꿔보세요. 목차가 실시간으로 다시 그려지고, 임베드 코드도 함께 갱신됩니다. 스크롤하면 현재 섹션이 강조됩니다.",
       "h_intro": "들어가며", "h_install": "설치 방법", "h_codeinjection": "코드 인젝션", "h_options": "옵션 설정",
       "h_customize": "커스터마이즈", "h_color": "색상", "h_position": "위치", "h_closing": "마치며",
-      "commentsTitle": "댓글", "langLabel": "언어"
+      "commentsTitle": "댓글", "langLabel": "언어",
+      "support": "도움이 되었다면 커피 한 잔 어때요? ☕",
+      "themeLabel": "테마", "themeSystem": "시스템", "themeLight": "라이트", "themeDark": "다크"
     },
     "en": {
       "name": "English", "locale": "en_US",
@@ -37,14 +39,16 @@
       "lblAccent": "Accent color", "hintAccent": "(when unchecked above)",
       "lblMinWidth": "Min width", "lblWidth": "Panel width", "lblGap": "Gap", "lblTop": "Top offset",
       "embedLabel": "Embed code", "copy": "Copy", "copyDone": "Copied",
-      "hint": "Paste into Ghost → Settings → Code injection → Site Footer. By default it uses your theme's accent color.",
+      "hint": "Paste into Ghost → Settings → Code injection → Site Footer.",
       "defaultTitle": "Contents",
       "heroText": "Feature image area — the table of contents starts below this",
       "demoTitle": "ghost-toc-plugin preview",
       "demoIntro": "Change options in the left panel. The table of contents re-renders live and the embed code updates with it. Scroll to see the current section highlighted.",
       "h_intro": "Getting started", "h_install": "Installation", "h_codeinjection": "Code injection", "h_options": "Options",
       "h_customize": "Customize", "h_color": "Colors", "h_position": "Position", "h_closing": "Wrapping up",
-      "commentsTitle": "Comments", "langLabel": "Language"
+      "commentsTitle": "Comments", "langLabel": "Language",
+      "support": "Found it useful? Buy me a coffee ☕",
+      "themeLabel": "Theme", "themeSystem": "System", "themeLight": "Light", "themeDark": "Dark"
     },
     "ja": {
       "name": "日本語", "locale": "ja_JP",
@@ -59,14 +63,16 @@
       "lblAccent": "アクセント色", "hintAccent": "(上のチェックを外したとき)",
       "lblMinWidth": "最小幅", "lblWidth": "パネル幅", "lblGap": "余白", "lblTop": "上余白",
       "embedLabel": "埋め込みコード", "copy": "コピー", "copyDone": "コピーしました",
-      "hint": "Ghost の Settings → Code injection → Site Footer に貼り付け。デフォルトでテーマのアクセント色を自動使用します。",
+      "hint": "Ghost の Settings → Code injection → Site Footer に貼り付け。",
       "defaultTitle": "目次",
       "heroText": "フィーチャー画像エリア — 目次はこの下から始まります",
       "demoTitle": "ghost-toc-plugin プレビュー",
       "demoIntro": "左パネルでオプションを変えてみてください。目次がリアルタイムで再描画され、埋め込みコードも一緒に更新されます。スクロールすると現在のセクションが強調されます。",
       "h_intro": "はじめに", "h_install": "インストール", "h_codeinjection": "コードインジェクション", "h_options": "オプション設定",
       "h_customize": "カスタマイズ", "h_color": "配色", "h_position": "位置", "h_closing": "おわりに",
-      "commentsTitle": "コメント", "langLabel": "言語"
+      "commentsTitle": "コメント", "langLabel": "言語",
+      "support": "役に立ったらコーヒーを一杯 ☕",
+      "themeLabel": "テーマ", "themeSystem": "システム", "themeLight": "ライト", "themeDark": "ダーク"
     },
     "zh": {
       "name": "中文", "locale": "zh_CN",
@@ -81,14 +87,16 @@
       "lblAccent": "强调色", "hintAccent": "(取消上方勾选时)",
       "lblMinWidth": "最小宽度", "lblWidth": "面板宽度", "lblGap": "间距", "lblTop": "顶部偏移",
       "embedLabel": "嵌入代码", "copy": "复制", "copyDone": "已复制",
-      "hint": "粘贴到 Ghost → Settings → Code injection → Site Footer。默认自动使用主题强调色。",
+      "hint": "粘贴到 Ghost → Settings → Code injection → Site Footer。",
       "defaultTitle": "目录",
       "heroText": "封面图区域 — 目录从这里下方开始",
       "demoTitle": "ghost-toc-plugin 预览",
       "demoIntro": "在左侧面板修改选项。目录会实时重新渲染，嵌入代码也随之更新。滚动时会高亮当前所在的章节。",
       "h_intro": "开始之前", "h_install": "安装方法", "h_codeinjection": "代码注入", "h_options": "选项设置",
       "h_customize": "自定义", "h_color": "颜色", "h_position": "位置", "h_closing": "结语",
-      "commentsTitle": "评论", "langLabel": "语言"
+      "commentsTitle": "评论", "langLabel": "语言",
+      "support": "有帮助的话，请我喝杯咖啡 ☕",
+      "themeLabel": "主题", "themeSystem": "系统", "themeLight": "浅色", "themeDark": "深色"
     },
     "es": {
       "name": "Español", "locale": "es_ES",
@@ -103,14 +111,16 @@
       "lblAccent": "Color de acento", "hintAccent": "(al desmarcar arriba)",
       "lblMinWidth": "Ancho mínimo", "lblWidth": "Ancho del panel", "lblGap": "Espacio", "lblTop": "Margen superior",
       "embedLabel": "Código de inserción", "copy": "Copiar", "copyDone": "Copiado",
-      "hint": "Pégalo en Ghost → Settings → Code injection → Site Footer. Por defecto usa el color de acento de tu tema.",
+      "hint": "Pégalo en Ghost → Settings → Code injection → Site Footer.",
       "defaultTitle": "Contenido",
       "heroText": "Área de imagen destacada — el índice empieza debajo de esto",
       "demoTitle": "Vista previa de ghost-toc-plugin",
       "demoIntro": "Cambia las opciones en el panel izquierdo. El índice se vuelve a renderizar en vivo y el código de inserción se actualiza con él. Desplázate para ver la sección actual resaltada.",
       "h_intro": "Introducción", "h_install": "Instalación", "h_codeinjection": "Inyección de código", "h_options": "Opciones",
       "h_customize": "Personalización", "h_color": "Colores", "h_position": "Posición", "h_closing": "Conclusión",
-      "commentsTitle": "Comentarios", "langLabel": "Idioma"
+      "commentsTitle": "Comentarios", "langLabel": "Idioma",
+      "support": "¿Te ha servido? Invítame a un café ☕",
+      "themeLabel": "Tema", "themeSystem": "Sistema", "themeLight": "Claro", "themeDark": "Oscuro"
     },
     "fr": {
       "name": "Français", "locale": "fr_FR",
@@ -125,14 +135,16 @@
       "lblAccent": "Couleur d'accent", "hintAccent": "(si la case ci-dessus est décochée)",
       "lblMinWidth": "Largeur min.", "lblWidth": "Largeur du panneau", "lblGap": "Écart", "lblTop": "Décalage haut",
       "embedLabel": "Code d'intégration", "copy": "Copier", "copyDone": "Copié",
-      "hint": "Collez dans Ghost → Settings → Code injection → Site Footer. Par défaut, utilise la couleur d'accent de votre thème.",
+      "hint": "Collez dans Ghost → Settings → Code injection → Site Footer.",
       "defaultTitle": "Sommaire",
       "heroText": "Zone de l'image à la une — le sommaire commence en dessous",
       "demoTitle": "Aperçu de ghost-toc-plugin",
       "demoIntro": "Modifiez les options dans le panneau de gauche. Le sommaire se redessine en direct et le code d'intégration se met à jour. Faites défiler pour voir la section courante mise en évidence.",
       "h_intro": "Pour commencer", "h_install": "Installation", "h_codeinjection": "Injection de code", "h_options": "Options",
       "h_customize": "Personnalisation", "h_color": "Couleurs", "h_position": "Position", "h_closing": "Conclusion",
-      "commentsTitle": "Commentaires", "langLabel": "Langue"
+      "commentsTitle": "Commentaires", "langLabel": "Langue",
+      "support": "Utile ? Offrez-moi un café ☕",
+      "themeLabel": "Thème", "themeSystem": "Système", "themeLight": "Clair", "themeDark": "Sombre"
     },
     "de": {
       "name": "Deutsch", "locale": "de_DE",
@@ -147,14 +159,16 @@
       "lblAccent": "Akzentfarbe", "hintAccent": "(wenn oben deaktiviert)",
       "lblMinWidth": "Mindestbreite", "lblWidth": "Panelbreite", "lblGap": "Abstand", "lblTop": "Oberer Abstand",
       "embedLabel": "Einbettungscode", "copy": "Kopieren", "copyDone": "Kopiert",
-      "hint": "In Ghost → Settings → Code injection → Site Footer einfügen. Verwendet standardmäßig die Akzentfarbe Ihres Themes.",
+      "hint": "In Ghost → Settings → Code injection → Site Footer einfügen.",
       "defaultTitle": "Inhalt",
       "heroText": "Beitragsbild-Bereich — das Inhaltsverzeichnis beginnt darunter",
       "demoTitle": "ghost-toc-plugin Vorschau",
       "demoIntro": "Ändern Sie Optionen im linken Panel. Das Inhaltsverzeichnis wird live neu gezeichnet und der Einbettungscode aktualisiert sich mit. Scrollen Sie, um den aktuellen Abschnitt hervorgehoben zu sehen.",
       "h_intro": "Einführung", "h_install": "Installation", "h_codeinjection": "Code-Injection", "h_options": "Optionen",
       "h_customize": "Anpassung", "h_color": "Farben", "h_position": "Position", "h_closing": "Fazit",
-      "commentsTitle": "Kommentare", "langLabel": "Sprache"
+      "commentsTitle": "Kommentare", "langLabel": "Sprache",
+      "support": "Hilfreich? Spendier mir einen Kaffee ☕",
+      "themeLabel": "Theme", "themeSystem": "System", "themeLight": "Hell", "themeDark": "Dunkel"
     },
     "pt": {
       "name": "Português", "locale": "pt_BR",
@@ -169,14 +183,16 @@
       "lblAccent": "Cor de destaque", "hintAccent": "(quando desmarcado acima)",
       "lblMinWidth": "Largura mín.", "lblWidth": "Largura do painel", "lblGap": "Espaço", "lblTop": "Deslocamento superior",
       "embedLabel": "Código de incorporação", "copy": "Copiar", "copyDone": "Copiado",
-      "hint": "Cole em Ghost → Settings → Code injection → Site Footer. Por padrão, usa a cor de destaque do seu tema.",
+      "hint": "Cole em Ghost → Settings → Code injection → Site Footer.",
       "defaultTitle": "Conteúdo",
       "heroText": "Área da imagem de destaque — o índice começa abaixo disto",
       "demoTitle": "Prévia do ghost-toc-plugin",
       "demoIntro": "Altere as opções no painel à esquerda. O índice é renderizado em tempo real e o código de incorporação é atualizado junto. Role para ver a seção atual destacada.",
       "h_intro": "Introdução", "h_install": "Instalação", "h_codeinjection": "Injeção de código", "h_options": "Opções",
       "h_customize": "Personalização", "h_color": "Cores", "h_position": "Posição", "h_closing": "Conclusão",
-      "commentsTitle": "Comentários", "langLabel": "Idioma"
+      "commentsTitle": "Comentários", "langLabel": "Idioma",
+      "support": "Foi útil? Me paga um café ☕",
+      "themeLabel": "Tema", "themeSystem": "Sistema", "themeLight": "Claro", "themeDark": "Escuro"
     },
     "hi": {
       "name": "हिन्दी", "locale": "hi_IN",
@@ -191,14 +207,16 @@
       "lblAccent": "एक्सेंट रंग", "hintAccent": "(ऊपर अनचेक करने पर)",
       "lblMinWidth": "न्यूनतम चौड़ाई", "lblWidth": "पैनल चौड़ाई", "lblGap": "गैप", "lblTop": "टॉप ऑफसेट",
       "embedLabel": "एम्बेड कोड", "copy": "कॉपी", "copyDone": "कॉपी हो गया",
-      "hint": "Ghost → Settings → Code injection → Site Footer में पेस्ट करें। डिफ़ॉल्ट रूप से यह आपकी थीम का एक्सेंट रंग उपयोग करता है।",
+      "hint": "Ghost → Settings → Code injection → Site Footer में पेस्ट करें।",
       "defaultTitle": "विषय-सूची",
       "heroText": "फ़ीचर इमेज क्षेत्र — विषय-सूची इसके नीचे से शुरू होती है",
       "demoTitle": "ghost-toc-plugin प्रीव्यू",
       "demoIntro": "बाएँ पैनल में विकल्प बदलें। विषय-सूची लाइव री-रेंडर होती है और एम्बेड कोड भी साथ में अपडेट होता है। स्क्रॉल करने पर वर्तमान सेक्शन हाइलाइट होता है।",
       "h_intro": "परिचय", "h_install": "इंस्टॉलेशन", "h_codeinjection": "कोड इंजेक्शन", "h_options": "विकल्प",
       "h_customize": "कस्टमाइज़", "h_color": "रंग", "h_position": "स्थिति", "h_closing": "निष्कर्ष",
-      "commentsTitle": "टिप्पणियाँ", "langLabel": "भाषा"
+      "commentsTitle": "टिप्पणियाँ", "langLabel": "भाषा",
+      "support": "पसंद आया? एक कॉफ़ी पिलाएँ ☕",
+      "themeLabel": "थीम", "themeSystem": "सिस्टम", "themeLight": "लाइट", "themeDark": "डार्क"
     }
   }
 }

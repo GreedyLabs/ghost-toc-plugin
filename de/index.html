@@ -12,6 +12,17 @@
     <meta name="theme-color" content="#1a73e8">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a73e8'/%3E%3Cg fill='white'%3E%3Crect x='8' y='9' width='12' height='2.5' rx='1.25'/%3E%3Crect x='8' y='15' width='16' height='2.5' rx='1.25'/%3E%3Crect x='8' y='21' width='10' height='2.5' rx='1.25'/%3E%3C/g%3E%3C/svg%3E">
 
+    <!-- Set the theme before paint to avoid a flash (system unless the user chose one) -->
+    <script>
+      (function () {
+        try {
+          var m = localStorage.getItem('gtoc-theme') || 'system';
+          var dark = m === 'dark' || (m === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+          document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+        } catch (e) {}
+      })();
+    </script>
+
     <link rel="alternate" hreflang="ko" href="https://ghost-toc-plugin.greedylabs.kr/ko/">
     <link rel="alternate" hreflang="en" href="https://ghost-toc-plugin.greedylabs.kr/en/">
     <link rel="alternate" hreflang="ja" href="https://ghost-toc-plugin.greedylabs.kr/ja/">
@@ -56,6 +67,7 @@
     }
     </script>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5/400.css">
     <link rel="stylesheet" href="/toc.css">
     <link rel="stylesheet" href="/demo.css">
 
@@ -65,18 +77,32 @@
 <body>
     <aside class="panel">
         <h1>ghost-toc-plugin</h1>
-        <select id="lang-select" class="lang-select" aria-label="Sprache">
-                <option value="/ko/">한국어</option>
-                <option value="/en/">English</option>
-                <option value="/ja/">日本語</option>
-                <option value="/zh/">中文</option>
-                <option value="/es/">Español</option>
-                <option value="/fr/">Français</option>
-                <option value="/de/" selected>Deutsch</option>
-                <option value="/pt/">Português</option>
-                <option value="/hi/">हिन्दी</option>
-            </select>
-        <p class="sub">Ändern Sie eine Option, um Vorschau und Code unten sofort zu aktualisieren.</p>
+        <div class="panel-meta">
+            <div class="field row">
+                <div>
+                    <label for="lang-select">Sprache</label>
+                    <select id="lang-select">
+                    <option value="/ko/">한국어</option>
+                    <option value="/en/">English</option>
+                    <option value="/ja/">日本語</option>
+                    <option value="/zh/">中文</option>
+                    <option value="/es/">Español</option>
+                    <option value="/fr/">Français</option>
+                    <option value="/de/" selected>Deutsch</option>
+                    <option value="/pt/">Português</option>
+                    <option value="/hi/">हिन्दी</option>
+                </select>
+                </div>
+                <div>
+                    <label for="theme-select">Theme</label>
+                    <select id="theme-select">
+                    <option value="system">System</option>
+                    <option value="light">Hell</option>
+                    <option value="dark">Dunkel</option>
+                </select>
+                </div>
+            </div>
+        </div>
 
         <div class="field">
             <label for="f-content">Inhalts-Selektor <span style="font-weight:400;color:var(--ui-muted)">(für den Code · Vorschau nutzt den Demo-Inhalt)</span></label>
@@ -119,7 +145,12 @@
         <div class="code">
             <div class="code-head"><strong>Einbettungscode</strong><button class="copy" id="copy">Kopieren</button></div>
             <pre><code id="snippet"></code></pre>
-            <p class="hint">In Ghost → Settings → Code injection → Site Footer einfügen. Verwendet standardmäßig die Akzentfarbe Ihres Themes.</p>
+            <p class="hint">In Ghost → Settings → Code injection → Site Footer einfügen.</p>
+        </div>
+
+        <div class="panel-support">
+            <p>Hilfreich? Spendier mir einen Kaffee ☕</p>
+            <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="daeho.ro" data-color="#FFDD00" data-emoji="" data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff"></script>
         </div>
     </aside>
 
