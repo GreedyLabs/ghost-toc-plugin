@@ -15,6 +15,13 @@
         try { if (window.umami && window.umami.track) { window.umami.track(name, data); } } catch (e) {}
     }
 
+    // Parse an integer field, falling back to the default only when it's empty/
+    // invalid — NOT when it's a legitimate 0 (a `|| DEF` would swallow zero).
+    function intField(id, def) {
+        var v = parseInt($(id).value, 10);
+        return isNaN(v) ? def : v;
+    }
+
     function read() {
         return {
             content: $('f-content').value.trim() || '.gh-content',
@@ -23,10 +30,10 @@
             position: $('f-position').value,
             useThemeAccent: $('f-useThemeAccent').checked,
             accent: $('f-accent').value,
-            minWidth: parseInt($('f-minWidth').value, 10) || DEF.minWidth,
-            width: parseInt($('f-width').value, 10) || DEF.width,
-            gap: parseInt($('f-gap').value, 10) || DEF.gap,
-            top: parseInt($('f-top').value, 10) || DEF.top
+            minWidth: intField('f-minWidth', DEF.minWidth),
+            width: intField('f-width', DEF.width),
+            gap: intField('f-gap', DEF.gap),
+            top: intField('f-top', DEF.top)
         };
     }
 
