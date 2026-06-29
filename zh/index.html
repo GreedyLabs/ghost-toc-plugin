@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>ghost-toc-plugin — Ghost 浮动目录(TOC)组件 · 配置与演示</title>
+    <title>ghost-toc-plugin: Ghost 浮动目录(TOC)组件 · 配置与演示</title>
     <meta name="description" content="用一行代码为你的 Ghost 博客添加浮动目录(TOC)。修改选项、实时预览并复制嵌入代码。开源(MIT)。">
     <meta name="author" content="GreedyLabs">
     <meta name="robots" content="index, follow">
@@ -37,7 +37,7 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="ghost-toc-plugin">
-    <meta property="og:title" content="ghost-toc-plugin — Ghost 浮动目录(TOC)组件 · 配置与演示">
+    <meta property="og:title" content="ghost-toc-plugin: Ghost 浮动目录(TOC)组件 · 配置与演示">
     <meta property="og:description" content="用一行代码为你的 Ghost 博客添加浮动目录(TOC)。修改选项、实时预览并复制嵌入代码。开源(MIT)。">
     <meta property="og:url" content="https://ghost-toc-plugin.greedylabs.kr/zh/">
     <meta property="og:image" content="https://ghost-toc-plugin.greedylabs.kr/og-image.png">
@@ -47,7 +47,7 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="ghost-toc-plugin — Ghost 浮动目录(TOC)组件 · 配置与演示">
+    <meta name="twitter:title" content="ghost-toc-plugin: Ghost 浮动目录(TOC)组件 · 配置与演示">
     <meta name="twitter:description" content="用一行代码为你的 Ghost 博客添加浮动目录(TOC)。修改选项、实时预览并复制嵌入代码。开源(MIT)。">
     <meta name="twitter:image" content="https://ghost-toc-plugin.greedylabs.kr/og-image.png">
 
@@ -154,33 +154,47 @@
         </div>
     </aside>
 
-    <div class="demo-hero">封面图区域 — 目录从这里下方开始</div>
+    <div class="demo-hero">封面图区域, 目录从这里下方开始</div>
 
     <article class="demo-article">
         <h1>ghost-toc-plugin 预览</h1>
         <p>在左侧面板修改选项。目录会实时重新渲染，嵌入代码也随之更新。滚动时会高亮当前所在的章节。</p>
 
         <h2>开始之前</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+        <p>ghost-toc-plugin 是一个仅约 3KB、无依赖的浮动目录组件，一行代码即可为 Ghost 博客(或任意 HTML 页面)添加目录。它会读取文章中的标题自动生成目录，随页面滚动并高亮你正在阅读的章节。本页就是实时示例，侧边的目录正是真实运行的组件。</p>
 
         <h2>安装方法</h2>
-        <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim.</p>
+        <p>无需构建、无需修改主题文件，粘贴下面这段代码即可完成安装：</p>
+        <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
+        data-content=".gh-content"
+        data-headings="h2,h3"
+        data-title="目录"&gt;&lt;/script&gt;</code></pre>
         <h3>代码注入</h3>
-        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt neque porro.</p>
+        <p>在 Ghost 中，粘贴到 Settings → Code injection → Site Footer。在其他网站上，放在结束标签 &lt;/body&gt; 之前即可。请勿添加 async 或 defer，以便它读取自身的 data-* 选项。</p>
         <h3>选项设置</h3>
-        <p>Quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore.</p>
+        <p>所有行为都通过脚本标签上的 data-* 属性配置: 可设置正文选择器、要包含的标题、标题文字、位置等：</p>
+        <pre><code>data-content=".gh-content"
+data-headings="h2,h3"
+data-position="right"
+data-min-width="1200"
+data-top="100"</code></pre>
 
         <h2>自定义</h2>
-        <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur autem.</p>
+        <p>颜色和位置都可以自由调整。所有类名和 CSS 变量都以 greedylabs-ghost-toc 命名空间隔离，绝不会与你的主题冲突。</p>
         <h3>颜色</h3>
-        <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat.</p>
+        <p>当前项的颜色默认跟随 Ghost 主题强调色（--ghost-accent-color）。要更改，可设置 data-accent 或覆盖 CSS 变量。组件内置浅色和深色默认值，会自动适配系统主题。若想提升深色模式下的可读性，请仅针对深色覆盖颜色, 单一固定值会在浅色下显得不协调：</p>
+        <pre><code>@media (prefers-color-scheme: dark) {
+  .greedylabs-ghost-toc {
+    --greedylabs-ghost-toc-muted: #c9d1d9;
+    --greedylabs-ghost-toc-border: rgba(255,255,255,.22);
+  }
+}</code></pre>
         <h3>位置</h3>
-        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+        <p>用 data-position 设置左右，data-top 设置顶部偏移，data-gap 设置与正文的间距，data-width 设置面板宽度。当屏幕窄于 data-min-width，或正文旁没有空间时，目录会自动隐藏。</p>
 
         <h2>结语</h2>
-        <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
-        <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>
+        <p>ghost-toc-plugin 是 MIT 许可的开源项目，代码与问题反馈都在 GitHub 上。在左侧面板调整选项、实时查看预览，满意后复制嵌入代码即可。如果它帮到了你，欢迎请我喝杯咖啡 ☕。</p>
     </article>
 
     <section class="demo-comments">

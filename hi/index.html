@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>ghost-toc-plugin — Ghost के लिए फ़्लोटिंग विषय-सूची (TOC) विजेट · कॉन्फ़िगरेटर और डेमो</title>
+    <title>ghost-toc-plugin: Ghost के लिए फ़्लोटिंग विषय-सूची (TOC) विजेट · कॉन्फ़िगरेटर और डेमो</title>
     <meta name="description" content="एक लाइन कोड से अपने Ghost ब्लॉग में फ़्लोटिंग विषय-सूची जोड़ें। विकल्प बदलें, लाइव प्रीव्यू देखें और एम्बेड स्निपेट कॉपी करें। ओपन सोर्स (MIT)।">
     <meta name="author" content="GreedyLabs">
     <meta name="robots" content="index, follow">
@@ -37,7 +37,7 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="ghost-toc-plugin">
-    <meta property="og:title" content="ghost-toc-plugin — Ghost के लिए फ़्लोटिंग विषय-सूची (TOC) विजेट · कॉन्फ़िगरेटर और डेमो">
+    <meta property="og:title" content="ghost-toc-plugin: Ghost के लिए फ़्लोटिंग विषय-सूची (TOC) विजेट · कॉन्फ़िगरेटर और डेमो">
     <meta property="og:description" content="एक लाइन कोड से अपने Ghost ब्लॉग में फ़्लोटिंग विषय-सूची जोड़ें। विकल्प बदलें, लाइव प्रीव्यू देखें और एम्बेड स्निपेट कॉपी करें। ओपन सोर्स (MIT)।">
     <meta property="og:url" content="https://ghost-toc-plugin.greedylabs.kr/hi/">
     <meta property="og:image" content="https://ghost-toc-plugin.greedylabs.kr/og-image.png">
@@ -47,7 +47,7 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="ghost-toc-plugin — Ghost के लिए फ़्लोटिंग विषय-सूची (TOC) विजेट · कॉन्फ़िगरेटर और डेमो">
+    <meta name="twitter:title" content="ghost-toc-plugin: Ghost के लिए फ़्लोटिंग विषय-सूची (TOC) विजेट · कॉन्फ़िगरेटर और डेमो">
     <meta name="twitter:description" content="एक लाइन कोड से अपने Ghost ब्लॉग में फ़्लोटिंग विषय-सूची जोड़ें। विकल्प बदलें, लाइव प्रीव्यू देखें और एम्बेड स्निपेट कॉपी करें। ओपन सोर्स (MIT)।">
     <meta name="twitter:image" content="https://ghost-toc-plugin.greedylabs.kr/og-image.png">
 
@@ -154,33 +154,47 @@
         </div>
     </aside>
 
-    <div class="demo-hero">फ़ीचर इमेज क्षेत्र — विषय-सूची इसके नीचे से शुरू होती है</div>
+    <div class="demo-hero">फ़ीचर इमेज क्षेत्र, विषय-सूची इसके नीचे से शुरू होती है</div>
 
     <article class="demo-article">
         <h1>ghost-toc-plugin प्रीव्यू</h1>
         <p>बाएँ पैनल में विकल्प बदलें। विषय-सूची लाइव री-रेंडर होती है और एम्बेड कोड भी साथ में अपडेट होता है। स्क्रॉल करने पर वर्तमान सेक्शन हाइलाइट होता है।</p>
 
         <h2>परिचय</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+        <p>ghost-toc-plugin एक छोटा (~3 KB), बिना किसी निर्भरता वाला फ़्लोटिंग विषय-सूची विजेट है, जो एक लाइन कोड से Ghost ब्लॉग(या किसी भी HTML पेज)में जुड़ जाता है। यह आपके लेख के हेडिंग पढ़कर सूची अपने आप बनाता है, स्क्रॉल के साथ चलता है और आप जिस सेक्शन को पढ़ रहे हैं उसे हाइलाइट करता है। यह पेज एक लाइव उदाहरण है: बगल में दिखती सूची असली विजेट ही है।</p>
 
         <h2>इंस्टॉलेशन</h2>
-        <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim.</p>
+        <p>बिना किसी बिल्ड चरण या थीम फ़ाइल संपादन के, नीचे दिया स्निपेट एक बार चिपकाएँ:</p>
+        <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
+        data-content=".gh-content"
+        data-headings="h2,h3"
+        data-title="विषय-सूची"&gt;&lt;/script&gt;</code></pre>
         <h3>कोड इंजेक्शन</h3>
-        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt neque porro.</p>
+        <p>Ghost में इसे Settings → Code injection → Site Footer में पेस्ट करें। किसी और साइट पर इसे बंद होते &lt;/body&gt; टैग से ठीक पहले रखें। इसे async या defer के बिना रखें ताकि यह अपने data-* विकल्प पढ़ सके।</p>
         <h3>विकल्प</h3>
-        <p>Quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore.</p>
+        <p>सारा व्यवहार स्क्रिप्ट टैग पर data-* एट्रिब्यूट से सेट होता है: कंटेंट सिलेक्टर, कौन-से हेडिंग शामिल करने हैं, शीर्षक, स्थिति आदि:</p>
+        <pre><code>data-content=".gh-content"
+data-headings="h2,h3"
+data-position="right"
+data-min-width="1200"
+data-top="100"</code></pre>
 
         <h2>कस्टमाइज़</h2>
-        <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur autem.</p>
+        <p>रंग और स्थिति पूरी तरह समायोज्य हैं। हर क्लास और CSS वेरिएबल greedylabs-ghost-toc नेमस्पेस में है, इसलिए विजेट आपकी थीम से कभी टकराता नहीं।</p>
         <h3>रंग</h3>
-        <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat.</p>
+        <p>सक्रिय आइटम का रंग डिफ़ॉल्ट रूप से आपकी Ghost थीम के एक्सेंट रंग (--ghost-accent-color) का अनुसरण करता है; बदलने के लिए data-accent दें या CSS वेरिएबल ओवरराइड करें। विजेट में लाइट और डार्क दोनों डिफ़ॉल्ट हैं और यह सिस्टम थीम के अनुसार अपने-आप ढल जाता है। डार्क मोड में पठनीयता बढ़ाने के लिए रंग केवल डार्क के लिए ओवरराइड करें, कोई एक तय मान लाइट में अटपटा लगेगा:</p>
+        <pre><code>@media (prefers-color-scheme: dark) {
+  .greedylabs-ghost-toc {
+    --greedylabs-ghost-toc-muted: #c9d1d9;
+    --greedylabs-ghost-toc-border: rgba(255,255,255,.22);
+  }
+}</code></pre>
         <h3>स्थिति</h3>
-        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+        <p>बाएँ/दाएँ के लिए data-position, ऊपरी अंतर के लिए data-top, कंटेंट से दूरी के लिए data-gap, और पैनल चौड़ाई के लिए data-width इस्तेमाल करें। जब स्क्रीन data-min-width से छोटी हो(या कंटेंट के बगल में जगह न हो)तो विषय-सूची अपने-आप छिप जाती है।</p>
 
         <h2>निष्कर्ष</h2>
-        <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
-        <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>
+        <p>ghost-toc-plugin MIT लाइसेंस के तहत ओपन सोर्स है; कोड और issues GitHub पर हैं। बाएँ पैनल में विकल्प आज़माएँ, प्रीव्यू को लाइव बदलते देखें और पसंद आने पर एम्बेड कोड कॉपी करें। अगर यह आपके काम आया, तो एक कॉफ़ी का स्वागत है ☕।</p>
     </article>
 
     <section class="demo-comments">

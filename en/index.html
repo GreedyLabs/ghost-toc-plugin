@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>ghost-toc-plugin — Floating table of contents for Ghost · configurator &amp; demo</title>
+    <title>ghost-toc-plugin: Floating table of contents for Ghost · configurator &amp; demo</title>
     <meta name="description" content="Add a floating table of contents to your Ghost blog with one line of code. Tweak options, preview live, and copy the embed snippet. Open source (MIT).">
     <meta name="author" content="GreedyLabs">
     <meta name="robots" content="index, follow">
@@ -37,7 +37,7 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="ghost-toc-plugin">
-    <meta property="og:title" content="ghost-toc-plugin — Floating table of contents for Ghost · configurator &amp; demo">
+    <meta property="og:title" content="ghost-toc-plugin: Floating table of contents for Ghost · configurator &amp; demo">
     <meta property="og:description" content="Add a floating table of contents to your Ghost blog with one line of code. Tweak options, preview live, and copy the embed snippet. Open source (MIT).">
     <meta property="og:url" content="https://ghost-toc-plugin.greedylabs.kr/en/">
     <meta property="og:image" content="https://ghost-toc-plugin.greedylabs.kr/og-image.png">
@@ -47,7 +47,7 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="ghost-toc-plugin — Floating table of contents for Ghost · configurator &amp; demo">
+    <meta name="twitter:title" content="ghost-toc-plugin: Floating table of contents for Ghost · configurator &amp; demo">
     <meta name="twitter:description" content="Add a floating table of contents to your Ghost blog with one line of code. Tweak options, preview live, and copy the embed snippet. Open source (MIT).">
     <meta name="twitter:image" content="https://ghost-toc-plugin.greedylabs.kr/og-image.png">
 
@@ -154,33 +154,47 @@
         </div>
     </aside>
 
-    <div class="demo-hero">Feature image area — the table of contents starts below this</div>
+    <div class="demo-hero">Feature image area, the table of contents starts below this</div>
 
     <article class="demo-article">
         <h1>ghost-toc-plugin preview</h1>
         <p>Change options in the left panel. The table of contents re-renders live and the embed code updates with it. Scroll to see the current section highlighted.</p>
 
         <h2>Getting started</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+        <p>ghost-toc-plugin is a tiny (~3 KB), dependency-free floating table of contents for Ghost, or any HTML page. It reads the headings in your post, builds the list automatically, follows you as you scroll, and highlights the section you are reading. This page is a live example: the list on the side is the real widget.</p>
 
         <h2>Installation</h2>
-        <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim.</p>
+        <p>Add it once with this snippet, no build step, no theme files to edit:</p>
+        <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
+        data-content=".gh-content"
+        data-headings="h2,h3"
+        data-title="Contents"&gt;&lt;/script&gt;</code></pre>
         <h3>Code injection</h3>
-        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt neque porro.</p>
+        <p>In Ghost, paste it into Settings → Code injection → Site Footer. On any other site, put it just before the closing &lt;/body&gt; tag. Keep it without async or defer so it can read its own data-* options.</p>
         <h3>Options</h3>
-        <p>Quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore.</p>
+        <p>Everything is configured with data-* attributes on the script tag: the content selector, which headings to include, the title, the position, and more:</p>
+        <pre><code>data-content=".gh-content"
+data-headings="h2,h3"
+data-position="right"
+data-min-width="1200"
+data-top="100"</code></pre>
 
         <h2>Customize</h2>
-        <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur autem.</p>
+        <p>Colors and placement are fully adjustable. Every class and CSS variable is namespaced under greedylabs-ghost-toc, so the widget never clashes with your theme.</p>
         <h3>Colors</h3>
-        <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat.</p>
+        <p>The active item follows your Ghost theme accent (--ghost-accent-color) by default; set data-accent or override the CSS variables to change it. The widget ships light and dark defaults and adapts to the system theme automatically. To boost readability in dark mode, override the colors for dark only, a single fixed value would look off in light:</p>
+        <pre><code>@media (prefers-color-scheme: dark) {
+  .greedylabs-ghost-toc {
+    --greedylabs-ghost-toc-muted: #c9d1d9;
+    --greedylabs-ghost-toc-border: rgba(255,255,255,.22);
+  }
+}</code></pre>
         <h3>Position</h3>
-        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+        <p>Use data-position for left or right, data-top for the offset from the top, data-gap for the space from your content, and data-width for the panel width. Below data-min-width (or when there is no room beside the content) the table of contents hides itself.</p>
 
         <h2>Wrapping up</h2>
-        <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
-        <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>
+        <p>ghost-toc-plugin is open source under the MIT license; the code and issues live on GitHub. Try the options in the left panel, watch the preview update live, and copy the embed snippet when you are happy. If it helped you, a coffee is always appreciated ☕.</p>
     </article>
 
     <section class="demo-comments">

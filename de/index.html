@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>ghost-toc-plugin — Schwebendes Inhaltsverzeichnis für Ghost · Konfigurator &amp; Demo</title>
+    <title>ghost-toc-plugin: Schwebendes Inhaltsverzeichnis für Ghost · Konfigurator &amp; Demo</title>
     <meta name="description" content="Fügen Sie Ihrem Ghost-Blog mit einer Zeile Code ein schwebendes Inhaltsverzeichnis hinzu. Optionen anpassen, live vorschauen, Snippet kopieren. Open Source (MIT).">
     <meta name="author" content="GreedyLabs">
     <meta name="robots" content="index, follow">
@@ -37,7 +37,7 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="ghost-toc-plugin">
-    <meta property="og:title" content="ghost-toc-plugin — Schwebendes Inhaltsverzeichnis für Ghost · Konfigurator &amp; Demo">
+    <meta property="og:title" content="ghost-toc-plugin: Schwebendes Inhaltsverzeichnis für Ghost · Konfigurator &amp; Demo">
     <meta property="og:description" content="Fügen Sie Ihrem Ghost-Blog mit einer Zeile Code ein schwebendes Inhaltsverzeichnis hinzu. Optionen anpassen, live vorschauen, Snippet kopieren. Open Source (MIT).">
     <meta property="og:url" content="https://ghost-toc-plugin.greedylabs.kr/de/">
     <meta property="og:image" content="https://ghost-toc-plugin.greedylabs.kr/og-image.png">
@@ -47,7 +47,7 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="ghost-toc-plugin — Schwebendes Inhaltsverzeichnis für Ghost · Konfigurator &amp; Demo">
+    <meta name="twitter:title" content="ghost-toc-plugin: Schwebendes Inhaltsverzeichnis für Ghost · Konfigurator &amp; Demo">
     <meta name="twitter:description" content="Fügen Sie Ihrem Ghost-Blog mit einer Zeile Code ein schwebendes Inhaltsverzeichnis hinzu. Optionen anpassen, live vorschauen, Snippet kopieren. Open Source (MIT).">
     <meta name="twitter:image" content="https://ghost-toc-plugin.greedylabs.kr/og-image.png">
 
@@ -154,33 +154,47 @@
         </div>
     </aside>
 
-    <div class="demo-hero">Beitragsbild-Bereich — das Inhaltsverzeichnis beginnt darunter</div>
+    <div class="demo-hero">Beitragsbild-Bereich, das Inhaltsverzeichnis beginnt darunter</div>
 
     <article class="demo-article">
         <h1>ghost-toc-plugin Vorschau</h1>
         <p>Ändern Sie Optionen im linken Panel. Das Inhaltsverzeichnis wird live neu gezeichnet und der Einbettungscode aktualisiert sich mit. Scrollen Sie, um den aktuellen Abschnitt hervorgehoben zu sehen.</p>
 
         <h2>Einführung</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+        <p>ghost-toc-plugin ist ein winziges (~3 KB), abhängigkeitsfreies schwebendes Inhaltsverzeichnis für Ghost, oder jede HTML-Seite. Es liest die Überschriften deines Beitrags, erstellt die Liste automatisch, folgt dir beim Scrollen und hebt den gerade gelesenen Abschnitt hervor. Diese Seite ist ein Live-Beispiel: Die Liste an der Seite ist das echte Widget.</p>
 
         <h2>Installation</h2>
-        <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim.</p>
+        <p>Einmal mit diesem Snippet einbinden, ohne Build-Schritt und ohne Theme-Dateien zu bearbeiten:</p>
+        <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
+        data-content=".gh-content"
+        data-headings="h2,h3"
+        data-title="Inhalt"&gt;&lt;/script&gt;</code></pre>
         <h3>Code-Injection</h3>
-        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt neque porro.</p>
+        <p>Füge es in Ghost unter Settings → Code injection → Site Footer ein. Auf jeder anderen Seite platzierst du es direkt vor dem schließenden &lt;/body&gt;-Tag. Lass es ohne async oder defer, damit es seine eigenen data-*-Optionen lesen kann.</p>
         <h3>Optionen</h3>
-        <p>Quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore.</p>
+        <p>Alles wird über data-*-Attribute am Script-Tag konfiguriert: der Inhalts-Selektor, welche Überschriften einbezogen werden, der Titel, die Position und mehr:</p>
+        <pre><code>data-content=".gh-content"
+data-headings="h2,h3"
+data-position="right"
+data-min-width="1200"
+data-top="100"</code></pre>
 
         <h2>Anpassung</h2>
-        <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur autem.</p>
+        <p>Farben und Platzierung sind voll anpassbar. Jede Klasse und CSS-Variable ist unter greedylabs-ghost-toc benannt, sodass das Widget nie mit deinem Theme kollidiert.</p>
         <h3>Farben</h3>
-        <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat.</p>
+        <p>Das aktive Element folgt standardmäßig der Akzentfarbe deines Ghost-Themes (--ghost-accent-color); setze data-accent oder überschreibe die CSS-Variablen, um sie zu ändern. Das Widget bringt helle und dunkle Standardwerte mit und passt sich automatisch dem Systemthema an. Für bessere Lesbarkeit im Dunkelmodus überschreibe die Farben nur für Dunkel, ein einzelner fester Wert würde im Hellmodus unpassend wirken:</p>
+        <pre><code>@media (prefers-color-scheme: dark) {
+  .greedylabs-ghost-toc {
+    --greedylabs-ghost-toc-muted: #c9d1d9;
+    --greedylabs-ghost-toc-border: rgba(255,255,255,.22);
+  }
+}</code></pre>
         <h3>Position</h3>
-        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+        <p>Nutze data-position für links oder rechts, data-top für den oberen Abstand, data-gap für den Abstand zum Inhalt und data-width für die Panelbreite. Unterhalb von data-min-width (oder wenn neben dem Inhalt kein Platz ist) blendet sich das Inhaltsverzeichnis selbst aus.</p>
 
         <h2>Fazit</h2>
-        <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
-        <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>
+        <p>ghost-toc-plugin ist Open Source unter der MIT-Lizenz; Code und Issues findest du auf GitHub. Probiere die Optionen im linken Panel aus, beobachte die Live-Vorschau und kopiere das Snippet, wenn es passt. Wenn es dir geholfen hat, freue ich mich über einen Kaffee ☕.</p>
     </article>
 
     <section class="demo-comments">

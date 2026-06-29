@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>ghost-toc-plugin — Sommaire flottant pour Ghost · configurateur &amp; démo</title>
+    <title>ghost-toc-plugin: Sommaire flottant pour Ghost · configurateur &amp; démo</title>
     <meta name="description" content="Ajoutez un sommaire flottant à votre blog Ghost en une ligne de code. Réglez les options, prévisualisez en direct et copiez le code. Open source (MIT).">
     <meta name="author" content="GreedyLabs">
     <meta name="robots" content="index, follow">
@@ -37,7 +37,7 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="ghost-toc-plugin">
-    <meta property="og:title" content="ghost-toc-plugin — Sommaire flottant pour Ghost · configurateur &amp; démo">
+    <meta property="og:title" content="ghost-toc-plugin: Sommaire flottant pour Ghost · configurateur &amp; démo">
     <meta property="og:description" content="Ajoutez un sommaire flottant à votre blog Ghost en une ligne de code. Réglez les options, prévisualisez en direct et copiez le code. Open source (MIT).">
     <meta property="og:url" content="https://ghost-toc-plugin.greedylabs.kr/fr/">
     <meta property="og:image" content="https://ghost-toc-plugin.greedylabs.kr/og-image.png">
@@ -47,7 +47,7 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="ghost-toc-plugin — Sommaire flottant pour Ghost · configurateur &amp; démo">
+    <meta name="twitter:title" content="ghost-toc-plugin: Sommaire flottant pour Ghost · configurateur &amp; démo">
     <meta name="twitter:description" content="Ajoutez un sommaire flottant à votre blog Ghost en une ligne de code. Réglez les options, prévisualisez en direct et copiez le code. Open source (MIT).">
     <meta name="twitter:image" content="https://ghost-toc-plugin.greedylabs.kr/og-image.png">
 
@@ -154,33 +154,47 @@
         </div>
     </aside>
 
-    <div class="demo-hero">Zone de l'image à la une — le sommaire commence en dessous</div>
+    <div class="demo-hero">Zone de l'image à la une, le sommaire commence en dessous</div>
 
     <article class="demo-article">
         <h1>Aperçu de ghost-toc-plugin</h1>
         <p>Modifiez les options dans le panneau de gauche. Le sommaire se redessine en direct et le code d'intégration se met à jour. Faites défiler pour voir la section courante mise en évidence.</p>
 
         <h2>Pour commencer</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+        <p>ghost-toc-plugin est un sommaire flottant minuscule (~3 Ko), sans dépendance, pour Ghost, ou n'importe quelle page HTML. Il lit les titres de votre article, construit la liste automatiquement, vous suit au défilement et met en évidence la section en cours de lecture. Cette page est un exemple en direct : la liste sur le côté est le vrai widget.</p>
 
         <h2>Installation</h2>
-        <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim.</p>
+        <p>Ajoutez-le en une fois avec cet extrait, sans étape de build ni fichiers de thème à modifier :</p>
+        <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
+        data-content=".gh-content"
+        data-headings="h2,h3"
+        data-title="Sommaire"&gt;&lt;/script&gt;</code></pre>
         <h3>Injection de code</h3>
-        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt neque porro.</p>
+        <p>Dans Ghost, collez-le dans Settings → Code injection → Site Footer. Sur tout autre site, placez-le juste avant la balise &lt;/body&gt;. Laissez-le sans async ni defer pour qu'il puisse lire ses propres options data-*.</p>
         <h3>Options</h3>
-        <p>Quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore.</p>
+        <p>Tout se configure avec des attributs data-* sur la balise script : le sélecteur de contenu, les titres à inclure, le titre, la position, etc. :</p>
+        <pre><code>data-content=".gh-content"
+data-headings="h2,h3"
+data-position="right"
+data-min-width="1200"
+data-top="100"</code></pre>
 
         <h2>Personnalisation</h2>
-        <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur autem.</p>
+        <p>Les couleurs et l'emplacement sont entièrement réglables. Chaque classe et variable CSS est dans l'espace de noms greedylabs-ghost-toc, donc le widget n'entre jamais en conflit avec votre thème.</p>
         <h3>Couleurs</h3>
-        <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat.</p>
+        <p>L'élément actif suit par défaut la couleur d'accent de votre thème Ghost (--ghost-accent-color) ; utilisez data-accent ou redéfinissez les variables CSS pour la changer. Le widget fournit des valeurs claires et sombres et s'adapte automatiquement au thème du système. Pour améliorer la lisibilité en mode sombre, redéfinissez les couleurs uniquement pour le sombre, une seule valeur fixe rendrait mal en clair :</p>
+        <pre><code>@media (prefers-color-scheme: dark) {
+  .greedylabs-ghost-toc {
+    --greedylabs-ghost-toc-muted: #c9d1d9;
+    --greedylabs-ghost-toc-border: rgba(255,255,255,.22);
+  }
+}</code></pre>
         <h3>Position</h3>
-        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+        <p>Utilisez data-position pour gauche ou droite, data-top pour le décalage en haut, data-gap pour l'espace avec le contenu et data-width pour la largeur du panneau. En dessous de data-min-width (ou s'il n'y a pas de place à côté) le sommaire se masque tout seul.</p>
 
         <h2>Conclusion</h2>
-        <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
-        <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>
+        <p>ghost-toc-plugin est open source sous licence MIT ; le code et les tickets sont sur GitHub. Essayez les options dans le panneau de gauche, regardez l'aperçu se mettre à jour en direct, et copiez l'extrait quand cela vous convient. Si cela vous a aidé, un café est toujours apprécié ☕.</p>
     </article>
 
     <section class="demo-comments">

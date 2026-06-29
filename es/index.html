@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>ghost-toc-plugin — Índice flotante para Ghost · configurador y demo</title>
+    <title>ghost-toc-plugin: Índice flotante para Ghost · configurador y demo</title>
     <meta name="description" content="Añade un índice flotante a tu blog Ghost con una línea de código. Ajusta opciones, previsualiza en vivo y copia el fragmento. Código abierto (MIT).">
     <meta name="author" content="GreedyLabs">
     <meta name="robots" content="index, follow">
@@ -37,7 +37,7 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="ghost-toc-plugin">
-    <meta property="og:title" content="ghost-toc-plugin — Índice flotante para Ghost · configurador y demo">
+    <meta property="og:title" content="ghost-toc-plugin: Índice flotante para Ghost · configurador y demo">
     <meta property="og:description" content="Añade un índice flotante a tu blog Ghost con una línea de código. Ajusta opciones, previsualiza en vivo y copia el fragmento. Código abierto (MIT).">
     <meta property="og:url" content="https://ghost-toc-plugin.greedylabs.kr/es/">
     <meta property="og:image" content="https://ghost-toc-plugin.greedylabs.kr/og-image.png">
@@ -47,7 +47,7 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="ghost-toc-plugin — Índice flotante para Ghost · configurador y demo">
+    <meta name="twitter:title" content="ghost-toc-plugin: Índice flotante para Ghost · configurador y demo">
     <meta name="twitter:description" content="Añade un índice flotante a tu blog Ghost con una línea de código. Ajusta opciones, previsualiza en vivo y copia el fragmento. Código abierto (MIT).">
     <meta name="twitter:image" content="https://ghost-toc-plugin.greedylabs.kr/og-image.png">
 
@@ -154,33 +154,47 @@
         </div>
     </aside>
 
-    <div class="demo-hero">Área de imagen destacada — el índice empieza debajo de esto</div>
+    <div class="demo-hero">Área de imagen destacada, el índice empieza debajo de esto</div>
 
     <article class="demo-article">
         <h1>Vista previa de ghost-toc-plugin</h1>
         <p>Cambia las opciones en el panel izquierdo. El índice se vuelve a renderizar en vivo y el código de inserción se actualiza con él. Desplázate para ver la sección actual resaltada.</p>
 
         <h2>Introducción</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+        <p>ghost-toc-plugin es un índice flotante diminuto (~3 KB) y sin dependencias para Ghost, o cualquier página HTML. Lee los encabezados de tu artículo, crea la lista automáticamente, te sigue al desplazarte y resalta la sección que estás leyendo. Esta página es un ejemplo en vivo: la lista lateral es el widget real.</p>
 
         <h2>Instalación</h2>
-        <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim.</p>
+        <p>Añádelo una sola vez con este fragmento, sin paso de compilación ni archivos del tema que editar:</p>
+        <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
+        data-content=".gh-content"
+        data-headings="h2,h3"
+        data-title="Contenido"&gt;&lt;/script&gt;</code></pre>
         <h3>Inyección de código</h3>
-        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt neque porro.</p>
+        <p>En Ghost, pégalo en Settings → Code injection → Site Footer. En cualquier otro sitio, colócalo justo antes de la etiqueta &lt;/body&gt;. Déjalo sin async ni defer para que pueda leer sus propias opciones data-*.</p>
         <h3>Opciones</h3>
-        <p>Quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore.</p>
+        <p>Todo se configura con atributos data-* en la etiqueta del script: el selector de contenido, qué encabezados incluir, el título, la posición y más:</p>
+        <pre><code>data-content=".gh-content"
+data-headings="h2,h3"
+data-position="right"
+data-min-width="1200"
+data-top="100"</code></pre>
 
         <h2>Personalización</h2>
-        <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur autem.</p>
+        <p>Los colores y la ubicación son totalmente ajustables. Cada clase y variable CSS está en el espacio de nombres greedylabs-ghost-toc, así que el widget nunca choca con tu tema.</p>
         <h3>Colores</h3>
-        <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat.</p>
+        <p>El elemento activo sigue por defecto el color de acento de tu tema Ghost (--ghost-accent-color); usa data-accent o sobrescribe las variables CSS para cambiarlo. El widget incluye valores claros y oscuros y se adapta al tema del sistema automáticamente. Para mejorar la legibilidad en modo oscuro, sobrescribe los colores solo para oscuro, un único valor fijo se vería mal en claro:</p>
+        <pre><code>@media (prefers-color-scheme: dark) {
+  .greedylabs-ghost-toc {
+    --greedylabs-ghost-toc-muted: #c9d1d9;
+    --greedylabs-ghost-toc-border: rgba(255,255,255,.22);
+  }
+}</code></pre>
         <h3>Posición</h3>
-        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+        <p>Usa data-position para izquierda o derecha, data-top para el margen superior, data-gap para el espacio respecto al contenido y data-width para el ancho del panel. Por debajo de data-min-width (o cuando no hay espacio al lado) el índice se oculta solo.</p>
 
         <h2>Conclusión</h2>
-        <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
-        <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>
+        <p>ghost-toc-plugin es de código abierto bajo licencia MIT; el código y las incidencias están en GitHub. Prueba las opciones en el panel izquierdo, mira la vista previa actualizarse en vivo y copia el fragmento cuando te guste. Si te ha servido, siempre se agradece un café ☕.</p>
     </article>
 
     <section class="demo-comments">

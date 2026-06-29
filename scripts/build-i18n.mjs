@@ -24,19 +24,29 @@ const escAttr = (s) => esc(s).replace(/"/g, '&quot;');
 // giscus UI language codes (fall back to en for unsupported)
 const GISCUS_LANG = { ko: 'ko', en: 'en', ja: 'ja', zh: 'zh-CN', es: 'es', fr: 'fr', de: 'de', pt: 'pt', hi: 'en' };
 
-// language-neutral filler body (kept as lorem so we don't pretend to translate prose)
-const LOREM = {
-  p1: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
-  p2: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.',
-  p3: 'Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim.',
-  p4: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt neque porro.',
-  p5: 'Quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore.',
-  p6: 'Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur autem.',
-  p7: 'Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat.',
-  p8: 'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.',
-  p9: 'Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.',
-  p10: 'Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.'
-};
+// Code samples shown in the article body. Language-neutral, so they live here
+// rather than in translations.json. esc()'d before they go into the HTML.
+const codeInstall = (t) =>
+`<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.css">
+<script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
+        data-content=".gh-content"
+        data-headings="h2,h3"
+        data-title="${t.defaultTitle}"></script>`;
+
+const CODE_OPTIONS =
+`data-content=".gh-content"
+data-headings="h2,h3"
+data-position="right"
+data-min-width="1200"
+data-top="100"`;
+
+const CODE_COLOR =
+`@media (prefers-color-scheme: dark) {
+  .greedylabs-ghost-toc {
+    --greedylabs-ghost-toc-muted: #c9d1d9;
+    --greedylabs-ghost-toc-border: rgba(255,255,255,.22);
+  }
+}`;
 
 const FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a73e8'/%3E%3Cg fill='white'%3E%3Crect x='8' y='9' width='12' height='2.5' rx='1.25'/%3E%3Crect x='8' y='15' width='16' height='2.5' rx='1.25'/%3E%3Crect x='8' y='21' width='10' height='2.5' rx='1.25'/%3E%3C/g%3E%3C/svg%3E";
 
@@ -209,26 +219,27 @@ ${hreflangs(url)}
         <p>${esc(t.demoIntro)}</p>
 
         <h2>${esc(t.h_intro)}</h2>
-        <p>${LOREM.p1}</p>
-        <p>${LOREM.p2}</p>
+        <p>${esc(t.bodyIntro)}</p>
 
         <h2>${esc(t.h_install)}</h2>
-        <p>${LOREM.p3}</p>
+        <p>${esc(t.bodyInstall)}</p>
+        <pre><code>${esc(codeInstall(t))}</code></pre>
         <h3>${esc(t.h_codeinjection)}</h3>
-        <p>${LOREM.p4}</p>
+        <p>${esc(t.bodyCodeInjection)}</p>
         <h3>${esc(t.h_options)}</h3>
-        <p>${LOREM.p5}</p>
+        <p>${esc(t.bodyOptions)}</p>
+        <pre><code>${esc(CODE_OPTIONS)}</code></pre>
 
         <h2>${esc(t.h_customize)}</h2>
-        <p>${LOREM.p6}</p>
+        <p>${esc(t.bodyCustomize)}</p>
         <h3>${esc(t.h_color)}</h3>
-        <p>${LOREM.p7}</p>
+        <p>${esc(t.bodyColor)}</p>
+        <pre><code>${esc(CODE_COLOR)}</code></pre>
         <h3>${esc(t.h_position)}</h3>
-        <p>${LOREM.p8}</p>
+        <p>${esc(t.bodyPosition)}</p>
 
         <h2>${esc(t.h_closing)}</h2>
-        <p>${LOREM.p9}</p>
-        <p>${LOREM.p10}</p>
+        <p>${esc(t.bodyClosing)}</p>
     </article>
 
     <section class="demo-comments">
@@ -266,7 +277,7 @@ function redirector() {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ghost-toc-plugin — Floating table of contents for Ghost</title>
+    <title>ghost-toc-plugin: Floating table of contents for Ghost</title>
     <meta name="description" content="${escAttr(data.langs[DEFAULT].description)}">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="${ORIGIN}/">

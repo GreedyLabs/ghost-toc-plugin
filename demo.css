@@ -108,6 +108,7 @@ pre { margin: 0; background: #0f172a; color: #e2e8f0; padding: 12px; border-radi
 .demo-article h2 { margin-top: 2.4em; font-size: 1.6rem; }
 .demo-article h3 { margin-top: 1.6em; font-size: 1.25rem; }
 .demo-article p { margin: 1em 0; color: var(--art-fg); }
+.demo-article pre { margin: 1.2em 0; }
 
 /* Comments — same column width as the article so the layout stays aligned.
    giscus injects a .giscus container holding the .giscus-frame iframe. */

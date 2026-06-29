@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>ghost-toc-plugin — Ghost 블로그용 떠다니는 목차(TOC) 위젯 · 설정 &amp; 데모</title>
+    <title>ghost-toc-plugin: Ghost 블로그용 떠다니는 목차(TOC) 위젯 · 설정 &amp; 데모</title>
     <meta name="description" content="Ghost 블로그에 코드 한 줄로 붙이는 떠다니는 목차(TOC) 위젯. 옵션을 바꿔 실시간 미리보고 임베드 코드를 복사하세요. 오픈소스(MIT).">
     <meta name="author" content="GreedyLabs">
     <meta name="robots" content="index, follow">
@@ -37,7 +37,7 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="ghost-toc-plugin">
-    <meta property="og:title" content="ghost-toc-plugin — Ghost 블로그용 떠다니는 목차(TOC) 위젯 · 설정 &amp; 데모">
+    <meta property="og:title" content="ghost-toc-plugin: Ghost 블로그용 떠다니는 목차(TOC) 위젯 · 설정 &amp; 데모">
     <meta property="og:description" content="Ghost 블로그에 코드 한 줄로 붙이는 떠다니는 목차(TOC) 위젯. 옵션을 바꿔 실시간 미리보고 임베드 코드를 복사하세요. 오픈소스(MIT).">
     <meta property="og:url" content="https://ghost-toc-plugin.greedylabs.kr/ko/">
     <meta property="og:image" content="https://ghost-toc-plugin.greedylabs.kr/og-image.png">
@@ -47,7 +47,7 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="ghost-toc-plugin — Ghost 블로그용 떠다니는 목차(TOC) 위젯 · 설정 &amp; 데모">
+    <meta name="twitter:title" content="ghost-toc-plugin: Ghost 블로그용 떠다니는 목차(TOC) 위젯 · 설정 &amp; 데모">
     <meta name="twitter:description" content="Ghost 블로그에 코드 한 줄로 붙이는 떠다니는 목차(TOC) 위젯. 옵션을 바꿔 실시간 미리보고 임베드 코드를 복사하세요. 오픈소스(MIT).">
     <meta name="twitter:image" content="https://ghost-toc-plugin.greedylabs.kr/og-image.png">
 
@@ -154,33 +154,47 @@
         </div>
     </aside>
 
-    <div class="demo-hero">대표 이미지(feature image) 영역 — 목차는 이 아래부터 시작합니다</div>
+    <div class="demo-hero">대표 이미지(feature image) 영역, 목차는 이 아래부터 시작합니다</div>
 
     <article class="demo-article">
         <h1>ghost-toc-plugin 미리보기</h1>
         <p>왼쪽 패널에서 옵션을 바꿔보세요. 목차가 실시간으로 다시 그려지고, 임베드 코드도 함께 갱신됩니다. 스크롤하면 현재 섹션이 강조됩니다.</p>
 
         <h2>들어가며</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+        <p>ghost-toc-plugin은 코드 한 줄로 Ghost 블로그(또는 어떤 HTML 페이지든)에 떠다니는 목차를 더하는 가볍고(약 3KB) 의존성 없는 위젯입니다. 글의 헤딩을 읽어 목차를 자동으로 만들고, 스크롤을 따라다니며 지금 읽는 섹션을 강조합니다. 이 페이지가 바로 그 예시로, 옆에 보이는 목차가 실제로 동작하는 위젯입니다.</p>
 
         <h2>설치 방법</h2>
-        <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim.</p>
+        <p>빌드 과정도, 테마 파일 수정도 없이 아래 스니펫 한 번이면 설치가 끝납니다:</p>
+        <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
+        data-content=".gh-content"
+        data-headings="h2,h3"
+        data-title="목차"&gt;&lt;/script&gt;</code></pre>
         <h3>코드 인젝션</h3>
-        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt neque porro.</p>
+        <p>Ghost에서는 Settings → Code injection → Site Footer 에 붙여넣습니다. 다른 사이트라면 닫는 &lt;/body&gt; 태그 바로 앞에 두면 됩니다. async나 defer 없이 두어야 자신의 data-* 옵션을 읽을 수 있습니다.</p>
         <h3>옵션 설정</h3>
-        <p>Quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore.</p>
+        <p>동작은 모두 스크립트 태그의 data-* 속성으로 설정합니다: 본문 선택자, 포함할 헤딩, 제목, 위치 등을 지정할 수 있습니다:</p>
+        <pre><code>data-content=".gh-content"
+data-headings="h2,h3"
+data-position="right"
+data-min-width="1200"
+data-top="100"</code></pre>
 
         <h2>커스터마이즈</h2>
-        <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur autem.</p>
+        <p>색과 위치는 자유롭게 조절할 수 있습니다. 모든 클래스와 CSS 변수는 greedylabs-ghost-toc로 네임스페이스가 걸려 있어 테마와 절대 충돌하지 않습니다.</p>
         <h3>색상</h3>
-        <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat.</p>
+        <p>현재 항목 색은 기본적으로 Ghost 테마 강조색(--ghost-accent-color)을 따릅니다. 바꾸려면 data-accent를 주거나 CSS 변수를 덮어쓰면 됩니다. 위젯은 라이트·다크 기본값을 모두 갖춰 시스템 테마에 자동으로 맞춰집니다. 다크 모드 가독성을 더 높이고 싶다면 다크에만 적용되도록 색을 따로 지정하세요, 값 하나로 고정하면 라이트에서 어색해집니다:</p>
+        <pre><code>@media (prefers-color-scheme: dark) {
+  .greedylabs-ghost-toc {
+    --greedylabs-ghost-toc-muted: #c9d1d9;
+    --greedylabs-ghost-toc-border: rgba(255,255,255,.22);
+  }
+}</code></pre>
         <h3>위치</h3>
-        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+        <p>data-position으로 좌·우를, data-top으로 상단 여백을, data-gap으로 본문과의 간격을, data-width로 패널 너비를 정합니다. 화면이 data-min-width보다 좁거나 옆에 공간이 없으면 목차는 스스로 숨습니다.</p>
 
         <h2>마치며</h2>
-        <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
-        <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>
+        <p>ghost-toc-plugin은 MIT 라이선스 오픈소스이며, 소스와 이슈는 GitHub에 있습니다. 왼쪽 패널에서 옵션을 바꿔 실시간으로 확인한 뒤 마음에 들면 임베드 코드를 복사하세요. 도움이 되었다면 커피 한 잔 부탁드려요 ☕.</p>
     </article>
 
     <section class="demo-comments">

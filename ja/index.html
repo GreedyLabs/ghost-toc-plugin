@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>ghost-toc-plugin — Ghost 用フローティング目次(TOC)ウィジェット · 設定 &amp; デモ</title>
+    <title>ghost-toc-plugin: Ghost 用フローティング目次(TOC)ウィジェット · 設定 &amp; デモ</title>
     <meta name="description" content="コード1行で Ghost ブログに追加できるフローティング目次(TOC)ウィジェット。オプションを変えてライブプレビューし、埋め込みコードをコピー。オープンソース(MIT)。">
     <meta name="author" content="GreedyLabs">
     <meta name="robots" content="index, follow">
@@ -37,7 +37,7 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="ghost-toc-plugin">
-    <meta property="og:title" content="ghost-toc-plugin — Ghost 用フローティング目次(TOC)ウィジェット · 設定 &amp; デモ">
+    <meta property="og:title" content="ghost-toc-plugin: Ghost 用フローティング目次(TOC)ウィジェット · 設定 &amp; デモ">
     <meta property="og:description" content="コード1行で Ghost ブログに追加できるフローティング目次(TOC)ウィジェット。オプションを変えてライブプレビューし、埋め込みコードをコピー。オープンソース(MIT)。">
     <meta property="og:url" content="https://ghost-toc-plugin.greedylabs.kr/ja/">
     <meta property="og:image" content="https://ghost-toc-plugin.greedylabs.kr/og-image.png">
@@ -47,7 +47,7 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="ghost-toc-plugin — Ghost 用フローティング目次(TOC)ウィジェット · 設定 &amp; デモ">
+    <meta name="twitter:title" content="ghost-toc-plugin: Ghost 用フローティング目次(TOC)ウィジェット · 設定 &amp; デモ">
     <meta name="twitter:description" content="コード1行で Ghost ブログに追加できるフローティング目次(TOC)ウィジェット。オプションを変えてライブプレビューし、埋め込みコードをコピー。オープンソース(MIT)。">
     <meta name="twitter:image" content="https://ghost-toc-plugin.greedylabs.kr/og-image.png">
 
@@ -154,33 +154,47 @@
         </div>
     </aside>
 
-    <div class="demo-hero">フィーチャー画像エリア — 目次はこの下から始まります</div>
+    <div class="demo-hero">フィーチャー画像エリア, 目次はこの下から始まります</div>
 
     <article class="demo-article">
         <h1>ghost-toc-plugin プレビュー</h1>
         <p>左パネルでオプションを変えてみてください。目次がリアルタイムで再描画され、埋め込みコードも一緒に更新されます。スクロールすると現在のセクションが強調されます。</p>
 
         <h2>はじめに</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+        <p>ghost-toc-plugin は、コード1行で Ghost ブログ(や任意の HTML ページ)にフローティング目次を追加できる、軽量（約3KB）で依存関係のないウィジェットです。記事の見出しを読み取って目次を自動生成し、スクロールに追従して現在の見出しを強調します。このページがそのまま実例で、横に見える目次が実際に動くウィジェットです。</p>
 
         <h2>インストール</h2>
-        <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim.</p>
+        <p>ビルド工程もテーマ編集も不要。下のスニペットを一度貼り付けるだけです：</p>
+        <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
+        data-content=".gh-content"
+        data-headings="h2,h3"
+        data-title="目次"&gt;&lt;/script&gt;</code></pre>
         <h3>コードインジェクション</h3>
-        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt neque porro.</p>
+        <p>Ghost では Settings → Code injection → Site Footer に貼り付けます。他のサイトでは閉じタグ &lt;/body&gt; の直前に置いてください。自身の data-* オプションを読めるよう、async や defer は付けません。</p>
         <h3>オプション設定</h3>
-        <p>Quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore.</p>
+        <p>動作はすべてスクリプトタグの data-* 属性で設定します: 本文セレクタ、含める見出し、タイトル、位置などを指定できます：</p>
+        <pre><code>data-content=".gh-content"
+data-headings="h2,h3"
+data-position="right"
+data-min-width="1200"
+data-top="100"</code></pre>
 
         <h2>カスタマイズ</h2>
-        <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur autem.</p>
+        <p>色と位置は自由に調整できます。すべてのクラスと CSS 変数は greedylabs-ghost-toc で名前空間化されており、テーマと衝突しません。</p>
         <h3>配色</h3>
-        <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat.</p>
+        <p>現在の項目の色は、既定で Ghost テーマのアクセント色（--ghost-accent-color）に従います。変更するには data-accent を指定するか、CSS 変数を上書きします。ウィジェットはライト／ダークの既定値を備え、システムテーマに自動で合わせます。ダークモードの可読性を高めたい場合は、ダークのときだけ色を上書きしてください, 単一の固定値ではライトで不自然になります：</p>
+        <pre><code>@media (prefers-color-scheme: dark) {
+  .greedylabs-ghost-toc {
+    --greedylabs-ghost-toc-muted: #c9d1d9;
+    --greedylabs-ghost-toc-border: rgba(255,255,255,.22);
+  }
+}</code></pre>
         <h3>位置</h3>
-        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+        <p>data-position で左右、data-top で上の余白、data-gap で本文との間隔、data-width でパネル幅を指定します。画面が data-min-width より狭い場合や横にスペースがない場合、目次は自動的に隠れます。</p>
 
         <h2>おわりに</h2>
-        <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
-        <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>
+        <p>ghost-toc-plugin は MIT ライセンスのオープンソースで、コードと Issue は GitHub にあります。左パネルでオプションを変えてライブプレビューを確認し、気に入ったら埋め込みコードをコピーしてください。お役に立てたら、コーヒーを一杯いただけると嬉しいです ☕。</p>
     </article>
 
     <section class="demo-comments">
