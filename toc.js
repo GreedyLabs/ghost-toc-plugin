@@ -49,6 +49,20 @@
         gap: 28
     };
 
+    // Merge defined option values over DEFAULTS and normalise `position`.
+    function resolveConfig(options) {
+        var cfg = {}, k;
+        for (k in DEFAULTS) { if (DEFAULTS.hasOwnProperty(k)) { cfg[k] = DEFAULTS[k]; } }
+        if (options) {
+            for (k in options) {
+                if (options.hasOwnProperty(k) && options[k] !== undefined && options[k] !== null) { cfg[k] = options[k]; }
+            }
+        }
+        cfg.position = cfg.position === 'left' ? 'left' : 'right';
+        return cfg;
+    }
+
+    // Return a function that turns heading text into a unique, URL-safe slug id.
     function slugifier() {
         var used = {};
         return function (text) {
@@ -64,22 +78,9 @@
         };
     }
 
-    // Build a TOC instance. Returns { element, destroy } or null if nothing to render.
-    function create(options) {
-        var cfg = {};
-        var k;
-        for (k in DEFAULTS) { if (DEFAULTS.hasOwnProperty(k)) { cfg[k] = DEFAULTS[k]; } }
-        if (options) { for (k in options) { if (options.hasOwnProperty(k) && options[k] !== undefined && options[k] !== null) { cfg[k] = options[k]; } } }
-        cfg.position = cfg.position === 'left' ? 'left' : 'right';
-
-        var content = typeof cfg.content === 'string' ? document.querySelector(cfg.content) : cfg.content;
-        if (!content) { return null; }
-
-        var headings = Array.prototype.slice.call(content.querySelectorAll(cfg.headings));
-        if (headings.length < cfg.minHeadings) { return null; }
-
-        var slugify = slugifier();
-
+    // Build the panel DOM (title + linked list); returns { panel, linkMap }.
+    // Also assigns ids and scroll-margin to the headings as a side effect.
+    function buildPanel(cfg, headings, slugify) {
         var panel = document.createElement('aside');
         panel.className = NS + ' ' + NS + '--' + cfg.position;
         panel.style.setProperty('--' + NS + '-top', cfg.top + 'px');
@@ -97,8 +98,8 @@
             nav.appendChild(titleEl);
         }
 
-        var listEl = document.createElement('ul');
-        listEl.className = NS + '__list';
+        var list = document.createElement('ul');
+        list.className = NS + '__list';
 
         var linkMap = {};
         headings.forEach(function (h) {
@@ -114,19 +115,36 @@
             a.textContent = h.textContent || '';
 
             li.appendChild(a);
-            listEl.appendChild(li);
+            list.appendChild(li);
             linkMap[h.id] = a;
         });
 
-        nav.appendChild(listEl);
+        nav.appendChild(list);
         panel.appendChild(nav);
+        return { panel: panel, linkMap: linkMap };
+    }
+
+    // Create a TOC instance. Returns { element, destroy } or null if there's
+    // nothing to render (no content element, or too few headings).
+    function create(options) {
+        var cfg = resolveConfig(options);
+
+        var content = typeof cfg.content === 'string' ? document.querySelector(cfg.content) : cfg.content;
+        if (!content) { return null; }
+
+        var headings = Array.prototype.slice.call(content.querySelectorAll(cfg.headings));
+        if (headings.length < cfg.minHeadings) { return null; }
+
+        var built = buildPanel(cfg, headings, slugifier());
+        var panel = built.panel, linkMap = built.linkMap;
         document.body.appendChild(panel);
 
         var ACTIVE = NS + '__link--active';
+        var activeId = null;
 
-        // Horizontal placement + visibility. Aligns to the *readable text column*,
-        // not the content wrapper (in Ghost .gh-content is a full-width grid, so its
-        // right edge is the page edge — we want the heading column instead).
+        // Place the panel beside the readable text column and hide it when it
+        // won't fit. Aligns to the first heading, not the content wrapper (in Ghost
+        // .gh-content is a full-width grid whose edge is the page edge).
         function layout() {
             var vw = document.documentElement.clientWidth;
             if (vw < cfg.minWidth) { panel.style.display = 'none'; return; }
@@ -146,9 +164,9 @@
             verticalAlign();
         }
 
-        // Vertical: cap the top at the article body so the panel never overlaps the
-        // header / feature image, then ride up with the content end (sticky within
-        // the article — matches an in-flow sticky TOC).
+        // Keep the panel within the article vertically: pinned at `cfg.top`, but
+        // capped to the article box so it never overlaps the header or scrolls past
+        // the content end (behaves like an in-flow sticky TOC).
         function verticalAlign() {
             if (panel.style.display === 'none') { return; }
             var cr = content.getBoundingClientRect();
@@ -158,8 +176,7 @@
             panel.style.top = Math.round(top) + 'px';
         }
 
-        // --- active section: single activation line (precise) + bottom-snap ---
-        var activeId = null;
+        // Move the --active class to the link for `id` (no-op if unchanged).
         function setActive(id) {
             if (id === activeId) { return; }
             if (activeId && linkMap[activeId]) { linkMap[activeId].classList.remove(ACTIVE); }
@@ -167,53 +184,66 @@
             if (id && linkMap[id]) { linkMap[id].classList.add(ACTIVE); }
         }
 
-        function updateActive() {
-            // Active = the last heading whose top has crossed the reading line.
-            // The line sits at `cfg.top` normally (precise, flips exactly as a
-            // heading passes it). Within the final viewport it descends toward the
-            // bottom of the screen so the tail headings — which can never scroll up
-            // to `cfg.top` — still get swept and activated in order.
-            var vh = window.innerHeight;
-            var offset = cfg.top;
+        // Index of the heading the reader is currently in. Each heading has an
+        // activation scroll point (where its top reaches the reading line at
+        // `cfg.top`); the active one is the last point already passed. Reachable
+        // headings keep their exact point (precise); a tail too close to the page
+        // bottom to ever reach the line is spread across the final scroll so those
+        // headings still activate in order, the last one exactly at the bottom.
+        function activeIndex() {
             var scrollY = window.scrollY;
-            var maxScroll = Math.max(0, document.documentElement.scrollHeight - vh);
-            var line = offset;
+            var maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
 
-            // Only descend the line near the bottom when the last heading can't
-            // otherwise reach `offset` (i.e. there isn't a full screen of content
-            // below it). With enough content below (comments/footer/…) the line
-            // stays fixed → precise, no premature switching.
-            var lastDocTop = headings[headings.length - 1].getBoundingClientRect().top + scrollY;
-            if (lastDocTop - offset > maxScroll + 1) {
-                var distToBottom = Math.max(0, maxScroll - scrollY);
-                line = offset + Math.max(0, (vh - offset) - distToBottom);
+            var pts = headings.map(function (h) {
+                return h.getBoundingClientRect().top + scrollY - cfg.top;
+            });
+
+            var tail = -1;
+            for (var i = 0; i < pts.length; i++) { if (pts[i] > maxScroll) { tail = i; break; } }
+            if (tail !== -1) {
+                var anchor = tail > 0 ? Math.min(pts[tail - 1], maxScroll) : 0;
+                var n = pts.length - tail;
+                for (var j = tail; j < pts.length; j++) {
+                    pts[j] = anchor + (maxScroll - anchor) * ((j - tail + 1) / n);
+                }
             }
 
             var idx = 0;
-            for (var i = 0; i < headings.length; i++) {
-                if (headings[i].getBoundingClientRect().top <= line + 1) { idx = i; }
-                else { break; }
-            }
-            setActive(headings[idx].id);
+            for (var k = 0; k < pts.length; k++) { if (scrollY + 1 >= pts[k]) { idx = k; } }
+            return idx;
         }
 
-        layout();
-        updateActive();
+        // Recompute and apply the active heading.
+        function updateActive() { setActive(headings[activeIndex()].id); }
+
+        // Coalesce scroll / content-grow events into one realign + recompute per frame.
         var ticking = false;
-        function onScroll() {
+        function tick() {
             if (ticking) { return; }
             ticking = true;
             window.requestAnimationFrame(function () { verticalAlign(); updateActive(); ticking = false; });
         }
-        function onResize() { layout(); updateActive(); }
-        window.addEventListener('resize', onResize);
-        window.addEventListener('scroll', onScroll, { passive: true });
+
+        // Full re-place (used on resize, where the horizontal fit can change too).
+        function relayout() { layout(); updateActive(); }
+
+        layout();
+        updateActive();
+        window.addEventListener('scroll', tick, { passive: true });
+        window.addEventListener('resize', relayout);
+
+        // The page can grow after load — lazy images, embeds, comment widgets
+        // (giscus/Disqus), ad slots. That shifts which headings are reachable, so
+        // recompute on document-height changes, not only on scroll.
+        var ro = window.ResizeObserver ? new ResizeObserver(tick) : null;
+        if (ro) { ro.observe(document.documentElement); }
 
         return {
             element: panel,
             destroy: function () {
-                window.removeEventListener('resize', onResize);
-                window.removeEventListener('scroll', onScroll);
+                window.removeEventListener('scroll', tick);
+                window.removeEventListener('resize', relayout);
+                if (ro) { ro.disconnect(); }
                 if (panel.parentNode) { panel.parentNode.removeChild(panel); }
             }
         };
