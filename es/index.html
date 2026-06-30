@@ -107,6 +107,10 @@
         <div class="field">
             <label for="f-content">Selector de contenido <span style="font-weight:400;color:var(--ui-muted)">(para el código · la vista previa usa el cuerpo demo)</span></label>
             <input type="text" id="f-content" value=".gh-content">
+            <div class="presets">
+                <button type="button" class="preset" data-content=".gh-content">Ghost</button>
+                <button type="button" class="preset" data-content=".notion-page-content">Notion</button>
+            </div>
         </div>
         <div class="field">
             <label for="f-headings">Encabezados</label>
@@ -165,8 +169,8 @@
 
         <h2>Instalación</h2>
         <p>Añádelo una sola vez con este fragmento, sin paso de compilación ni archivos del tema que editar:</p>
-        <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.css"&gt;
-&lt;script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
+        <pre><code>&lt;link rel="stylesheet" href="https://ghost-toc-plugin.greedylabs.kr/toc.css"&gt;
+&lt;script src="https://ghost-toc-plugin.greedylabs.kr/toc.min.js"
         data-content=".gh-content"
         data-headings="h2,h3"
         data-title="Contenido"&gt;&lt;/script&gt;</code></pre>
@@ -179,6 +183,7 @@ data-headings="h2,h3"
 data-position="right"
 data-min-width="1200"
 data-top="100"</code></pre>
+        <p>No es solo para Ghost. En hosting basado en Notion que permita inyectar scripts (oopy, super.so y similares), pon data-content en .notion-page-content y funciona igual. Notion anida más, así que puedes añadir h4 a data-headings.</p>
 
         <h2>Personalización</h2>
         <p>Los colores y la ubicación son totalmente ajustables. Cada clase y variable CSS está en el espacio de nombres greedylabs-ghost-toc, así que el widget nunca choca con tu tema.</p>

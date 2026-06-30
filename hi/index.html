@@ -107,6 +107,10 @@
         <div class="field">
             <label for="f-content">कंटेंट सिलेक्टर <span style="font-weight:400;color:var(--ui-muted)">(कोड के लिए · प्रीव्यू डेमो बॉडी दिखाता है)</span></label>
             <input type="text" id="f-content" value=".gh-content">
+            <div class="presets">
+                <button type="button" class="preset" data-content=".gh-content">Ghost</button>
+                <button type="button" class="preset" data-content=".notion-page-content">Notion</button>
+            </div>
         </div>
         <div class="field">
             <label for="f-headings">हेडिंग</label>
@@ -165,8 +169,8 @@
 
         <h2>इंस्टॉलेशन</h2>
         <p>बिना किसी बिल्ड चरण या थीम फ़ाइल संपादन के, नीचे दिया स्निपेट एक बार चिपकाएँ:</p>
-        <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.css"&gt;
-&lt;script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
+        <pre><code>&lt;link rel="stylesheet" href="https://ghost-toc-plugin.greedylabs.kr/toc.css"&gt;
+&lt;script src="https://ghost-toc-plugin.greedylabs.kr/toc.min.js"
         data-content=".gh-content"
         data-headings="h2,h3"
         data-title="विषय-सूची"&gt;&lt;/script&gt;</code></pre>
@@ -179,6 +183,7 @@ data-headings="h2,h3"
 data-position="right"
 data-min-width="1200"
 data-top="100"</code></pre>
+        <p>यह सिर्फ़ Ghost के लिए नहीं है। स्क्रिप्ट इंजेक्शन की अनुमति देने वाली Notion-आधारित होस्टिंग (oopy, super.so आदि) पर data-content को .notion-page-content पर सेट करें और यह वैसे ही काम करता है। Notion में हेडिंग गहरी होती हैं, इसलिए data-headings में h4 भी जोड़ सकते हैं।</p>
 
         <h2>कस्टमाइज़</h2>
         <p>रंग और स्थिति पूरी तरह समायोज्य हैं। हर क्लास और CSS वेरिएबल greedylabs-ghost-toc नेमस्पेस में है, इसलिए विजेट आपकी थीम से कभी टकराता नहीं।</p>

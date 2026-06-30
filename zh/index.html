@@ -107,6 +107,10 @@
         <div class="field">
             <label for="f-content">正文选择器 <span style="font-weight:400;color:var(--ui-muted)">(用于代码 · 预览使用演示正文)</span></label>
             <input type="text" id="f-content" value=".gh-content">
+            <div class="presets">
+                <button type="button" class="preset" data-content=".gh-content">Ghost</button>
+                <button type="button" class="preset" data-content=".notion-page-content">Notion</button>
+            </div>
         </div>
         <div class="field">
             <label for="f-headings">标题级别</label>
@@ -165,8 +169,8 @@
 
         <h2>安装方法</h2>
         <p>无需构建、无需修改主题文件，粘贴下面这段代码即可完成安装：</p>
-        <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.css"&gt;
-&lt;script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
+        <pre><code>&lt;link rel="stylesheet" href="https://ghost-toc-plugin.greedylabs.kr/toc.css"&gt;
+&lt;script src="https://ghost-toc-plugin.greedylabs.kr/toc.min.js"
         data-content=".gh-content"
         data-headings="h2,h3"
         data-title="目录"&gt;&lt;/script&gt;</code></pre>
@@ -179,6 +183,7 @@ data-headings="h2,h3"
 data-position="right"
 data-min-width="1200"
 data-top="100"</code></pre>
+        <p>不仅限于 Ghost。在支持脚本注入的 Notion 托管(如 oopy、super.so)上，把 data-content 设为 .notion-page-content 即可同样工作。Notion 标题层级更深，可在 data-headings 中加入 h4。</p>
 
         <h2>自定义</h2>
         <p>颜色和位置都可以自由调整。所有类名和 CSS 变量都以 greedylabs-ghost-toc 命名空间隔离，绝不会与你的主题冲突。</p>

@@ -107,6 +107,10 @@
         <div class="field">
             <label for="f-content">本文セレクタ <span style="font-weight:400;color:var(--ui-muted)">(コード用 · プレビューはデモ本文)</span></label>
             <input type="text" id="f-content" value=".gh-content">
+            <div class="presets">
+                <button type="button" class="preset" data-content=".gh-content">Ghost</button>
+                <button type="button" class="preset" data-content=".notion-page-content">Notion</button>
+            </div>
         </div>
         <div class="field">
             <label for="f-headings">見出し</label>
@@ -165,8 +169,8 @@
 
         <h2>インストール</h2>
         <p>ビルド工程もテーマ編集も不要。下のスニペットを一度貼り付けるだけです：</p>
-        <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.css"&gt;
-&lt;script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
+        <pre><code>&lt;link rel="stylesheet" href="https://ghost-toc-plugin.greedylabs.kr/toc.css"&gt;
+&lt;script src="https://ghost-toc-plugin.greedylabs.kr/toc.min.js"
         data-content=".gh-content"
         data-headings="h2,h3"
         data-title="目次"&gt;&lt;/script&gt;</code></pre>
@@ -179,6 +183,7 @@ data-headings="h2,h3"
 data-position="right"
 data-min-width="1200"
 data-top="100"</code></pre>
+        <p>Ghost 専用ではありません。スクリプト挿入に対応した Notion ベースのホスティング(oopy, super.so など)でも、data-content を .notion-page-content にすれば同じように動作します。Notion は見出しが深いので、data-headings に h4 まで入れてもよいです。</p>
 
         <h2>カスタマイズ</h2>
         <p>色と位置は自由に調整できます。すべてのクラスと CSS 変数は greedylabs-ghost-toc で名前空間化されており、テーマと衝突しません。</p>

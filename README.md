@@ -20,18 +20,33 @@ but works on any HTML page.
 Add this once. For **Ghost**: Settings → Code injection → **Site Footer**.
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.css">
-<script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
+<link rel="stylesheet" href="https://ghost-toc-plugin.greedylabs.kr/toc.css">
+<script src="https://ghost-toc-plugin.greedylabs.kr/toc.min.js"
         data-content=".gh-content"
         data-headings="h2,h3"
         data-position="right"
         data-title="목차"></script>
 ```
 
-> `@1` always resolves to the latest `v1.x.x` release (jsDelivr refreshes it within
-> ~12h; our release workflow purges it instantly). Pin an exact version like
-> `@v1.0.1` if you need fully reproducible builds. jsDelivr also serves an
-> auto-minified build — just add `.min`: `.../toc.min.js`.
+> Served from our own GitHub Pages domain (built and minified in CI), behind
+> Pages' CDN — no third-party dependency. It always serves the latest release.
+>
+> Prefer a pinned, immutable version? jsDelivr mirrors the repo:
+> `https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@v1.0.5/toc.min.js`
+> (`@1` tracks the latest `v1.x.x`).
+
+### Other platforms (Notion, etc.)
+
+Not Ghost-specific. Anywhere you can inject a `<script>` — including Notion-based
+hosts that allow custom code (oopy, super.so, …) — point `data-content` at the
+article container. For Notion that's `.notion-page-content`, and headings nest
+deeper, so include `h4`:
+
+```html
+<script src="https://ghost-toc-plugin.greedylabs.kr/toc.min.js"
+        data-content=".notion-page-content"
+        data-headings="h2,h3,h4"></script>
+```
 
 ## Options
 

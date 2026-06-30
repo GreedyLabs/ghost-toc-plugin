@@ -69,6 +69,12 @@ body { margin: 0; color: var(--ui-fg); background: var(--page-bg); line-height: 
     border-radius: 7px; font: inherit; font-size: 13px;
     background: var(--ui-bg); color: var(--ui-fg);
 }
+/* one-click presets that fill the content selector for a given platform */
+.presets { display: flex; gap: 6px; margin-top: 6px; }
+.preset { font: inherit; font-size: 11px; padding: 3px 8px; cursor: pointer;
+    border: 1px solid var(--ui-border); border-radius: 6px;
+    background: var(--ui-subtle); color: var(--ui-muted); }
+.preset:hover { color: var(--ui-fg); }
 .field.row { display: flex; gap: 8px; align-items: flex-end; }
 .field.row > div { flex: 1; }
 .field.check { display: flex; align-items: center; gap: 8px; }

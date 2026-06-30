@@ -3,7 +3,9 @@
    create()/destroy() API, regenerates the embed snippet, and reports usage to
    Umami. None of this ships with the distributed widget. */
 (function () {
-    var CDN = 'https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1';
+    // Self-hosted from our own GitHub Pages domain (minified in CI). This avoids
+    // depending on a third-party CDN; the domain is served through Pages' CDN.
+    var CDN = 'https://ghost-toc-plugin.greedylabs.kr';
     var DEF = window.GreedyLabsGhostTOC.defaults;
     // per-page localized strings (set by each generated /<lang>/index.html)
     var I = window.GTOC_I18N || { copy: '복사', copyDone: '복사됨', defaultTitle: '목차' };
@@ -149,6 +151,15 @@
             }
         });
     }
+
+    // content-selector presets (Ghost / Notion) — fill the field with one click
+    [].forEach.call(document.querySelectorAll('.preset'), function (btn) {
+        btn.addEventListener('click', function () {
+            $('f-content').value = this.getAttribute('data-content');
+            render();
+            track('preset', { content: this.getAttribute('data-content') });
+        });
+    });
 
     render();
 })();

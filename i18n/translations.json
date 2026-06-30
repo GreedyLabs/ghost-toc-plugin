@@ -32,6 +32,7 @@
       "bodyCustomize": "색과 위치는 자유롭게 조절할 수 있습니다. 모든 클래스와 CSS 변수는 greedylabs-ghost-toc로 네임스페이스가 걸려 있어 테마와 절대 충돌하지 않습니다.",
       "bodyColor": "현재 항목 색은 기본적으로 Ghost 테마 강조색(--ghost-accent-color)을 따릅니다. 바꾸려면 data-accent를 주거나 CSS 변수를 덮어쓰면 됩니다. 위젯은 라이트·다크 기본값을 모두 갖춰 시스템 테마에 자동으로 맞춰집니다. 다크 모드 가독성을 더 높이고 싶다면 다크에만 적용되도록 색을 따로 지정하세요, 값 하나로 고정하면 라이트에서 어색해집니다:",
       "bodyPosition": "data-position으로 좌·우를, data-top으로 상단 여백을, data-gap으로 본문과의 간격을, data-width로 패널 너비를 정합니다. 화면이 data-min-width보다 좁거나 옆에 공간이 없으면 목차는 스스로 숨습니다.",
+      "bodyNotion": "Ghost 전용은 아닙니다. 스크립트 삽입을 지원하는 Notion 기반 호스팅(oopy, super.so 등)에서도 data-content를 .notion-page-content로 지정하면 그대로 동작합니다. Notion은 소제목이 더 깊으니 data-headings에 h4까지 넣어도 좋습니다.",
       "bodyClosing": "ghost-toc-plugin은 MIT 라이선스 오픈소스이며, 소스와 이슈는 GitHub에 있습니다. 왼쪽 패널에서 옵션을 바꿔 실시간으로 확인한 뒤 마음에 들면 임베드 코드를 복사하세요. 도움이 되었다면 커피 한 잔 부탁드려요 ☕."
     },
     "en": {
@@ -64,6 +65,7 @@
       "bodyCustomize": "Colors and placement are fully adjustable. Every class and CSS variable is namespaced under greedylabs-ghost-toc, so the widget never clashes with your theme.",
       "bodyColor": "The active item follows your Ghost theme accent (--ghost-accent-color) by default; set data-accent or override the CSS variables to change it. The widget ships light and dark defaults and adapts to the system theme automatically. To boost readability in dark mode, override the colors for dark only, a single fixed value would look off in light:",
       "bodyPosition": "Use data-position for left or right, data-top for the offset from the top, data-gap for the space from your content, and data-width for the panel width. Below data-min-width (or when there is no room beside the content) the table of contents hides itself.",
+      "bodyNotion": "It is not Ghost-only. On Notion-based hosting that allows script injection (oopy, super.so, and the like), set data-content to .notion-page-content and it works the same. Notion nests deeper, so you can add h4 to data-headings.",
       "bodyClosing": "ghost-toc-plugin is open source under the MIT license; the code and issues live on GitHub. Try the options in the left panel, watch the preview update live, and copy the embed snippet when you are happy. If it helped you, a coffee is always appreciated ☕."
     },
     "ja": {
@@ -96,6 +98,7 @@
       "bodyCustomize": "色と位置は自由に調整できます。すべてのクラスと CSS 変数は greedylabs-ghost-toc で名前空間化されており、テーマと衝突しません。",
       "bodyColor": "現在の項目の色は、既定で Ghost テーマのアクセント色（--ghost-accent-color）に従います。変更するには data-accent を指定するか、CSS 変数を上書きします。ウィジェットはライト／ダークの既定値を備え、システムテーマに自動で合わせます。ダークモードの可読性を高めたい場合は、ダークのときだけ色を上書きしてください, 単一の固定値ではライトで不自然になります：",
       "bodyPosition": "data-position で左右、data-top で上の余白、data-gap で本文との間隔、data-width でパネル幅を指定します。画面が data-min-width より狭い場合や横にスペースがない場合、目次は自動的に隠れます。",
+      "bodyNotion": "Ghost 専用ではありません。スクリプト挿入に対応した Notion ベースのホスティング(oopy, super.so など)でも、data-content を .notion-page-content にすれば同じように動作します。Notion は見出しが深いので、data-headings に h4 まで入れてもよいです。",
       "bodyClosing": "ghost-toc-plugin は MIT ライセンスのオープンソースで、コードと Issue は GitHub にあります。左パネルでオプションを変えてライブプレビューを確認し、気に入ったら埋め込みコードをコピーしてください。お役に立てたら、コーヒーを一杯いただけると嬉しいです ☕。"
     },
     "zh": {
@@ -128,6 +131,7 @@
       "bodyCustomize": "颜色和位置都可以自由调整。所有类名和 CSS 变量都以 greedylabs-ghost-toc 命名空间隔离，绝不会与你的主题冲突。",
       "bodyColor": "当前项的颜色默认跟随 Ghost 主题强调色（--ghost-accent-color）。要更改，可设置 data-accent 或覆盖 CSS 变量。组件内置浅色和深色默认值，会自动适配系统主题。若想提升深色模式下的可读性，请仅针对深色覆盖颜色, 单一固定值会在浅色下显得不协调：",
       "bodyPosition": "用 data-position 设置左右，data-top 设置顶部偏移，data-gap 设置与正文的间距，data-width 设置面板宽度。当屏幕窄于 data-min-width，或正文旁没有空间时，目录会自动隐藏。",
+      "bodyNotion": "不仅限于 Ghost。在支持脚本注入的 Notion 托管(如 oopy、super.so)上，把 data-content 设为 .notion-page-content 即可同样工作。Notion 标题层级更深，可在 data-headings 中加入 h4。",
       "bodyClosing": "ghost-toc-plugin 是 MIT 许可的开源项目，代码与问题反馈都在 GitHub 上。在左侧面板调整选项、实时查看预览，满意后复制嵌入代码即可。如果它帮到了你，欢迎请我喝杯咖啡 ☕。"
     },
     "es": {
@@ -160,6 +164,7 @@
       "bodyCustomize": "Los colores y la ubicación son totalmente ajustables. Cada clase y variable CSS está en el espacio de nombres greedylabs-ghost-toc, así que el widget nunca choca con tu tema.",
       "bodyColor": "El elemento activo sigue por defecto el color de acento de tu tema Ghost (--ghost-accent-color); usa data-accent o sobrescribe las variables CSS para cambiarlo. El widget incluye valores claros y oscuros y se adapta al tema del sistema automáticamente. Para mejorar la legibilidad en modo oscuro, sobrescribe los colores solo para oscuro, un único valor fijo se vería mal en claro:",
       "bodyPosition": "Usa data-position para izquierda o derecha, data-top para el margen superior, data-gap para el espacio respecto al contenido y data-width para el ancho del panel. Por debajo de data-min-width (o cuando no hay espacio al lado) el índice se oculta solo.",
+      "bodyNotion": "No es solo para Ghost. En hosting basado en Notion que permita inyectar scripts (oopy, super.so y similares), pon data-content en .notion-page-content y funciona igual. Notion anida más, así que puedes añadir h4 a data-headings.",
       "bodyClosing": "ghost-toc-plugin es de código abierto bajo licencia MIT; el código y las incidencias están en GitHub. Prueba las opciones en el panel izquierdo, mira la vista previa actualizarse en vivo y copia el fragmento cuando te guste. Si te ha servido, siempre se agradece un café ☕."
     },
     "fr": {
@@ -192,6 +197,7 @@
       "bodyCustomize": "Les couleurs et l'emplacement sont entièrement réglables. Chaque classe et variable CSS est dans l'espace de noms greedylabs-ghost-toc, donc le widget n'entre jamais en conflit avec votre thème.",
       "bodyColor": "L'élément actif suit par défaut la couleur d'accent de votre thème Ghost (--ghost-accent-color) ; utilisez data-accent ou redéfinissez les variables CSS pour la changer. Le widget fournit des valeurs claires et sombres et s'adapte automatiquement au thème du système. Pour améliorer la lisibilité en mode sombre, redéfinissez les couleurs uniquement pour le sombre, une seule valeur fixe rendrait mal en clair :",
       "bodyPosition": "Utilisez data-position pour gauche ou droite, data-top pour le décalage en haut, data-gap pour l'espace avec le contenu et data-width pour la largeur du panneau. En dessous de data-min-width (ou s'il n'y a pas de place à côté) le sommaire se masque tout seul.",
+      "bodyNotion": "Pas réservé à Ghost. Sur un hébergement basé sur Notion qui autorise l'injection de scripts (oopy, super.so, etc.), réglez data-content sur .notion-page-content et cela fonctionne pareil. Notion imbrique plus profond, vous pouvez donc ajouter h4 à data-headings.",
       "bodyClosing": "ghost-toc-plugin est open source sous licence MIT ; le code et les tickets sont sur GitHub. Essayez les options dans le panneau de gauche, regardez l'aperçu se mettre à jour en direct, et copiez l'extrait quand cela vous convient. Si cela vous a aidé, un café est toujours apprécié ☕."
     },
     "de": {
@@ -224,6 +230,7 @@
       "bodyCustomize": "Farben und Platzierung sind voll anpassbar. Jede Klasse und CSS-Variable ist unter greedylabs-ghost-toc benannt, sodass das Widget nie mit deinem Theme kollidiert.",
       "bodyColor": "Das aktive Element folgt standardmäßig der Akzentfarbe deines Ghost-Themes (--ghost-accent-color); setze data-accent oder überschreibe die CSS-Variablen, um sie zu ändern. Das Widget bringt helle und dunkle Standardwerte mit und passt sich automatisch dem Systemthema an. Für bessere Lesbarkeit im Dunkelmodus überschreibe die Farben nur für Dunkel, ein einzelner fester Wert würde im Hellmodus unpassend wirken:",
       "bodyPosition": "Nutze data-position für links oder rechts, data-top für den oberen Abstand, data-gap für den Abstand zum Inhalt und data-width für die Panelbreite. Unterhalb von data-min-width (oder wenn neben dem Inhalt kein Platz ist) blendet sich das Inhaltsverzeichnis selbst aus.",
+      "bodyNotion": "Nicht nur für Ghost. Auf Notion-basiertem Hosting, das Script-Einbindung erlaubt (oopy, super.so usw.), setze data-content auf .notion-page-content und es funktioniert genauso. Notion verschachtelt tiefer, du kannst also h4 zu data-headings hinzufügen.",
       "bodyClosing": "ghost-toc-plugin ist Open Source unter der MIT-Lizenz; Code und Issues findest du auf GitHub. Probiere die Optionen im linken Panel aus, beobachte die Live-Vorschau und kopiere das Snippet, wenn es passt. Wenn es dir geholfen hat, freue ich mich über einen Kaffee ☕."
     },
     "pt": {
@@ -256,6 +263,7 @@
       "bodyCustomize": "Cores e posição são totalmente ajustáveis. Cada classe e variável CSS fica no namespace greedylabs-ghost-toc, então o widget nunca conflita com o seu tema.",
       "bodyColor": "O item ativo segue, por padrão, a cor de destaque do seu tema Ghost (--ghost-accent-color); use data-accent ou sobrescreva as variáveis CSS para mudá-la. O widget traz valores claros e escuros e se adapta automaticamente ao tema do sistema. Para melhorar a legibilidade no modo escuro, sobrescreva as cores apenas para o escuro, um único valor fixo ficaria estranho no claro:",
       "bodyPosition": "Use data-position para esquerda ou direita, data-top para o deslocamento do topo, data-gap para o espaço em relação ao conteúdo e data-width para a largura do painel. Abaixo de data-min-width (ou quando não há espaço ao lado) o índice se esconde sozinho.",
+      "bodyNotion": "Não é só para Ghost. Em hospedagem baseada em Notion que permita injeção de script (oopy, super.so etc.), defina data-content como .notion-page-content e funciona igual. O Notion aninha mais, então você pode adicionar h4 a data-headings.",
       "bodyClosing": "ghost-toc-plugin é de código aberto sob a licença MIT; o código e as issues estão no GitHub. Experimente as opções no painel à esquerda, veja a prévia atualizar ao vivo e copie o trecho quando gostar. Se ajudou você, um café é sempre bem-vindo ☕."
     },
     "hi": {
@@ -288,6 +296,7 @@
       "bodyCustomize": "रंग और स्थिति पूरी तरह समायोज्य हैं। हर क्लास और CSS वेरिएबल greedylabs-ghost-toc नेमस्पेस में है, इसलिए विजेट आपकी थीम से कभी टकराता नहीं।",
       "bodyColor": "सक्रिय आइटम का रंग डिफ़ॉल्ट रूप से आपकी Ghost थीम के एक्सेंट रंग (--ghost-accent-color) का अनुसरण करता है; बदलने के लिए data-accent दें या CSS वेरिएबल ओवरराइड करें। विजेट में लाइट और डार्क दोनों डिफ़ॉल्ट हैं और यह सिस्टम थीम के अनुसार अपने-आप ढल जाता है। डार्क मोड में पठनीयता बढ़ाने के लिए रंग केवल डार्क के लिए ओवरराइड करें, कोई एक तय मान लाइट में अटपटा लगेगा:",
       "bodyPosition": "बाएँ/दाएँ के लिए data-position, ऊपरी अंतर के लिए data-top, कंटेंट से दूरी के लिए data-gap, और पैनल चौड़ाई के लिए data-width इस्तेमाल करें। जब स्क्रीन data-min-width से छोटी हो(या कंटेंट के बगल में जगह न हो)तो विषय-सूची अपने-आप छिप जाती है।",
+      "bodyNotion": "यह सिर्फ़ Ghost के लिए नहीं है। स्क्रिप्ट इंजेक्शन की अनुमति देने वाली Notion-आधारित होस्टिंग (oopy, super.so आदि) पर data-content को .notion-page-content पर सेट करें और यह वैसे ही काम करता है। Notion में हेडिंग गहरी होती हैं, इसलिए data-headings में h4 भी जोड़ सकते हैं।",
       "bodyClosing": "ghost-toc-plugin MIT लाइसेंस के तहत ओपन सोर्स है; कोड और issues GitHub पर हैं। बाएँ पैनल में विकल्प आज़माएँ, प्रीव्यू को लाइव बदलते देखें और पसंद आने पर एम्बेड कोड कॉपी करें। अगर यह आपके काम आया, तो एक कॉफ़ी का स्वागत है ☕।"
     }
   }

@@ -107,6 +107,10 @@
         <div class="field">
             <label for="f-content">본문 선택자 <span style="font-weight:400;color:var(--ui-muted)">(코드용 · 미리보기는 데모 본문)</span></label>
             <input type="text" id="f-content" value=".gh-content">
+            <div class="presets">
+                <button type="button" class="preset" data-content=".gh-content">Ghost</button>
+                <button type="button" class="preset" data-content=".notion-page-content">Notion</button>
+            </div>
         </div>
         <div class="field">
             <label for="f-headings">헤딩</label>
@@ -165,8 +169,8 @@
 
         <h2>설치 방법</h2>
         <p>빌드 과정도, 테마 파일 수정도 없이 아래 스니펫 한 번이면 설치가 끝납니다:</p>
-        <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.css"&gt;
-&lt;script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
+        <pre><code>&lt;link rel="stylesheet" href="https://ghost-toc-plugin.greedylabs.kr/toc.css"&gt;
+&lt;script src="https://ghost-toc-plugin.greedylabs.kr/toc.min.js"
         data-content=".gh-content"
         data-headings="h2,h3"
         data-title="목차"&gt;&lt;/script&gt;</code></pre>
@@ -179,6 +183,7 @@ data-headings="h2,h3"
 data-position="right"
 data-min-width="1200"
 data-top="100"</code></pre>
+        <p>Ghost 전용은 아닙니다. 스크립트 삽입을 지원하는 Notion 기반 호스팅(oopy, super.so 등)에서도 data-content를 .notion-page-content로 지정하면 그대로 동작합니다. Notion은 소제목이 더 깊으니 data-headings에 h4까지 넣어도 좋습니다.</p>
 
         <h2>커스터마이즈</h2>
         <p>색과 위치는 자유롭게 조절할 수 있습니다. 모든 클래스와 CSS 변수는 greedylabs-ghost-toc로 네임스페이스가 걸려 있어 테마와 절대 충돌하지 않습니다.</p>

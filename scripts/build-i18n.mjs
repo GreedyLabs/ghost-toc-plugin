@@ -27,8 +27,8 @@ const GISCUS_LANG = { ko: 'ko', en: 'en', ja: 'ja', zh: 'zh-CN', es: 'es', fr: '
 // Code samples shown in the article body. Language-neutral, so they live here
 // rather than in translations.json. esc()'d before they go into the HTML.
 const codeInstall = (t) =>
-`<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.css">
-<script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
+`<link rel="stylesheet" href="${ORIGIN}/toc.css">
+<script src="${ORIGIN}/toc.min.js"
         data-content=".gh-content"
         data-headings="h2,h3"
         data-title="${t.defaultTitle}"></script>`;
@@ -165,6 +165,10 @@ ${hreflangs(url)}
         <div class="field">
             <label for="f-content">${esc(t.lblContent)} <span style="font-weight:400;color:var(--ui-muted)">${esc(t.hintContent)}</span></label>
             <input type="text" id="f-content" value=".gh-content">
+            <div class="presets">
+                <button type="button" class="preset" data-content=".gh-content">Ghost</button>
+                <button type="button" class="preset" data-content=".notion-page-content">Notion</button>
+            </div>
         </div>
         <div class="field">
             <label for="f-headings">${esc(t.lblHeadings)}</label>
@@ -229,6 +233,7 @@ ${hreflangs(url)}
         <h3>${esc(t.h_options)}</h3>
         <p>${esc(t.bodyOptions)}</p>
         <pre><code>${esc(CODE_OPTIONS)}</code></pre>
+        <p>${esc(t.bodyNotion)}</p>
 
         <h2>${esc(t.h_customize)}</h2>
         <p>${esc(t.bodyCustomize)}</p>
