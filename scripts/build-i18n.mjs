@@ -14,6 +14,10 @@ import { dirname, join } from 'node:path';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://ghost-toc-plugin.greedylabs.kr';
+// Widget delivery CDN: jsDelivr serves the GitHub repo; @1 tracks the latest
+// v1.x release and auto-minifies (the .min file). Statically (@main) mirrors
+// the same paths as a fallback if jsDelivr is down.
+const CDN = 'https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1';
 const data = JSON.parse(readFileSync(join(ROOT, 'i18n/translations.json'), 'utf8'));
 const ORDER = data.order;
 const DEFAULT = data.default;
@@ -27,8 +31,8 @@ const GISCUS_LANG = { ko: 'ko', en: 'en', ja: 'ja', zh: 'zh-CN', es: 'es', fr: '
 // Code samples shown in the article body. Language-neutral, so they live here
 // rather than in translations.json. esc()'d before they go into the HTML.
 const codeInstall = (t) =>
-`<link rel="stylesheet" href="${ORIGIN}/toc.css">
-<script src="${ORIGIN}/toc.min.js"
+`<link rel="stylesheet" href="${CDN}/toc.css">
+<script src="${CDN}/toc.min.js"
         data-content=".gh-content"
         data-headings="h2,h3"
         data-title="${t.defaultTitle}"></script>`;
@@ -207,7 +211,6 @@ ${hreflangs(url)}
         <div class="code">
             <div class="code-head"><strong>${esc(t.embedLabel)}</strong><button class="copy" id="copy">${esc(t.copy)}</button></div>
             <pre><code id="snippet"></code></pre>
-            <p class="hint">${esc(t.hint)}</p>
         </div>
 
         <div class="panel-support">
@@ -233,7 +236,6 @@ ${hreflangs(url)}
         <h3>${esc(t.h_options)}</h3>
         <p>${esc(t.bodyOptions)}</p>
         <pre><code>${esc(CODE_OPTIONS)}</code></pre>
-        <p>${esc(t.bodyNotion)}</p>
 
         <h2>${esc(t.h_customize)}</h2>
         <p>${esc(t.bodyCustomize)}</p>

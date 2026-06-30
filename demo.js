@@ -3,9 +3,10 @@
    create()/destroy() API, regenerates the embed snippet, and reports usage to
    Umami. None of this ships with the distributed widget. */
 (function () {
-    // Self-hosted from our own GitHub Pages domain (minified in CI). This avoids
-    // depending on a third-party CDN; the domain is served through Pages' CDN.
-    var CDN = 'https://ghost-toc-plugin.greedylabs.kr';
+    // jsDelivr serves our GitHub repo; @1 tracks the latest v1.x release and is
+    // auto-minified (the .min file). If jsDelivr has a hiccup, Statically mirrors
+    // the same paths at cdn.statically.io/gh/GreedyLabs/ghost-toc-plugin@main.
+    var CDN = 'https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1';
     var DEF = window.GreedyLabsGhostTOC.defaults;
     // per-page localized strings (set by each generated /<lang>/index.html)
     var I = window.GTOC_I18N || { copy: '복사', copyDone: '복사됨', defaultTitle: '목차' };

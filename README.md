@@ -20,30 +20,28 @@ but works on any HTML page.
 Add this once. For **Ghost**: Settings → Code injection → **Site Footer**.
 
 ```html
-<link rel="stylesheet" href="https://ghost-toc-plugin.greedylabs.kr/toc.css">
-<script src="https://ghost-toc-plugin.greedylabs.kr/toc.min.js"
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.css">
+<script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
         data-content=".gh-content"
         data-headings="h2,h3"
         data-position="right"
         data-title="목차"></script>
 ```
 
-> Served from our own GitHub Pages domain (built and minified in CI), behind
-> Pages' CDN — no third-party dependency. It always serves the latest release.
->
-> Prefer a pinned, immutable version? jsDelivr mirrors the repo:
-> `https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@v1.0.5/toc.min.js`
-> (`@1` tracks the latest `v1.x.x`).
+> `@1` resolves to the latest `v1.x.x` release and jsDelivr auto-minifies it
+> (the `.min` suffix). Pin an exact version like `@v1.0.5` for a fully
+> reproducible build. If jsDelivr is ever down, Statically mirrors the same
+> paths at `cdn.statically.io/gh/GreedyLabs/ghost-toc-plugin@main`.
 
 ### Other platforms (Notion, etc.)
 
-Not Ghost-specific. Anywhere you can inject a `<script>` — including Notion-based
-hosts that allow custom code (oopy, super.so, …) — point `data-content` at the
-article container. For Notion that's `.notion-page-content`, and headings nest
-deeper, so include `h4`:
+Not Ghost-specific. Anywhere you can inject a `<script>` (including Notion-based
+hosts that allow custom code, such as oopy or super.so) point `data-content` at
+the article container. For Notion that is `.notion-page-content`, and its
+headings nest deeper, so include `h4`:
 
 ```html
-<script src="https://ghost-toc-plugin.greedylabs.kr/toc.min.js"
+<script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
         data-content=".notion-page-content"
         data-headings="h2,h3,h4"></script>
 ```

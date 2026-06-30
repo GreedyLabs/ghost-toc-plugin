@@ -149,7 +149,6 @@
         <div class="code">
             <div class="code-head"><strong>एम्बेड कोड</strong><button class="copy" id="copy">कॉपी</button></div>
             <pre><code id="snippet"></code></pre>
-            <p class="hint">Ghost → Settings → Code injection → Site Footer में पेस्ट करें।</p>
         </div>
 
         <div class="panel-support">
@@ -165,17 +164,17 @@
         <p>बाएँ पैनल में विकल्प बदलें। विषय-सूची लाइव री-रेंडर होती है और एम्बेड कोड भी साथ में अपडेट होता है। स्क्रॉल करने पर वर्तमान सेक्शन हाइलाइट होता है।</p>
 
         <h2>परिचय</h2>
-        <p>ghost-toc-plugin एक छोटा (~3 KB), बिना किसी निर्भरता वाला फ़्लोटिंग विषय-सूची विजेट है, जो एक लाइन कोड से Ghost ब्लॉग(या किसी भी HTML पेज)में जुड़ जाता है। यह आपके लेख के हेडिंग पढ़कर सूची अपने आप बनाता है, स्क्रॉल के साथ चलता है और आप जिस सेक्शन को पढ़ रहे हैं उसे हाइलाइट करता है। यह पेज एक लाइव उदाहरण है: बगल में दिखती सूची असली विजेट ही है।</p>
+        <p>ghost-toc-plugin एक छोटा (~3 KB), बिना किसी निर्भरता वाला फ़्लोटिंग विषय-सूची विजेट है, जो एक लाइन कोड से Ghost ब्लॉग में जुड़ जाता है। यह Ghost के लिए शुरू हुआ था, लेकिन यह Notion-आधारित ब्लॉग पर भी काम करता है, और जहाँ भी आप स्क्रिप्ट जोड़ सकते हैं वहाँ चलता है। यह आपके लेख के हेडिंग पढ़कर सूची अपने आप बनाता है, स्क्रॉल के साथ चलता है और आप जिस सेक्शन को पढ़ रहे हैं उसे हाइलाइट करता है। यह पेज एक लाइव उदाहरण है: बगल में दिखती सूची असली विजेट ही है।</p>
 
         <h2>इंस्टॉलेशन</h2>
         <p>बिना किसी बिल्ड चरण या थीम फ़ाइल संपादन के, नीचे दिया स्निपेट एक बार चिपकाएँ:</p>
-        <pre><code>&lt;link rel="stylesheet" href="https://ghost-toc-plugin.greedylabs.kr/toc.css"&gt;
-&lt;script src="https://ghost-toc-plugin.greedylabs.kr/toc.min.js"
+        <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
         data-content=".gh-content"
         data-headings="h2,h3"
         data-title="विषय-सूची"&gt;&lt;/script&gt;</code></pre>
         <h3>कोड इंजेक्शन</h3>
-        <p>Ghost में इसे Settings → Code injection → Site Footer में पेस्ट करें। किसी और साइट पर इसे बंद होते &lt;/body&gt; टैग से ठीक पहले रखें। इसे async या defer के बिना रखें ताकि यह अपने data-* विकल्प पढ़ सके।</p>
+        <p>Ghost में इसे Settings → Code injection → Site Footer में पेस्ट करें। Notion-आधारित होस्टिंग पर इसे कस्टम कोड फ़ील्ड में जोड़ें: oopy की साइट सेटिंग्स में head/footer कोड बॉक्स होता है, super.so में Custom Code क्षेत्र होता है, और वहाँ data-content को .notion-page-content पर सेट करें। किसी और साइट पर इसे बंद होते &lt;/body&gt; टैग से ठीक पहले रखें। इसे async या defer के बिना रखें ताकि यह अपने data-* विकल्प पढ़ सके।</p>
         <h3>विकल्प</h3>
         <p>सारा व्यवहार स्क्रिप्ट टैग पर data-* एट्रिब्यूट से सेट होता है: कंटेंट सिलेक्टर, कौन-से हेडिंग शामिल करने हैं, शीर्षक, स्थिति आदि:</p>
         <pre><code>data-content=".gh-content"
@@ -183,7 +182,6 @@ data-headings="h2,h3"
 data-position="right"
 data-min-width="1200"
 data-top="100"</code></pre>
-        <p>यह सिर्फ़ Ghost के लिए नहीं है। स्क्रिप्ट इंजेक्शन की अनुमति देने वाली Notion-आधारित होस्टिंग (oopy, super.so आदि) पर data-content को .notion-page-content पर सेट करें और यह वैसे ही काम करता है। Notion में हेडिंग गहरी होती हैं, इसलिए data-headings में h4 भी जोड़ सकते हैं।</p>
 
         <h2>कस्टमाइज़</h2>
         <p>रंग और स्थिति पूरी तरह समायोज्य हैं। हर क्लास और CSS वेरिएबल greedylabs-ghost-toc नेमस्पेस में है, इसलिए विजेट आपकी थीम से कभी टकराता नहीं।</p>

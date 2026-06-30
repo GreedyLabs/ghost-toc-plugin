@@ -149,7 +149,6 @@
         <div class="code">
             <div class="code-head"><strong>埋め込みコード</strong><button class="copy" id="copy">コピー</button></div>
             <pre><code id="snippet"></code></pre>
-            <p class="hint">Ghost の Settings → Code injection → Site Footer に貼り付け。</p>
         </div>
 
         <div class="panel-support">
@@ -165,17 +164,17 @@
         <p>左パネルでオプションを変えてみてください。目次がリアルタイムで再描画され、埋め込みコードも一緒に更新されます。スクロールすると現在のセクションが強調されます。</p>
 
         <h2>はじめに</h2>
-        <p>ghost-toc-plugin は、コード1行で Ghost ブログ(や任意の HTML ページ)にフローティング目次を追加できる、軽量（約3KB）で依存関係のないウィジェットです。記事の見出しを読み取って目次を自動生成し、スクロールに追従して現在の見出しを強調します。このページがそのまま実例で、横に見える目次が実際に動くウィジェットです。</p>
+        <p>ghost-toc-plugin は、コード1行で Ghost ブログにフローティング目次を追加できる、軽量（約3KB）で依存関係のないウィジェットです。Ghost 向けとして始まりましたが、Notion ベースのブログでも動作し、スクリプトを追加できる場所ならどこでも動きます。記事の見出しを読み取って目次を自動生成し、スクロールに追従して現在の見出しを強調します。このページがそのまま実例で、横に見える目次が実際に動くウィジェットです。</p>
 
         <h2>インストール</h2>
         <p>ビルド工程もテーマ編集も不要。下のスニペットを一度貼り付けるだけです：</p>
-        <pre><code>&lt;link rel="stylesheet" href="https://ghost-toc-plugin.greedylabs.kr/toc.css"&gt;
-&lt;script src="https://ghost-toc-plugin.greedylabs.kr/toc.min.js"
+        <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
         data-content=".gh-content"
         data-headings="h2,h3"
         data-title="目次"&gt;&lt;/script&gt;</code></pre>
         <h3>コードインジェクション</h3>
-        <p>Ghost では Settings → Code injection → Site Footer に貼り付けます。他のサイトでは閉じタグ &lt;/body&gt; の直前に置いてください。自身の data-* オプションを読めるよう、async や defer は付けません。</p>
+        <p>Ghost では Settings → Code injection → Site Footer に貼り付けます。Notion ベースのホスティングなら、カスタムコード欄に追加します。oopy はサイト設定の head/footer コード欄、super.so は Custom Code 領域があり、そこで data-content を .notion-page-content にします。その他のサイトでは閉じタグ &lt;/body&gt; の直前に置きます。自身の data-* オプションを読めるよう、async や defer は付けません。</p>
         <h3>オプション設定</h3>
         <p>動作はすべてスクリプトタグの data-* 属性で設定します: 本文セレクタ、含める見出し、タイトル、位置などを指定できます：</p>
         <pre><code>data-content=".gh-content"
@@ -183,7 +182,6 @@ data-headings="h2,h3"
 data-position="right"
 data-min-width="1200"
 data-top="100"</code></pre>
-        <p>Ghost 専用ではありません。スクリプト挿入に対応した Notion ベースのホスティング(oopy, super.so など)でも、data-content を .notion-page-content にすれば同じように動作します。Notion は見出しが深いので、data-headings に h4 まで入れてもよいです。</p>
 
         <h2>カスタマイズ</h2>
         <p>色と位置は自由に調整できます。すべてのクラスと CSS 変数は greedylabs-ghost-toc で名前空間化されており、テーマと衝突しません。</p>

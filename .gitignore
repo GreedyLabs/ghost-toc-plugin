@@ -1,5 +1,3 @@
 node_modules
 .DS_Store
 *.zip
-# generated in CI for GitHub Pages, not committed
-toc.min.js

@@ -149,7 +149,6 @@
         <div class="code">
             <div class="code-head"><strong>Embed code</strong><button class="copy" id="copy">Copy</button></div>
             <pre><code id="snippet"></code></pre>
-            <p class="hint">Paste into Ghost → Settings → Code injection → Site Footer.</p>
         </div>
 
         <div class="panel-support">
@@ -165,17 +164,17 @@
         <p>Change options in the left panel. The table of contents re-renders live and the embed code updates with it. Scroll to see the current section highlighted.</p>
 
         <h2>Getting started</h2>
-        <p>ghost-toc-plugin is a tiny (~3 KB), dependency-free floating table of contents for Ghost, or any HTML page. It reads the headings in your post, builds the list automatically, follows you as you scroll, and highlights the section you are reading. This page is a live example: the list on the side is the real widget.</p>
+        <p>ghost-toc-plugin is a tiny (~3 KB), dependency-free floating table of contents for Ghost. It started as a Ghost widget, but it also works on Notion-based blogs, and anywhere you can add a script. It reads the headings in your post, builds the list automatically, follows you as you scroll, and highlights the section you are reading. This page is a live example: the list on the side is the real widget.</p>
 
         <h2>Installation</h2>
         <p>Add it once with this snippet, no build step, no theme files to edit:</p>
-        <pre><code>&lt;link rel="stylesheet" href="https://ghost-toc-plugin.greedylabs.kr/toc.css"&gt;
-&lt;script src="https://ghost-toc-plugin.greedylabs.kr/toc.min.js"
+        <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
         data-content=".gh-content"
         data-headings="h2,h3"
         data-title="Contents"&gt;&lt;/script&gt;</code></pre>
         <h3>Code injection</h3>
-        <p>In Ghost, paste it into Settings → Code injection → Site Footer. On any other site, put it just before the closing &lt;/body&gt; tag. Keep it without async or defer so it can read its own data-* options.</p>
+        <p>In Ghost, paste it into Settings → Code injection → Site Footer. On Notion-based hosting, add it in the custom-code field: oopy has a head/footer code box in its site settings, super.so has a Custom Code area, and there you set data-content to .notion-page-content. On any other site, put it just before the closing &lt;/body&gt; tag. Keep it without async or defer so it can read its own data-* options.</p>
         <h3>Options</h3>
         <p>Everything is configured with data-* attributes on the script tag: the content selector, which headings to include, the title, the position, and more:</p>
         <pre><code>data-content=".gh-content"
@@ -183,7 +182,6 @@ data-headings="h2,h3"
 data-position="right"
 data-min-width="1200"
 data-top="100"</code></pre>
-        <p>It is not Ghost-only. On Notion-based hosting that allows script injection (oopy, super.so, and the like), set data-content to .notion-page-content and it works the same. Notion nests deeper, so you can add h4 to data-headings.</p>
 
         <h2>Customize</h2>
         <p>Colors and placement are fully adjustable. Every class and CSS variable is namespaced under greedylabs-ghost-toc, so the widget never clashes with your theme.</p>

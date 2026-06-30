@@ -28,16 +28,6 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v6
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      # Self-host a minified build so the embed snippet can load from our own
-      # domain (ghost-toc-plugin.greedylabs.kr) instead of a third-party CDN.
-      - name: Minify widget (toc.min.js)
-        run: npx --yes terser toc.js --compress --mangle --output toc.min.js
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:

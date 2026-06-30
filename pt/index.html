@@ -149,7 +149,6 @@
         <div class="code">
             <div class="code-head"><strong>Código de incorporação</strong><button class="copy" id="copy">Copiar</button></div>
             <pre><code id="snippet"></code></pre>
-            <p class="hint">Cole em Ghost → Settings → Code injection → Site Footer.</p>
         </div>
 
         <div class="panel-support">
@@ -165,17 +164,17 @@
         <p>Altere as opções no painel à esquerda. O índice é renderizado em tempo real e o código de incorporação é atualizado junto. Role para ver a seção atual destacada.</p>
 
         <h2>Introdução</h2>
-        <p>ghost-toc-plugin é um índice flutuante minúsculo (~3 KB) e sem dependências para o Ghost, ou qualquer página HTML. Ele lê os títulos do seu artigo, monta a lista automaticamente, acompanha a rolagem e destaca a seção que você está lendo. Esta página é um exemplo ao vivo: a lista ao lado é o widget real.</p>
+        <p>ghost-toc-plugin é um índice flutuante minúsculo (~3 KB) e sem dependências para o Ghost. Começou como um widget para o Ghost, mas também funciona em blogs baseados em Notion e em qualquer lugar onde você possa adicionar um script. Ele lê os títulos do seu artigo, monta a lista automaticamente, acompanha a rolagem e destaca a seção que você está lendo. Esta página é um exemplo ao vivo: a lista ao lado é o widget real.</p>
 
         <h2>Instalação</h2>
         <p>Adicione de uma vez com este trecho, sem etapa de build nem arquivos do tema para editar:</p>
-        <pre><code>&lt;link rel="stylesheet" href="https://ghost-toc-plugin.greedylabs.kr/toc.css"&gt;
-&lt;script src="https://ghost-toc-plugin.greedylabs.kr/toc.min.js"
+        <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
         data-content=".gh-content"
         data-headings="h2,h3"
         data-title="Conteúdo"&gt;&lt;/script&gt;</code></pre>
         <h3>Injeção de código</h3>
-        <p>No Ghost, cole em Settings → Code injection → Site Footer. Em qualquer outro site, coloque logo antes da tag &lt;/body&gt;. Deixe sem async ou defer para que ele leia as próprias opções data-*.</p>
+        <p>No Ghost, cole em Settings → Code injection → Site Footer. Em hospedagem baseada em Notion, adicione no campo de código personalizado: o oopy tem uma caixa de código head/footer nas configurações do site, o super.so tem uma área Custom Code, e ali você define data-content como .notion-page-content. Em qualquer outro site, coloque logo antes da tag &lt;/body&gt;. Deixe sem async ou defer para que ele leia as próprias opções data-*.</p>
         <h3>Opções</h3>
         <p>Tudo é configurado com atributos data-* na tag do script: o seletor de conteúdo, quais títulos incluir, o título, a posição e mais:</p>
         <pre><code>data-content=".gh-content"
@@ -183,7 +182,6 @@ data-headings="h2,h3"
 data-position="right"
 data-min-width="1200"
 data-top="100"</code></pre>
-        <p>Não é só para Ghost. Em hospedagem baseada em Notion que permita injeção de script (oopy, super.so etc.), defina data-content como .notion-page-content e funciona igual. O Notion aninha mais, então você pode adicionar h4 a data-headings.</p>
 
         <h2>Personalização</h2>
         <p>Cores e posição são totalmente ajustáveis. Cada classe e variável CSS fica no namespace greedylabs-ghost-toc, então o widget nunca conflita com o seu tema.</p>

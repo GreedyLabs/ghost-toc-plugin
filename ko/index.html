@@ -149,7 +149,6 @@
         <div class="code">
             <div class="code-head"><strong>임베드 코드</strong><button class="copy" id="copy">복사</button></div>
             <pre><code id="snippet"></code></pre>
-            <p class="hint">Ghost 관리자 → Settings → Code injection → Site Footer 에 붙여넣기.</p>
         </div>
 
         <div class="panel-support">
@@ -165,17 +164,17 @@
         <p>왼쪽 패널에서 옵션을 바꿔보세요. 목차가 실시간으로 다시 그려지고, 임베드 코드도 함께 갱신됩니다. 스크롤하면 현재 섹션이 강조됩니다.</p>
 
         <h2>들어가며</h2>
-        <p>ghost-toc-plugin은 코드 한 줄로 Ghost 블로그(또는 어떤 HTML 페이지든)에 떠다니는 목차를 더하는 가볍고(약 3KB) 의존성 없는 위젯입니다. 글의 헤딩을 읽어 목차를 자동으로 만들고, 스크롤을 따라다니며 지금 읽는 섹션을 강조합니다. 이 페이지가 바로 그 예시로, 옆에 보이는 목차가 실제로 동작하는 위젯입니다.</p>
+        <p>ghost-toc-plugin은 코드 한 줄로 Ghost 블로그에 떠다니는 목차를 더하는 가볍고(약 3KB) 의존성 없는 위젯입니다. Ghost 전용으로 시작했지만, Notion 기반 블로그에서도 동작하며 스크립트를 넣을 수 있는 곳이면 어디서나 동작합니다. 글의 헤딩을 읽어 목차를 자동으로 만들고, 스크롤을 따라다니며 지금 읽는 섹션을 강조합니다. 이 페이지가 바로 그 예시로, 옆에 보이는 목차가 실제로 동작하는 위젯입니다.</p>
 
         <h2>설치 방법</h2>
         <p>빌드 과정도, 테마 파일 수정도 없이 아래 스니펫 한 번이면 설치가 끝납니다:</p>
-        <pre><code>&lt;link rel="stylesheet" href="https://ghost-toc-plugin.greedylabs.kr/toc.css"&gt;
-&lt;script src="https://ghost-toc-plugin.greedylabs.kr/toc.min.js"
+        <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
         data-content=".gh-content"
         data-headings="h2,h3"
         data-title="목차"&gt;&lt;/script&gt;</code></pre>
         <h3>코드 인젝션</h3>
-        <p>Ghost에서는 Settings → Code injection → Site Footer 에 붙여넣습니다. 다른 사이트라면 닫는 &lt;/body&gt; 태그 바로 앞에 두면 됩니다. async나 defer 없이 두어야 자신의 data-* 옵션을 읽을 수 있습니다.</p>
+        <p>Ghost에서는 Settings → Code injection → Site Footer 에 붙여넣습니다. Notion 기반 호스팅이라면 커스텀 코드 주입란에 넣습니다. oopy는 사이트 설정의 head/footer 코드란, super.so는 Custom Code 영역이며, 이때 data-content를 .notion-page-content로 지정하세요. 그 밖의 사이트라면 닫는 &lt;/body&gt; 태그 바로 앞에 두면 됩니다. async나 defer 없이 두어야 자신의 data-* 옵션을 읽을 수 있습니다.</p>
         <h3>옵션 설정</h3>
         <p>동작은 모두 스크립트 태그의 data-* 속성으로 설정합니다: 본문 선택자, 포함할 헤딩, 제목, 위치 등을 지정할 수 있습니다:</p>
         <pre><code>data-content=".gh-content"
@@ -183,7 +182,6 @@ data-headings="h2,h3"
 data-position="right"
 data-min-width="1200"
 data-top="100"</code></pre>
-        <p>Ghost 전용은 아닙니다. 스크립트 삽입을 지원하는 Notion 기반 호스팅(oopy, super.so 등)에서도 data-content를 .notion-page-content로 지정하면 그대로 동작합니다. Notion은 소제목이 더 깊으니 data-headings에 h4까지 넣어도 좋습니다.</p>
 
         <h2>커스터마이즈</h2>
         <p>색과 위치는 자유롭게 조절할 수 있습니다. 모든 클래스와 CSS 변수는 greedylabs-ghost-toc로 네임스페이스가 걸려 있어 테마와 절대 충돌하지 않습니다.</p>

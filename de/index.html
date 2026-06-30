@@ -149,7 +149,6 @@
         <div class="code">
             <div class="code-head"><strong>Einbettungscode</strong><button class="copy" id="copy">Kopieren</button></div>
             <pre><code id="snippet"></code></pre>
-            <p class="hint">In Ghost → Settings → Code injection → Site Footer einfügen.</p>
         </div>
 
         <div class="panel-support">
@@ -165,17 +164,17 @@
         <p>Ändern Sie Optionen im linken Panel. Das Inhaltsverzeichnis wird live neu gezeichnet und der Einbettungscode aktualisiert sich mit. Scrollen Sie, um den aktuellen Abschnitt hervorgehoben zu sehen.</p>
 
         <h2>Einführung</h2>
-        <p>ghost-toc-plugin ist ein winziges (~3 KB), abhängigkeitsfreies schwebendes Inhaltsverzeichnis für Ghost, oder jede HTML-Seite. Es liest die Überschriften deines Beitrags, erstellt die Liste automatisch, folgt dir beim Scrollen und hebt den gerade gelesenen Abschnitt hervor. Diese Seite ist ein Live-Beispiel: Die Liste an der Seite ist das echte Widget.</p>
+        <p>ghost-toc-plugin ist ein winziges (~3 KB), abhängigkeitsfreies schwebendes Inhaltsverzeichnis für Ghost. Es begann als Widget für Ghost, funktioniert aber auch in Notion-basierten Blogs und überall, wo du ein Skript einbinden kannst. Es liest die Überschriften deines Beitrags, erstellt die Liste automatisch, folgt dir beim Scrollen und hebt den gerade gelesenen Abschnitt hervor. Diese Seite ist ein Live-Beispiel: Die Liste an der Seite ist das echte Widget.</p>
 
         <h2>Installation</h2>
         <p>Einmal mit diesem Snippet einbinden, ohne Build-Schritt und ohne Theme-Dateien zu bearbeiten:</p>
-        <pre><code>&lt;link rel="stylesheet" href="https://ghost-toc-plugin.greedylabs.kr/toc.css"&gt;
-&lt;script src="https://ghost-toc-plugin.greedylabs.kr/toc.min.js"
+        <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
         data-content=".gh-content"
         data-headings="h2,h3"
         data-title="Inhalt"&gt;&lt;/script&gt;</code></pre>
         <h3>Code-Injection</h3>
-        <p>Füge es in Ghost unter Settings → Code injection → Site Footer ein. Auf jeder anderen Seite platzierst du es direkt vor dem schließenden &lt;/body&gt;-Tag. Lass es ohne async oder defer, damit es seine eigenen data-*-Optionen lesen kann.</p>
+        <p>Füge es in Ghost unter Settings → Code injection → Site Footer ein. Auf Notion-basiertem Hosting fügst du es im Feld für eigenen Code ein: oopy hat in den Site-Einstellungen ein head/footer-Codefeld, super.so hat einen Custom-Code-Bereich, und dort setzt du data-content auf .notion-page-content. Auf jeder anderen Seite platzierst du es direkt vor dem schließenden &lt;/body&gt;-Tag. Lass es ohne async oder defer, damit es seine eigenen data-*-Optionen lesen kann.</p>
         <h3>Optionen</h3>
         <p>Alles wird über data-*-Attribute am Script-Tag konfiguriert: der Inhalts-Selektor, welche Überschriften einbezogen werden, der Titel, die Position und mehr:</p>
         <pre><code>data-content=".gh-content"
@@ -183,7 +182,6 @@ data-headings="h2,h3"
 data-position="right"
 data-min-width="1200"
 data-top="100"</code></pre>
-        <p>Nicht nur für Ghost. Auf Notion-basiertem Hosting, das Script-Einbindung erlaubt (oopy, super.so usw.), setze data-content auf .notion-page-content und es funktioniert genauso. Notion verschachtelt tiefer, du kannst also h4 zu data-headings hinzufügen.</p>
 
         <h2>Anpassung</h2>
         <p>Farben und Platzierung sind voll anpassbar. Jede Klasse und CSS-Variable ist unter greedylabs-ghost-toc benannt, sodass das Widget nie mit deinem Theme kollidiert.</p>

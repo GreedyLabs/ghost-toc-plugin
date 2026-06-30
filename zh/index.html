@@ -149,7 +149,6 @@
         <div class="code">
             <div class="code-head"><strong>嵌入代码</strong><button class="copy" id="copy">复制</button></div>
             <pre><code id="snippet"></code></pre>
-            <p class="hint">粘贴到 Ghost → Settings → Code injection → Site Footer。</p>
         </div>
 
         <div class="panel-support">
@@ -165,17 +164,17 @@
         <p>在左侧面板修改选项。目录会实时重新渲染，嵌入代码也随之更新。滚动时会高亮当前所在的章节。</p>
 
         <h2>开始之前</h2>
-        <p>ghost-toc-plugin 是一个仅约 3KB、无依赖的浮动目录组件，一行代码即可为 Ghost 博客(或任意 HTML 页面)添加目录。它会读取文章中的标题自动生成目录，随页面滚动并高亮你正在阅读的章节。本页就是实时示例，侧边的目录正是真实运行的组件。</p>
+        <p>ghost-toc-plugin 是一个仅约 3KB、无依赖的浮动目录组件，一行代码即可为 Ghost 博客添加目录。它最初是为 Ghost 而做，但同样适用于基于 Notion 的博客，以及任何能添加脚本的地方。它会读取文章中的标题自动生成目录，随页面滚动并高亮你正在阅读的章节。本页就是实时示例，侧边的目录正是真实运行的组件。</p>
 
         <h2>安装方法</h2>
         <p>无需构建、无需修改主题文件，粘贴下面这段代码即可完成安装：</p>
-        <pre><code>&lt;link rel="stylesheet" href="https://ghost-toc-plugin.greedylabs.kr/toc.css"&gt;
-&lt;script src="https://ghost-toc-plugin.greedylabs.kr/toc.min.js"
+        <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
         data-content=".gh-content"
         data-headings="h2,h3"
         data-title="目录"&gt;&lt;/script&gt;</code></pre>
         <h3>代码注入</h3>
-        <p>在 Ghost 中，粘贴到 Settings → Code injection → Site Footer。在其他网站上，放在结束标签 &lt;/body&gt; 之前即可。请勿添加 async 或 defer，以便它读取自身的 data-* 选项。</p>
+        <p>在 Ghost 中，粘贴到 Settings → Code injection → Site Footer。基于 Notion 的托管，则放进自定义代码处：oopy 在站点设置里有 head/footer 代码框，super.so 有 Custom Code 区域，在那里把 data-content 设为 .notion-page-content。其他网站则放在结束标签 &lt;/body&gt; 之前。请勿添加 async 或 defer，以便它读取自身的 data-* 选项。</p>
         <h3>选项设置</h3>
         <p>所有行为都通过脚本标签上的 data-* 属性配置: 可设置正文选择器、要包含的标题、标题文字、位置等：</p>
         <pre><code>data-content=".gh-content"
@@ -183,7 +182,6 @@ data-headings="h2,h3"
 data-position="right"
 data-min-width="1200"
 data-top="100"</code></pre>
-        <p>不仅限于 Ghost。在支持脚本注入的 Notion 托管(如 oopy、super.so)上，把 data-content 设为 .notion-page-content 即可同样工作。Notion 标题层级更深，可在 data-headings 中加入 h4。</p>
 
         <h2>自定义</h2>
         <p>颜色和位置都可以自由调整。所有类名和 CSS 变量都以 greedylabs-ghost-toc 命名空间隔离，绝不会与你的主题冲突。</p>
