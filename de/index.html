@@ -54,19 +54,49 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "ghost-toc-plugin",
-      "description": "Fügen Sie Ihrem Ghost-Blog mit einer Zeile Code ein schwebendes Inhaltsverzeichnis hinzu. Optionen anpassen, live vorschauen, Snippet kopieren. Open Source (MIT).",
-      "applicationCategory": "DeveloperApplication",
-      "operatingSystem": "Web (Ghost)",
-      "url": "https://ghost-toc-plugin.greedylabs.kr/de/",
-      "codeRepository": "https://github.com/GreedyLabs/ghost-toc-plugin",
-      "license": "https://opensource.org/licenses/MIT",
-      "author": { "@type": "Organization", "name": "GreedyLabs" },
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "ghost-toc-plugin",
+          "description": "Fügen Sie Ihrem Ghost-Blog mit einer Zeile Code ein schwebendes Inhaltsverzeichnis hinzu. Optionen anpassen, live vorschauen, Snippet kopieren. Open Source (MIT).",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "Web (Ghost, Notion)",
+          "softwareVersion": "1",
+          "url": "https://ghost-toc-plugin.greedylabs.kr/de/",
+          "codeRepository": "https://github.com/GreedyLabs/ghost-toc-plugin",
+          "license": "https://opensource.org/licenses/MIT",
+          "author": {
+            "@type": "Organization",
+            "name": "GreedyLabs",
+            "url": "https://github.com/GreedyLabs"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "sameAs": [
+            "https://github.com/GreedyLabs/ghost-toc-plugin"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "name": "ghost-toc-plugin",
+          "url": "https://ghost-toc-plugin.greedylabs.kr/",
+          "inLanguage": "de",
+          "publisher": {
+            "@type": "Organization",
+            "name": "GreedyLabs",
+            "url": "https://github.com/GreedyLabs"
+          }
+        }
+      ]
     }
     </script>
 
+    <!-- Warm up third-party origins before the render-blocking font CSS -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="https://umami.greedylabs.kr">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5/400.css">
     <link rel="stylesheet" href="/toc.css">
     <link rel="stylesheet" href="/demo.css">
@@ -195,6 +225,15 @@ data-top="100"</code></pre>
 }</code></pre>
         <h3>Position</h3>
         <p>Nutze data-position für links oder rechts, data-top für den oberen Abstand, data-gap für den Abstand zum Inhalt und data-width für die Panelbreite. Unterhalb von data-min-width (oder wenn neben dem Inhalt kein Platz ist) blendet sich das Inhaltsverzeichnis selbst aus.</p>
+
+        <h2>Häufige Fragen</h2>
+        <!-- Questions are h4 so they stay out of the h2/h3 demo TOC -->
+        <h4>Verlangsamt das Widget meine Seite?</h4>
+        <p>Kaum. Es ist rund 3KB groß, ohne Abhängigkeiten und ohne externe Anfragen. Scrollen wird über einen passiven Listener verarbeitet und per requestAnimationFrame auf eine Berechnung pro Frame gebündelt; neu berechnet wird nur bei Änderungen der Dokumenthöhe (lazy geladene Bilder, giscus und ähnliche Widgets) über einen ResizeObserver.</p>
+        <h4>Warum wird das Inhaltsverzeichnis nicht angezeigt?</h4>
+        <p>Prüfe drei Dinge: ob dein data-content-Selektor zum tatsächlichen Artikel-Container passt, ob es mindestens zwei Überschriften gibt (darunter wird nichts erzeugt), und ob das Fenster breiter als data-min-width (standardmäßig 1200px) ist und neben dem Inhalt Platz für das Panel bleibt. Auf schmalen Bildschirmen und mobil blendet es sich bewusst aus.</p>
+        <h4>Kann ich tiefere Überschriften wie h4 ins Inhaltsverzeichnis aufnehmen?</h4>
+        <p>Ja. Liste die gewünschten Tags in data-headings kommagetrennt auf (z. B. h2,h3,h4). Du bestimmst genau, welche Überschriftenebenen in der Liste erscheinen.</p>
 
         <h2>Fazit</h2>
         <p>ghost-toc-plugin ist Open Source unter der MIT-Lizenz; Code und Issues findest du auf GitHub. Probiere die Optionen im linken Panel aus, beobachte die Live-Vorschau und kopiere das Snippet, wenn es passt. Wenn es dir geholfen hat, freue ich mich über einen Kaffee ☕.</p>

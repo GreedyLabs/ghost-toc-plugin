@@ -79,6 +79,44 @@ function themeSwitch(t) {
                 </select>`;
 }
 
+const REPO = 'https://github.com/GreedyLabs/ghost-toc-plugin';
+const ORG = 'https://github.com/GreedyLabs';
+
+// SoftwareApplication + WebSite as a @graph. No aggregateRating — there are no
+// real ratings, and fabricating them would be a policy violation.
+function jsonld(lang, t, url) {
+  const graph = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'SoftwareApplication',
+        name: 'ghost-toc-plugin',
+        description: t.description,
+        applicationCategory: 'DeveloperApplication',
+        operatingSystem: 'Web (Ghost, Notion)',
+        softwareVersion: '1',
+        url,
+        codeRepository: REPO,
+        license: 'https://opensource.org/licenses/MIT',
+        author: { '@type': 'Organization', name: 'GreedyLabs', url: ORG },
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+        sameAs: [REPO]
+      },
+      {
+        '@type': 'WebSite',
+        name: 'ghost-toc-plugin',
+        url: `${ORIGIN}/`,
+        inLanguage: lang,
+        publisher: { '@type': 'Organization', name: 'GreedyLabs', url: ORG }
+      }
+    ]
+  };
+  return JSON.stringify(graph, null, 2)
+    .split('\n')
+    .map((line) => '    ' + line)
+    .join('\n');
+}
+
 function page(lang) {
   const t = data.langs[lang];
   const url = `${ORIGIN}/${lang}/`;
@@ -128,21 +166,12 @@ ${hreflangs(url)}
     <meta name="twitter:image" content="${ORIGIN}/og-image.png">
 
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "ghost-toc-plugin",
-      "description": ${JSON.stringify(t.description)},
-      "applicationCategory": "DeveloperApplication",
-      "operatingSystem": "Web (Ghost)",
-      "url": "${url}",
-      "codeRepository": "https://github.com/GreedyLabs/ghost-toc-plugin",
-      "license": "https://opensource.org/licenses/MIT",
-      "author": { "@type": "Organization", "name": "GreedyLabs" },
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-    }
+${jsonld(lang, t, url)}
     </script>
 
+    <!-- Warm up third-party origins before the render-blocking font CSS -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="https://umami.greedylabs.kr">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5/400.css">
     <link rel="stylesheet" href="/toc.css">
     <link rel="stylesheet" href="/demo.css">
@@ -244,6 +273,15 @@ ${hreflangs(url)}
         <pre><code>${esc(CODE_COLOR)}</code></pre>
         <h3>${esc(t.h_position)}</h3>
         <p>${esc(t.bodyPosition)}</p>
+
+        <h2>${esc(t.h_faq)}</h2>
+        <!-- Questions are h4 so they stay out of the h2/h3 demo TOC -->
+        <h4>${esc(t.faqQ1)}</h4>
+        <p>${esc(t.faqA1)}</p>
+        <h4>${esc(t.faqQ2)}</h4>
+        <p>${esc(t.faqA2)}</p>
+        <h4>${esc(t.faqQ3)}</h4>
+        <p>${esc(t.faqA3)}</p>
 
         <h2>${esc(t.h_closing)}</h2>
         <p>${esc(t.bodyClosing)}</p>

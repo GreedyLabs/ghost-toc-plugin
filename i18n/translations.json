@@ -32,7 +32,14 @@
       "bodyCustomize": "색과 위치는 자유롭게 조절할 수 있습니다. 모든 클래스와 CSS 변수는 greedylabs-ghost-toc로 네임스페이스가 걸려 있어 테마와 절대 충돌하지 않습니다.",
       "bodyColor": "현재 항목 색은 기본적으로 Ghost 테마 강조색(--ghost-accent-color)을 따릅니다. 바꾸려면 data-accent를 주거나 CSS 변수를 덮어쓰면 됩니다. 위젯은 라이트·다크 기본값을 모두 갖춰 시스템 테마에 자동으로 맞춰집니다. 다크 모드 가독성을 더 높이고 싶다면 다크에만 적용되도록 색을 따로 지정하세요, 값 하나로 고정하면 라이트에서 어색해집니다:",
       "bodyPosition": "data-position으로 좌·우를, data-top으로 상단 여백을, data-gap으로 본문과의 간격을, data-width로 패널 너비를 정합니다. 화면이 data-min-width보다 좁거나 옆에 공간이 없으면 목차는 스스로 숨습니다.",
-      "bodyClosing": "ghost-toc-plugin은 MIT 라이선스 오픈소스이며, 소스와 이슈는 GitHub에 있습니다. 왼쪽 패널에서 옵션을 바꿔 실시간으로 확인한 뒤 마음에 들면 임베드 코드를 복사하세요. 도움이 되었다면 커피 한 잔 부탁드려요 ☕."
+      "bodyClosing": "ghost-toc-plugin은 MIT 라이선스 오픈소스이며, 소스와 이슈는 GitHub에 있습니다. 왼쪽 패널에서 옵션을 바꿔 실시간으로 확인한 뒤 마음에 들면 임베드 코드를 복사하세요. 도움이 되었다면 커피 한 잔 부탁드려요 ☕.",
+      "h_faq": "자주 묻는 질문",
+      "faqQ1": "목차 위젯이 사이트를 느리게 하나요?",
+      "faqA1": "거의 그렇지 않습니다. 약 3KB에 의존성이나 외부 요청이 없고, 스크롤은 passive 리스너로 받아 requestAnimationFrame으로 프레임당 한 번만 계산합니다. 지연 로딩 이미지나 giscus 같은 위젯으로 문서 높이가 바뀔 때만 ResizeObserver로 다시 계산합니다.",
+      "faqQ2": "목차가 안 보이는데 왜 그럴까요?",
+      "faqA2": "세 가지를 확인하세요. data-content 선택자가 실제 본문 컨테이너와 맞는지, 헤딩이 2개 이상인지(그 미만이면 목차를 만들지 않습니다), 화면이 data-min-width(기본 1200px)보다 넓고 본문 옆에 패널이 들어갈 공간이 있는지. 좁은 화면과 모바일에서는 의도적으로 숨습니다.",
+      "faqQ3": "h4처럼 더 깊은 헤딩도 목차에 넣을 수 있나요?",
+      "faqA3": "네. data-headings에 원하는 태그를 쉼표로 나열하면 됩니다(예: h2,h3,h4). 목록에 포함할 헤딩 레벨을 자유롭게 정할 수 있습니다."
     },
     "en": {
       "name": "English", "locale": "en_US",
@@ -64,7 +71,14 @@
       "bodyCustomize": "Colors and placement are fully adjustable. Every class and CSS variable is namespaced under greedylabs-ghost-toc, so the widget never clashes with your theme.",
       "bodyColor": "The active item follows your Ghost theme accent (--ghost-accent-color) by default; set data-accent or override the CSS variables to change it. The widget ships light and dark defaults and adapts to the system theme automatically. To boost readability in dark mode, override the colors for dark only, a single fixed value would look off in light:",
       "bodyPosition": "Use data-position for left or right, data-top for the offset from the top, data-gap for the space from your content, and data-width for the panel width. Below data-min-width (or when there is no room beside the content) the table of contents hides itself.",
-      "bodyClosing": "ghost-toc-plugin is open source under the MIT license; the code and issues live on GitHub. Try the options in the left panel, watch the preview update live, and copy the embed snippet when you are happy. If it helped you, a coffee is always appreciated ☕."
+      "bodyClosing": "ghost-toc-plugin is open source under the MIT license; the code and issues live on GitHub. Try the options in the left panel, watch the preview update live, and copy the embed snippet when you are happy. If it helped you, a coffee is always appreciated ☕.",
+      "h_faq": "FAQ",
+      "faqQ1": "Does the widget slow my site down?",
+      "faqA1": "Barely. It's about 3KB with no dependencies and no external requests. Scroll is handled with a passive listener and coalesced into one calculation per frame via requestAnimationFrame; it only recomputes on document-height changes (lazy images, giscus and similar widgets) through a ResizeObserver.",
+      "faqQ2": "Why isn't the table of contents showing?",
+      "faqA2": "Check three things: that your data-content selector matches the real article container, that there are at least two headings (it will not render below that), and that the viewport is wider than data-min-width (1200px by default) with room for the panel beside the content. On narrow screens and mobile it hides on purpose.",
+      "faqQ3": "Can I include deeper headings like h4 in the TOC?",
+      "faqA3": "Yes. List the tags you want in data-headings, comma-separated (e.g. h2,h3,h4). You choose exactly which heading levels appear in the list."
     },
     "ja": {
       "name": "日本語", "locale": "ja_JP",
@@ -96,7 +110,14 @@
       "bodyCustomize": "色と位置は自由に調整できます。すべてのクラスと CSS 変数は greedylabs-ghost-toc で名前空間化されており、テーマと衝突しません。",
       "bodyColor": "現在の項目の色は、既定で Ghost テーマのアクセント色（--ghost-accent-color）に従います。変更するには data-accent を指定するか、CSS 変数を上書きします。ウィジェットはライト／ダークの既定値を備え、システムテーマに自動で合わせます。ダークモードの可読性を高めたい場合は、ダークのときだけ色を上書きしてください, 単一の固定値ではライトで不自然になります：",
       "bodyPosition": "data-position で左右、data-top で上の余白、data-gap で本文との間隔、data-width でパネル幅を指定します。画面が data-min-width より狭い場合や横にスペースがない場合、目次は自動的に隠れます。",
-      "bodyClosing": "ghost-toc-plugin は MIT ライセンスのオープンソースで、コードと Issue は GitHub にあります。左パネルでオプションを変えてライブプレビューを確認し、気に入ったら埋め込みコードをコピーしてください。お役に立てたら、コーヒーを一杯いただけると嬉しいです ☕。"
+      "bodyClosing": "ghost-toc-plugin は MIT ライセンスのオープンソースで、コードと Issue は GitHub にあります。左パネルでオプションを変えてライブプレビューを確認し、気に入ったら埋め込みコードをコピーしてください。お役に立てたら、コーヒーを一杯いただけると嬉しいです ☕。",
+      "h_faq": "よくある質問",
+      "faqQ1": "このウィジェットでサイトが遅くなりますか？",
+      "faqA1": "ほとんど影響ありません。約3KBで依存関係も外部リクエストもなく、スクロールは passive リスナーで受け取り、requestAnimationFrame でフレームごとに一度だけ計算します。遅延読み込み画像や giscus などでドキュメントの高さが変わったときだけ ResizeObserver で再計算します。",
+      "faqQ2": "目次が表示されないのはなぜですか？",
+      "faqA2": "3点を確認してください。data-content セレクタが実際の本文コンテナと一致しているか、見出しが2つ以上あるか（それ未満では生成されません）、画面が data-min-width（既定1200px）より広く本文の横にパネルが入る余地があるか。狭い画面やモバイルでは意図的に隠れます。",
+      "faqQ3": "h4 のような深い見出しも目次に含められますか？",
+      "faqA3": "はい。data-headings に入れたいタグをカンマ区切りで指定します（例: h2,h3,h4）。リストに表示する見出しレベルを自由に選べます。"
     },
     "zh": {
       "name": "中文", "locale": "zh_CN",
@@ -128,7 +149,14 @@
       "bodyCustomize": "颜色和位置都可以自由调整。所有类名和 CSS 变量都以 greedylabs-ghost-toc 命名空间隔离，绝不会与你的主题冲突。",
       "bodyColor": "当前项的颜色默认跟随 Ghost 主题强调色（--ghost-accent-color）。要更改，可设置 data-accent 或覆盖 CSS 变量。组件内置浅色和深色默认值，会自动适配系统主题。若想提升深色模式下的可读性，请仅针对深色覆盖颜色, 单一固定值会在浅色下显得不协调：",
       "bodyPosition": "用 data-position 设置左右，data-top 设置顶部偏移，data-gap 设置与正文的间距，data-width 设置面板宽度。当屏幕窄于 data-min-width，或正文旁没有空间时，目录会自动隐藏。",
-      "bodyClosing": "ghost-toc-plugin 是 MIT 许可的开源项目，代码与问题反馈都在 GitHub 上。在左侧面板调整选项、实时查看预览，满意后复制嵌入代码即可。如果它帮到了你，欢迎请我喝杯咖啡 ☕。"
+      "bodyClosing": "ghost-toc-plugin 是 MIT 许可的开源项目，代码与问题反馈都在 GitHub 上。在左侧面板调整选项、实时查看预览，满意后复制嵌入代码即可。如果它帮到了你，欢迎请我喝杯咖啡 ☕。",
+      "h_faq": "常见问题",
+      "faqQ1": "这个小组件会拖慢我的网站吗？",
+      "faqA1": "几乎不会。它约 3KB，没有依赖，也不发起外部请求。滚动通过 passive 监听器处理，并用 requestAnimationFrame 合并为每帧只计算一次；只有当文档高度变化时（懒加载图片、giscus 等组件）才通过 ResizeObserver 重新计算。",
+      "faqQ2": "为什么目录没有显示？",
+      "faqA2": "请检查三点：data-content 选择器是否匹配真正的文章容器；标题是否至少有两个（少于两个不会生成目录）；视口是否宽于 data-min-width（默认 1200px）且正文旁边有放置面板的空间。在窄屏和移动端它会故意隐藏。",
+      "faqQ3": "能把 h4 等更深的标题也加入目录吗？",
+      "faqA3": "可以。在 data-headings 中用逗号列出想要的标签（例如 h2,h3,h4）。你可以自由决定目录中显示哪些标题层级。"
     },
     "es": {
       "name": "Español", "locale": "es_ES",
@@ -160,7 +188,14 @@
       "bodyCustomize": "Los colores y la ubicación son totalmente ajustables. Cada clase y variable CSS está en el espacio de nombres greedylabs-ghost-toc, así que el widget nunca choca con tu tema.",
       "bodyColor": "El elemento activo sigue por defecto el color de acento de tu tema Ghost (--ghost-accent-color); usa data-accent o sobrescribe las variables CSS para cambiarlo. El widget incluye valores claros y oscuros y se adapta al tema del sistema automáticamente. Para mejorar la legibilidad en modo oscuro, sobrescribe los colores solo para oscuro, un único valor fijo se vería mal en claro:",
       "bodyPosition": "Usa data-position para izquierda o derecha, data-top para el margen superior, data-gap para el espacio respecto al contenido y data-width para el ancho del panel. Por debajo de data-min-width (o cuando no hay espacio al lado) el índice se oculta solo.",
-      "bodyClosing": "ghost-toc-plugin es de código abierto bajo licencia MIT; el código y las incidencias están en GitHub. Prueba las opciones en el panel izquierdo, mira la vista previa actualizarse en vivo y copia el fragmento cuando te guste. Si te ha servido, siempre se agradece un café ☕."
+      "bodyClosing": "ghost-toc-plugin es de código abierto bajo licencia MIT; el código y las incidencias están en GitHub. Prueba las opciones en el panel izquierdo, mira la vista previa actualizarse en vivo y copia el fragmento cuando te guste. Si te ha servido, siempre se agradece un café ☕.",
+      "h_faq": "Preguntas frecuentes",
+      "faqQ1": "¿El widget ralentiza mi sitio?",
+      "faqA1": "Apenas. Ocupa unos 3KB, sin dependencias ni peticiones externas. El scroll se gestiona con un listener pasivo y se agrupa en un solo cálculo por fotograma con requestAnimationFrame; solo recalcula cuando cambia la altura del documento (imágenes diferidas, giscus y widgets similares) mediante un ResizeObserver.",
+      "faqQ2": "¿Por qué no aparece la tabla de contenidos?",
+      "faqA2": "Comprueba tres cosas: que tu selector data-content coincida con el contenedor real del artículo, que haya al menos dos encabezados (no se genera con menos) y que la ventana sea más ancha que data-min-width (1200px por defecto) con espacio para el panel junto al contenido. En pantallas estrechas y móviles se oculta a propósito.",
+      "faqQ3": "¿Puedo incluir encabezados más profundos como h4 en el índice?",
+      "faqA3": "Sí. Enumera las etiquetas que quieras en data-headings, separadas por comas (por ejemplo, h2,h3,h4). Tú decides exactamente qué niveles de encabezado aparecen en la lista."
     },
     "fr": {
       "name": "Français", "locale": "fr_FR",
@@ -192,7 +227,14 @@
       "bodyCustomize": "Les couleurs et l'emplacement sont entièrement réglables. Chaque classe et variable CSS est dans l'espace de noms greedylabs-ghost-toc, donc le widget n'entre jamais en conflit avec votre thème.",
       "bodyColor": "L'élément actif suit par défaut la couleur d'accent de votre thème Ghost (--ghost-accent-color) ; utilisez data-accent ou redéfinissez les variables CSS pour la changer. Le widget fournit des valeurs claires et sombres et s'adapte automatiquement au thème du système. Pour améliorer la lisibilité en mode sombre, redéfinissez les couleurs uniquement pour le sombre, une seule valeur fixe rendrait mal en clair :",
       "bodyPosition": "Utilisez data-position pour gauche ou droite, data-top pour le décalage en haut, data-gap pour l'espace avec le contenu et data-width pour la largeur du panneau. En dessous de data-min-width (ou s'il n'y a pas de place à côté) le sommaire se masque tout seul.",
-      "bodyClosing": "ghost-toc-plugin est open source sous licence MIT ; le code et les tickets sont sur GitHub. Essayez les options dans le panneau de gauche, regardez l'aperçu se mettre à jour en direct, et copiez l'extrait quand cela vous convient. Si cela vous a aidé, un café est toujours apprécié ☕."
+      "bodyClosing": "ghost-toc-plugin est open source sous licence MIT ; le code et les tickets sont sur GitHub. Essayez les options dans le panneau de gauche, regardez l'aperçu se mettre à jour en direct, et copiez l'extrait quand cela vous convient. Si cela vous a aidé, un café est toujours apprécié ☕.",
+      "h_faq": "Questions fréquentes",
+      "faqQ1": "Le widget ralentit-il mon site ?",
+      "faqA1": "À peine. Il pèse environ 3KB, sans dépendances ni requêtes externes. Le défilement est géré par un écouteur passif et regroupé en un seul calcul par image via requestAnimationFrame ; il ne recalcule que lorsque la hauteur du document change (images en chargement différé, giscus et widgets similaires) grâce à un ResizeObserver.",
+      "faqQ2": "Pourquoi la table des matières ne s'affiche-t-elle pas ?",
+      "faqA2": "Vérifiez trois points : que votre sélecteur data-content corresponde au vrai conteneur de l'article, qu'il y ait au moins deux titres (elle ne s'affiche pas en dessous), et que la fenêtre soit plus large que data-min-width (1200px par défaut) avec de la place pour le panneau à côté du contenu. Sur les écrans étroits et mobiles, elle se masque volontairement.",
+      "faqQ3": "Puis-je inclure des titres plus profonds comme h4 dans la table des matières ?",
+      "faqA3": "Oui. Listez les balises souhaitées dans data-headings, séparées par des virgules (par exemple h2,h3,h4). Vous choisissez précisément quels niveaux de titre apparaissent dans la liste."
     },
     "de": {
       "name": "Deutsch", "locale": "de_DE",
@@ -224,7 +266,14 @@
       "bodyCustomize": "Farben und Platzierung sind voll anpassbar. Jede Klasse und CSS-Variable ist unter greedylabs-ghost-toc benannt, sodass das Widget nie mit deinem Theme kollidiert.",
       "bodyColor": "Das aktive Element folgt standardmäßig der Akzentfarbe deines Ghost-Themes (--ghost-accent-color); setze data-accent oder überschreibe die CSS-Variablen, um sie zu ändern. Das Widget bringt helle und dunkle Standardwerte mit und passt sich automatisch dem Systemthema an. Für bessere Lesbarkeit im Dunkelmodus überschreibe die Farben nur für Dunkel, ein einzelner fester Wert würde im Hellmodus unpassend wirken:",
       "bodyPosition": "Nutze data-position für links oder rechts, data-top für den oberen Abstand, data-gap für den Abstand zum Inhalt und data-width für die Panelbreite. Unterhalb von data-min-width (oder wenn neben dem Inhalt kein Platz ist) blendet sich das Inhaltsverzeichnis selbst aus.",
-      "bodyClosing": "ghost-toc-plugin ist Open Source unter der MIT-Lizenz; Code und Issues findest du auf GitHub. Probiere die Optionen im linken Panel aus, beobachte die Live-Vorschau und kopiere das Snippet, wenn es passt. Wenn es dir geholfen hat, freue ich mich über einen Kaffee ☕."
+      "bodyClosing": "ghost-toc-plugin ist Open Source unter der MIT-Lizenz; Code und Issues findest du auf GitHub. Probiere die Optionen im linken Panel aus, beobachte die Live-Vorschau und kopiere das Snippet, wenn es passt. Wenn es dir geholfen hat, freue ich mich über einen Kaffee ☕.",
+      "h_faq": "Häufige Fragen",
+      "faqQ1": "Verlangsamt das Widget meine Seite?",
+      "faqA1": "Kaum. Es ist rund 3KB groß, ohne Abhängigkeiten und ohne externe Anfragen. Scrollen wird über einen passiven Listener verarbeitet und per requestAnimationFrame auf eine Berechnung pro Frame gebündelt; neu berechnet wird nur bei Änderungen der Dokumenthöhe (lazy geladene Bilder, giscus und ähnliche Widgets) über einen ResizeObserver.",
+      "faqQ2": "Warum wird das Inhaltsverzeichnis nicht angezeigt?",
+      "faqA2": "Prüfe drei Dinge: ob dein data-content-Selektor zum tatsächlichen Artikel-Container passt, ob es mindestens zwei Überschriften gibt (darunter wird nichts erzeugt), und ob das Fenster breiter als data-min-width (standardmäßig 1200px) ist und neben dem Inhalt Platz für das Panel bleibt. Auf schmalen Bildschirmen und mobil blendet es sich bewusst aus.",
+      "faqQ3": "Kann ich tiefere Überschriften wie h4 ins Inhaltsverzeichnis aufnehmen?",
+      "faqA3": "Ja. Liste die gewünschten Tags in data-headings kommagetrennt auf (z. B. h2,h3,h4). Du bestimmst genau, welche Überschriftenebenen in der Liste erscheinen."
     },
     "pt": {
       "name": "Português", "locale": "pt_BR",
@@ -256,7 +305,14 @@
       "bodyCustomize": "Cores e posição são totalmente ajustáveis. Cada classe e variável CSS fica no namespace greedylabs-ghost-toc, então o widget nunca conflita com o seu tema.",
       "bodyColor": "O item ativo segue, por padrão, a cor de destaque do seu tema Ghost (--ghost-accent-color); use data-accent ou sobrescreva as variáveis CSS para mudá-la. O widget traz valores claros e escuros e se adapta automaticamente ao tema do sistema. Para melhorar a legibilidade no modo escuro, sobrescreva as cores apenas para o escuro, um único valor fixo ficaria estranho no claro:",
       "bodyPosition": "Use data-position para esquerda ou direita, data-top para o deslocamento do topo, data-gap para o espaço em relação ao conteúdo e data-width para a largura do painel. Abaixo de data-min-width (ou quando não há espaço ao lado) o índice se esconde sozinho.",
-      "bodyClosing": "ghost-toc-plugin é de código aberto sob a licença MIT; o código e as issues estão no GitHub. Experimente as opções no painel à esquerda, veja a prévia atualizar ao vivo e copie o trecho quando gostar. Se ajudou você, um café é sempre bem-vindo ☕."
+      "bodyClosing": "ghost-toc-plugin é de código aberto sob a licença MIT; o código e as issues estão no GitHub. Experimente as opções no painel à esquerda, veja a prévia atualizar ao vivo e copie o trecho quando gostar. Se ajudou você, um café é sempre bem-vindo ☕.",
+      "h_faq": "Perguntas frequentes",
+      "faqQ1": "O widget deixa meu site mais lento?",
+      "faqA1": "Quase nada. Tem cerca de 3KB, sem dependências nem requisições externas. A rolagem é tratada com um listener passivo e agrupada em um único cálculo por quadro via requestAnimationFrame; só recalcula quando a altura do documento muda (imagens com carregamento tardio, giscus e widgets semelhantes) por meio de um ResizeObserver.",
+      "faqQ2": "Por que o índice não aparece?",
+      "faqA2": "Verifique três coisas: se o seu seletor data-content corresponde ao contêiner real do artigo, se há pelo menos dois títulos (abaixo disso ele não é gerado) e se a janela é mais larga que data-min-width (1200px por padrão) com espaço para o painel ao lado do conteúdo. Em telas estreitas e no celular ele se oculta de propósito.",
+      "faqQ3": "Posso incluir títulos mais profundos como h4 no índice?",
+      "faqA3": "Sim. Liste as tags desejadas em data-headings, separadas por vírgula (por exemplo, h2,h3,h4). Você decide exatamente quais níveis de título aparecem na lista."
     },
     "hi": {
       "name": "हिन्दी", "locale": "hi_IN",
@@ -288,7 +344,14 @@
       "bodyCustomize": "रंग और स्थिति पूरी तरह समायोज्य हैं। हर क्लास और CSS वेरिएबल greedylabs-ghost-toc नेमस्पेस में है, इसलिए विजेट आपकी थीम से कभी टकराता नहीं।",
       "bodyColor": "सक्रिय आइटम का रंग डिफ़ॉल्ट रूप से आपकी Ghost थीम के एक्सेंट रंग (--ghost-accent-color) का अनुसरण करता है; बदलने के लिए data-accent दें या CSS वेरिएबल ओवरराइड करें। विजेट में लाइट और डार्क दोनों डिफ़ॉल्ट हैं और यह सिस्टम थीम के अनुसार अपने-आप ढल जाता है। डार्क मोड में पठनीयता बढ़ाने के लिए रंग केवल डार्क के लिए ओवरराइड करें, कोई एक तय मान लाइट में अटपटा लगेगा:",
       "bodyPosition": "बाएँ/दाएँ के लिए data-position, ऊपरी अंतर के लिए data-top, कंटेंट से दूरी के लिए data-gap, और पैनल चौड़ाई के लिए data-width इस्तेमाल करें। जब स्क्रीन data-min-width से छोटी हो(या कंटेंट के बगल में जगह न हो)तो विषय-सूची अपने-आप छिप जाती है।",
-      "bodyClosing": "ghost-toc-plugin MIT लाइसेंस के तहत ओपन सोर्स है; कोड और issues GitHub पर हैं। बाएँ पैनल में विकल्प आज़माएँ, प्रीव्यू को लाइव बदलते देखें और पसंद आने पर एम्बेड कोड कॉपी करें। अगर यह आपके काम आया, तो एक कॉफ़ी का स्वागत है ☕।"
+      "bodyClosing": "ghost-toc-plugin MIT लाइसेंस के तहत ओपन सोर्स है; कोड और issues GitHub पर हैं। बाएँ पैनल में विकल्प आज़माएँ, प्रीव्यू को लाइव बदलते देखें और पसंद आने पर एम्बेड कोड कॉपी करें। अगर यह आपके काम आया, तो एक कॉफ़ी का स्वागत है ☕।",
+      "h_faq": "अक्सर पूछे जाने वाले प्रश्न",
+      "faqQ1": "क्या यह विजेट मेरी साइट को धीमा करता है?",
+      "faqA1": "लगभग नहीं। यह करीब 3KB का है, न कोई डिपेंडेंसी और न कोई बाहरी रिक्वेस्ट। स्क्रॉल को passive लिसनर से संभाला जाता है और requestAnimationFrame के ज़रिए हर फ़्रेम में एक ही गणना में समेटा जाता है; यह केवल तब दोबारा गणना करता है जब दस्तावेज़ की ऊँचाई बदलती है (लेज़ी-लोड इमेज, giscus जैसे विजेट) — इसके लिए ResizeObserver का उपयोग होता है।",
+      "faqQ2": "विषय-सूची क्यों नहीं दिख रही?",
+      "faqA2": "तीन चीज़ें जाँचें: क्या आपका data-content सिलेक्टर असली लेख कंटेनर से मेल खाता है, क्या कम से कम दो हेडिंग हैं (इससे कम पर यह नहीं बनती), और क्या विंडो data-min-width (डिफ़ॉल्ट 1200px) से चौड़ी है तथा सामग्री के बगल में पैनल के लिए जगह है। संकरी स्क्रीन और मोबाइल पर यह जानबूझकर छिप जाती है।",
+      "faqQ3": "क्या मैं h4 जैसी गहरी हेडिंग भी विषय-सूची में शामिल कर सकता हूँ?",
+      "faqA3": "हाँ। data-headings में मनचाहे टैग कॉमा से अलग करके लिखें (जैसे h2,h3,h4)। सूची में कौन-से हेडिंग स्तर दिखें, यह आप तय करते हैं।"
     }
   }
 }

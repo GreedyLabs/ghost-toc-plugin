@@ -54,19 +54,49 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "ghost-toc-plugin",
-      "description": "Ghost 블로그에 코드 한 줄로 붙이는 떠다니는 목차(TOC) 위젯. 옵션을 바꿔 실시간 미리보고 임베드 코드를 복사하세요. 오픈소스(MIT).",
-      "applicationCategory": "DeveloperApplication",
-      "operatingSystem": "Web (Ghost)",
-      "url": "https://ghost-toc-plugin.greedylabs.kr/ko/",
-      "codeRepository": "https://github.com/GreedyLabs/ghost-toc-plugin",
-      "license": "https://opensource.org/licenses/MIT",
-      "author": { "@type": "Organization", "name": "GreedyLabs" },
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "ghost-toc-plugin",
+          "description": "Ghost 블로그에 코드 한 줄로 붙이는 떠다니는 목차(TOC) 위젯. 옵션을 바꿔 실시간 미리보고 임베드 코드를 복사하세요. 오픈소스(MIT).",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "Web (Ghost, Notion)",
+          "softwareVersion": "1",
+          "url": "https://ghost-toc-plugin.greedylabs.kr/ko/",
+          "codeRepository": "https://github.com/GreedyLabs/ghost-toc-plugin",
+          "license": "https://opensource.org/licenses/MIT",
+          "author": {
+            "@type": "Organization",
+            "name": "GreedyLabs",
+            "url": "https://github.com/GreedyLabs"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "sameAs": [
+            "https://github.com/GreedyLabs/ghost-toc-plugin"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "name": "ghost-toc-plugin",
+          "url": "https://ghost-toc-plugin.greedylabs.kr/",
+          "inLanguage": "ko",
+          "publisher": {
+            "@type": "Organization",
+            "name": "GreedyLabs",
+            "url": "https://github.com/GreedyLabs"
+          }
+        }
+      ]
     }
     </script>
 
+    <!-- Warm up third-party origins before the render-blocking font CSS -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="https://umami.greedylabs.kr">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5/400.css">
     <link rel="stylesheet" href="/toc.css">
     <link rel="stylesheet" href="/demo.css">
@@ -195,6 +225,15 @@ data-top="100"</code></pre>
 }</code></pre>
         <h3>위치</h3>
         <p>data-position으로 좌·우를, data-top으로 상단 여백을, data-gap으로 본문과의 간격을, data-width로 패널 너비를 정합니다. 화면이 data-min-width보다 좁거나 옆에 공간이 없으면 목차는 스스로 숨습니다.</p>
+
+        <h2>자주 묻는 질문</h2>
+        <!-- Questions are h4 so they stay out of the h2/h3 demo TOC -->
+        <h4>목차 위젯이 사이트를 느리게 하나요?</h4>
+        <p>거의 그렇지 않습니다. 약 3KB에 의존성이나 외부 요청이 없고, 스크롤은 passive 리스너로 받아 requestAnimationFrame으로 프레임당 한 번만 계산합니다. 지연 로딩 이미지나 giscus 같은 위젯으로 문서 높이가 바뀔 때만 ResizeObserver로 다시 계산합니다.</p>
+        <h4>목차가 안 보이는데 왜 그럴까요?</h4>
+        <p>세 가지를 확인하세요. data-content 선택자가 실제 본문 컨테이너와 맞는지, 헤딩이 2개 이상인지(그 미만이면 목차를 만들지 않습니다), 화면이 data-min-width(기본 1200px)보다 넓고 본문 옆에 패널이 들어갈 공간이 있는지. 좁은 화면과 모바일에서는 의도적으로 숨습니다.</p>
+        <h4>h4처럼 더 깊은 헤딩도 목차에 넣을 수 있나요?</h4>
+        <p>네. data-headings에 원하는 태그를 쉼표로 나열하면 됩니다(예: h2,h3,h4). 목록에 포함할 헤딩 레벨을 자유롭게 정할 수 있습니다.</p>
 
         <h2>마치며</h2>
         <p>ghost-toc-plugin은 MIT 라이선스 오픈소스이며, 소스와 이슈는 GitHub에 있습니다. 왼쪽 패널에서 옵션을 바꿔 실시간으로 확인한 뒤 마음에 들면 임베드 코드를 복사하세요. 도움이 되었다면 커피 한 잔 부탁드려요 ☕.</p>

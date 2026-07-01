@@ -54,19 +54,49 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "ghost-toc-plugin",
-      "description": "用一行代码为你的 Ghost 博客添加浮动目录(TOC)。修改选项、实时预览并复制嵌入代码。开源(MIT)。",
-      "applicationCategory": "DeveloperApplication",
-      "operatingSystem": "Web (Ghost)",
-      "url": "https://ghost-toc-plugin.greedylabs.kr/zh/",
-      "codeRepository": "https://github.com/GreedyLabs/ghost-toc-plugin",
-      "license": "https://opensource.org/licenses/MIT",
-      "author": { "@type": "Organization", "name": "GreedyLabs" },
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "ghost-toc-plugin",
+          "description": "用一行代码为你的 Ghost 博客添加浮动目录(TOC)。修改选项、实时预览并复制嵌入代码。开源(MIT)。",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "Web (Ghost, Notion)",
+          "softwareVersion": "1",
+          "url": "https://ghost-toc-plugin.greedylabs.kr/zh/",
+          "codeRepository": "https://github.com/GreedyLabs/ghost-toc-plugin",
+          "license": "https://opensource.org/licenses/MIT",
+          "author": {
+            "@type": "Organization",
+            "name": "GreedyLabs",
+            "url": "https://github.com/GreedyLabs"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "sameAs": [
+            "https://github.com/GreedyLabs/ghost-toc-plugin"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "name": "ghost-toc-plugin",
+          "url": "https://ghost-toc-plugin.greedylabs.kr/",
+          "inLanguage": "zh",
+          "publisher": {
+            "@type": "Organization",
+            "name": "GreedyLabs",
+            "url": "https://github.com/GreedyLabs"
+          }
+        }
+      ]
     }
     </script>
 
+    <!-- Warm up third-party origins before the render-blocking font CSS -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="https://umami.greedylabs.kr">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5/400.css">
     <link rel="stylesheet" href="/toc.css">
     <link rel="stylesheet" href="/demo.css">
@@ -195,6 +225,15 @@ data-top="100"</code></pre>
 }</code></pre>
         <h3>位置</h3>
         <p>用 data-position 设置左右，data-top 设置顶部偏移，data-gap 设置与正文的间距，data-width 设置面板宽度。当屏幕窄于 data-min-width，或正文旁没有空间时，目录会自动隐藏。</p>
+
+        <h2>常见问题</h2>
+        <!-- Questions are h4 so they stay out of the h2/h3 demo TOC -->
+        <h4>这个小组件会拖慢我的网站吗？</h4>
+        <p>几乎不会。它约 3KB，没有依赖，也不发起外部请求。滚动通过 passive 监听器处理，并用 requestAnimationFrame 合并为每帧只计算一次；只有当文档高度变化时（懒加载图片、giscus 等组件）才通过 ResizeObserver 重新计算。</p>
+        <h4>为什么目录没有显示？</h4>
+        <p>请检查三点：data-content 选择器是否匹配真正的文章容器；标题是否至少有两个（少于两个不会生成目录）；视口是否宽于 data-min-width（默认 1200px）且正文旁边有放置面板的空间。在窄屏和移动端它会故意隐藏。</p>
+        <h4>能把 h4 等更深的标题也加入目录吗？</h4>
+        <p>可以。在 data-headings 中用逗号列出想要的标签（例如 h2,h3,h4）。你可以自由决定目录中显示哪些标题层级。</p>
 
         <h2>结语</h2>
         <p>ghost-toc-plugin 是 MIT 许可的开源项目，代码与问题反馈都在 GitHub 上。在左侧面板调整选项、实时查看预览，满意后复制嵌入代码即可。如果它帮到了你，欢迎请我喝杯咖啡 ☕。</p>

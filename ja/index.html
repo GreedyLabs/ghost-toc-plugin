@@ -54,19 +54,49 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "ghost-toc-plugin",
-      "description": "コード1行で Ghost ブログに追加できるフローティング目次(TOC)ウィジェット。オプションを変えてライブプレビューし、埋め込みコードをコピー。オープンソース(MIT)。",
-      "applicationCategory": "DeveloperApplication",
-      "operatingSystem": "Web (Ghost)",
-      "url": "https://ghost-toc-plugin.greedylabs.kr/ja/",
-      "codeRepository": "https://github.com/GreedyLabs/ghost-toc-plugin",
-      "license": "https://opensource.org/licenses/MIT",
-      "author": { "@type": "Organization", "name": "GreedyLabs" },
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "ghost-toc-plugin",
+          "description": "コード1行で Ghost ブログに追加できるフローティング目次(TOC)ウィジェット。オプションを変えてライブプレビューし、埋め込みコードをコピー。オープンソース(MIT)。",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "Web (Ghost, Notion)",
+          "softwareVersion": "1",
+          "url": "https://ghost-toc-plugin.greedylabs.kr/ja/",
+          "codeRepository": "https://github.com/GreedyLabs/ghost-toc-plugin",
+          "license": "https://opensource.org/licenses/MIT",
+          "author": {
+            "@type": "Organization",
+            "name": "GreedyLabs",
+            "url": "https://github.com/GreedyLabs"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "sameAs": [
+            "https://github.com/GreedyLabs/ghost-toc-plugin"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "name": "ghost-toc-plugin",
+          "url": "https://ghost-toc-plugin.greedylabs.kr/",
+          "inLanguage": "ja",
+          "publisher": {
+            "@type": "Organization",
+            "name": "GreedyLabs",
+            "url": "https://github.com/GreedyLabs"
+          }
+        }
+      ]
     }
     </script>
 
+    <!-- Warm up third-party origins before the render-blocking font CSS -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="https://umami.greedylabs.kr">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5/400.css">
     <link rel="stylesheet" href="/toc.css">
     <link rel="stylesheet" href="/demo.css">
@@ -195,6 +225,15 @@ data-top="100"</code></pre>
 }</code></pre>
         <h3>位置</h3>
         <p>data-position で左右、data-top で上の余白、data-gap で本文との間隔、data-width でパネル幅を指定します。画面が data-min-width より狭い場合や横にスペースがない場合、目次は自動的に隠れます。</p>
+
+        <h2>よくある質問</h2>
+        <!-- Questions are h4 so they stay out of the h2/h3 demo TOC -->
+        <h4>このウィジェットでサイトが遅くなりますか？</h4>
+        <p>ほとんど影響ありません。約3KBで依存関係も外部リクエストもなく、スクロールは passive リスナーで受け取り、requestAnimationFrame でフレームごとに一度だけ計算します。遅延読み込み画像や giscus などでドキュメントの高さが変わったときだけ ResizeObserver で再計算します。</p>
+        <h4>目次が表示されないのはなぜですか？</h4>
+        <p>3点を確認してください。data-content セレクタが実際の本文コンテナと一致しているか、見出しが2つ以上あるか（それ未満では生成されません）、画面が data-min-width（既定1200px）より広く本文の横にパネルが入る余地があるか。狭い画面やモバイルでは意図的に隠れます。</p>
+        <h4>h4 のような深い見出しも目次に含められますか？</h4>
+        <p>はい。data-headings に入れたいタグをカンマ区切りで指定します（例: h2,h3,h4）。リストに表示する見出しレベルを自由に選べます。</p>
 
         <h2>おわりに</h2>
         <p>ghost-toc-plugin は MIT ライセンスのオープンソースで、コードと Issue は GitHub にあります。左パネルでオプションを変えてライブプレビューを確認し、気に入ったら埋め込みコードをコピーしてください。お役に立てたら、コーヒーを一杯いただけると嬉しいです ☕。</p>

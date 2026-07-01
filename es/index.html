@@ -54,19 +54,49 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "ghost-toc-plugin",
-      "description": "Añade un índice flotante a tu blog Ghost con una línea de código. Ajusta opciones, previsualiza en vivo y copia el fragmento. Código abierto (MIT).",
-      "applicationCategory": "DeveloperApplication",
-      "operatingSystem": "Web (Ghost)",
-      "url": "https://ghost-toc-plugin.greedylabs.kr/es/",
-      "codeRepository": "https://github.com/GreedyLabs/ghost-toc-plugin",
-      "license": "https://opensource.org/licenses/MIT",
-      "author": { "@type": "Organization", "name": "GreedyLabs" },
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "ghost-toc-plugin",
+          "description": "Añade un índice flotante a tu blog Ghost con una línea de código. Ajusta opciones, previsualiza en vivo y copia el fragmento. Código abierto (MIT).",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "Web (Ghost, Notion)",
+          "softwareVersion": "1",
+          "url": "https://ghost-toc-plugin.greedylabs.kr/es/",
+          "codeRepository": "https://github.com/GreedyLabs/ghost-toc-plugin",
+          "license": "https://opensource.org/licenses/MIT",
+          "author": {
+            "@type": "Organization",
+            "name": "GreedyLabs",
+            "url": "https://github.com/GreedyLabs"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "sameAs": [
+            "https://github.com/GreedyLabs/ghost-toc-plugin"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "name": "ghost-toc-plugin",
+          "url": "https://ghost-toc-plugin.greedylabs.kr/",
+          "inLanguage": "es",
+          "publisher": {
+            "@type": "Organization",
+            "name": "GreedyLabs",
+            "url": "https://github.com/GreedyLabs"
+          }
+        }
+      ]
     }
     </script>
 
+    <!-- Warm up third-party origins before the render-blocking font CSS -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="https://umami.greedylabs.kr">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5/400.css">
     <link rel="stylesheet" href="/toc.css">
     <link rel="stylesheet" href="/demo.css">
@@ -195,6 +225,15 @@ data-top="100"</code></pre>
 }</code></pre>
         <h3>Posición</h3>
         <p>Usa data-position para izquierda o derecha, data-top para el margen superior, data-gap para el espacio respecto al contenido y data-width para el ancho del panel. Por debajo de data-min-width (o cuando no hay espacio al lado) el índice se oculta solo.</p>
+
+        <h2>Preguntas frecuentes</h2>
+        <!-- Questions are h4 so they stay out of the h2/h3 demo TOC -->
+        <h4>¿El widget ralentiza mi sitio?</h4>
+        <p>Apenas. Ocupa unos 3KB, sin dependencias ni peticiones externas. El scroll se gestiona con un listener pasivo y se agrupa en un solo cálculo por fotograma con requestAnimationFrame; solo recalcula cuando cambia la altura del documento (imágenes diferidas, giscus y widgets similares) mediante un ResizeObserver.</p>
+        <h4>¿Por qué no aparece la tabla de contenidos?</h4>
+        <p>Comprueba tres cosas: que tu selector data-content coincida con el contenedor real del artículo, que haya al menos dos encabezados (no se genera con menos) y que la ventana sea más ancha que data-min-width (1200px por defecto) con espacio para el panel junto al contenido. En pantallas estrechas y móviles se oculta a propósito.</p>
+        <h4>¿Puedo incluir encabezados más profundos como h4 en el índice?</h4>
+        <p>Sí. Enumera las etiquetas que quieras en data-headings, separadas por comas (por ejemplo, h2,h3,h4). Tú decides exactamente qué niveles de encabezado aparecen en la lista.</p>
 
         <h2>Conclusión</h2>
         <p>ghost-toc-plugin es de código abierto bajo licencia MIT; el código y las incidencias están en GitHub. Prueba las opciones en el panel izquierdo, mira la vista previa actualizarse en vivo y copia el fragmento cuando te guste. Si te ha servido, siempre se agradece un café ☕.</p>

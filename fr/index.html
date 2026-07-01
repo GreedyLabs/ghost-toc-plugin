@@ -54,19 +54,49 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "ghost-toc-plugin",
-      "description": "Ajoutez un sommaire flottant à votre blog Ghost en une ligne de code. Réglez les options, prévisualisez en direct et copiez le code. Open source (MIT).",
-      "applicationCategory": "DeveloperApplication",
-      "operatingSystem": "Web (Ghost)",
-      "url": "https://ghost-toc-plugin.greedylabs.kr/fr/",
-      "codeRepository": "https://github.com/GreedyLabs/ghost-toc-plugin",
-      "license": "https://opensource.org/licenses/MIT",
-      "author": { "@type": "Organization", "name": "GreedyLabs" },
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "ghost-toc-plugin",
+          "description": "Ajoutez un sommaire flottant à votre blog Ghost en une ligne de code. Réglez les options, prévisualisez en direct et copiez le code. Open source (MIT).",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "Web (Ghost, Notion)",
+          "softwareVersion": "1",
+          "url": "https://ghost-toc-plugin.greedylabs.kr/fr/",
+          "codeRepository": "https://github.com/GreedyLabs/ghost-toc-plugin",
+          "license": "https://opensource.org/licenses/MIT",
+          "author": {
+            "@type": "Organization",
+            "name": "GreedyLabs",
+            "url": "https://github.com/GreedyLabs"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "sameAs": [
+            "https://github.com/GreedyLabs/ghost-toc-plugin"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "name": "ghost-toc-plugin",
+          "url": "https://ghost-toc-plugin.greedylabs.kr/",
+          "inLanguage": "fr",
+          "publisher": {
+            "@type": "Organization",
+            "name": "GreedyLabs",
+            "url": "https://github.com/GreedyLabs"
+          }
+        }
+      ]
     }
     </script>
 
+    <!-- Warm up third-party origins before the render-blocking font CSS -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="https://umami.greedylabs.kr">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5/400.css">
     <link rel="stylesheet" href="/toc.css">
     <link rel="stylesheet" href="/demo.css">
@@ -195,6 +225,15 @@ data-top="100"</code></pre>
 }</code></pre>
         <h3>Position</h3>
         <p>Utilisez data-position pour gauche ou droite, data-top pour le décalage en haut, data-gap pour l'espace avec le contenu et data-width pour la largeur du panneau. En dessous de data-min-width (ou s'il n'y a pas de place à côté) le sommaire se masque tout seul.</p>
+
+        <h2>Questions fréquentes</h2>
+        <!-- Questions are h4 so they stay out of the h2/h3 demo TOC -->
+        <h4>Le widget ralentit-il mon site ?</h4>
+        <p>À peine. Il pèse environ 3KB, sans dépendances ni requêtes externes. Le défilement est géré par un écouteur passif et regroupé en un seul calcul par image via requestAnimationFrame ; il ne recalcule que lorsque la hauteur du document change (images en chargement différé, giscus et widgets similaires) grâce à un ResizeObserver.</p>
+        <h4>Pourquoi la table des matières ne s'affiche-t-elle pas ?</h4>
+        <p>Vérifiez trois points : que votre sélecteur data-content corresponde au vrai conteneur de l'article, qu'il y ait au moins deux titres (elle ne s'affiche pas en dessous), et que la fenêtre soit plus large que data-min-width (1200px par défaut) avec de la place pour le panneau à côté du contenu. Sur les écrans étroits et mobiles, elle se masque volontairement.</p>
+        <h4>Puis-je inclure des titres plus profonds comme h4 dans la table des matières ?</h4>
+        <p>Oui. Listez les balises souhaitées dans data-headings, séparées par des virgules (par exemple h2,h3,h4). Vous choisissez précisément quels niveaux de titre apparaissent dans la liste.</p>
 
         <h2>Conclusion</h2>
         <p>ghost-toc-plugin est open source sous licence MIT ; le code et les tickets sont sur GitHub. Essayez les options dans le panneau de gauche, regardez l'aperçu se mettre à jour en direct, et copiez l'extrait quand cela vous convient. Si cela vous a aidé, un café est toujours apprécié ☕.</p>

@@ -1,0 +1,38 @@
+# ghost-toc-plugin
+
+> A lightweight (~3KB), dependency-free floating table-of-contents widget for Ghost blogs. It reads a post's headings, builds a TOC, follows the scroll, and highlights the current section. Works on Ghost, Notion-based hosts (oopy, super.so), and anywhere you can inject a script. MIT-licensed, by GreedyLabs.
+
+## Install
+
+Add one line to Ghost's Settings -> Code injection -> Site Footer:
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.css">
+    <script src="https://cdn.jsdelivr.net/gh/GreedyLabs/ghost-toc-plugin@1/toc.min.js"
+            data-content=".gh-content"
+            data-headings="h2,h3"
+            data-title="Contents"></script>
+
+For Notion-based hosts (oopy, super.so) set `data-content=".notion-page-content"` and paste the snippet into the host's custom-code area.
+
+## Options
+
+All behavior is configured with `data-*` attributes on the script tag:
+
+- `data-content` — CSS selector for the article container (e.g. `.gh-content`)
+- `data-headings` — which headings to include (e.g. `h2,h3`)
+- `data-title` — panel title (empty hides it)
+- `data-position` — `right` or `left`
+- `data-min-width` — the TOC hides itself below this viewport width (default `1200`)
+- `data-top` — offset from the top
+- `data-gap` — gap between the TOC and the content
+- `data-width` — panel width
+- `data-accent` — highlight color (defaults to the Ghost theme accent color)
+
+All classes and CSS variables are namespaced under `greedylabs-ghost-toc`, so the widget never collides with a theme. Light and dark defaults follow the system theme automatically.
+
+## Links
+
+- Live demo and configurator: https://ghost-toc-plugin.greedylabs.kr/en/
+- Source and issues: https://github.com/GreedyLabs/ghost-toc-plugin
+- License: MIT (https://opensource.org/licenses/MIT)
+- Author: GreedyLabs (https://github.com/GreedyLabs)

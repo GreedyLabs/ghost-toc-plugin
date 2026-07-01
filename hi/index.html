@@ -54,19 +54,49 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "ghost-toc-plugin",
-      "description": "एक लाइन कोड से अपने Ghost ब्लॉग में फ़्लोटिंग विषय-सूची जोड़ें। विकल्प बदलें, लाइव प्रीव्यू देखें और एम्बेड स्निपेट कॉपी करें। ओपन सोर्स (MIT)।",
-      "applicationCategory": "DeveloperApplication",
-      "operatingSystem": "Web (Ghost)",
-      "url": "https://ghost-toc-plugin.greedylabs.kr/hi/",
-      "codeRepository": "https://github.com/GreedyLabs/ghost-toc-plugin",
-      "license": "https://opensource.org/licenses/MIT",
-      "author": { "@type": "Organization", "name": "GreedyLabs" },
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "ghost-toc-plugin",
+          "description": "एक लाइन कोड से अपने Ghost ब्लॉग में फ़्लोटिंग विषय-सूची जोड़ें। विकल्प बदलें, लाइव प्रीव्यू देखें और एम्बेड स्निपेट कॉपी करें। ओपन सोर्स (MIT)।",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "Web (Ghost, Notion)",
+          "softwareVersion": "1",
+          "url": "https://ghost-toc-plugin.greedylabs.kr/hi/",
+          "codeRepository": "https://github.com/GreedyLabs/ghost-toc-plugin",
+          "license": "https://opensource.org/licenses/MIT",
+          "author": {
+            "@type": "Organization",
+            "name": "GreedyLabs",
+            "url": "https://github.com/GreedyLabs"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "sameAs": [
+            "https://github.com/GreedyLabs/ghost-toc-plugin"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "name": "ghost-toc-plugin",
+          "url": "https://ghost-toc-plugin.greedylabs.kr/",
+          "inLanguage": "hi",
+          "publisher": {
+            "@type": "Organization",
+            "name": "GreedyLabs",
+            "url": "https://github.com/GreedyLabs"
+          }
+        }
+      ]
     }
     </script>
 
+    <!-- Warm up third-party origins before the render-blocking font CSS -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="https://umami.greedylabs.kr">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5/400.css">
     <link rel="stylesheet" href="/toc.css">
     <link rel="stylesheet" href="/demo.css">
@@ -195,6 +225,15 @@ data-top="100"</code></pre>
 }</code></pre>
         <h3>स्थिति</h3>
         <p>बाएँ/दाएँ के लिए data-position, ऊपरी अंतर के लिए data-top, कंटेंट से दूरी के लिए data-gap, और पैनल चौड़ाई के लिए data-width इस्तेमाल करें। जब स्क्रीन data-min-width से छोटी हो(या कंटेंट के बगल में जगह न हो)तो विषय-सूची अपने-आप छिप जाती है।</p>
+
+        <h2>अक्सर पूछे जाने वाले प्रश्न</h2>
+        <!-- Questions are h4 so they stay out of the h2/h3 demo TOC -->
+        <h4>क्या यह विजेट मेरी साइट को धीमा करता है?</h4>
+        <p>लगभग नहीं। यह करीब 3KB का है, न कोई डिपेंडेंसी और न कोई बाहरी रिक्वेस्ट। स्क्रॉल को passive लिसनर से संभाला जाता है और requestAnimationFrame के ज़रिए हर फ़्रेम में एक ही गणना में समेटा जाता है; यह केवल तब दोबारा गणना करता है जब दस्तावेज़ की ऊँचाई बदलती है (लेज़ी-लोड इमेज, giscus जैसे विजेट) — इसके लिए ResizeObserver का उपयोग होता है।</p>
+        <h4>विषय-सूची क्यों नहीं दिख रही?</h4>
+        <p>तीन चीज़ें जाँचें: क्या आपका data-content सिलेक्टर असली लेख कंटेनर से मेल खाता है, क्या कम से कम दो हेडिंग हैं (इससे कम पर यह नहीं बनती), और क्या विंडो data-min-width (डिफ़ॉल्ट 1200px) से चौड़ी है तथा सामग्री के बगल में पैनल के लिए जगह है। संकरी स्क्रीन और मोबाइल पर यह जानबूझकर छिप जाती है।</p>
+        <h4>क्या मैं h4 जैसी गहरी हेडिंग भी विषय-सूची में शामिल कर सकता हूँ?</h4>
+        <p>हाँ। data-headings में मनचाहे टैग कॉमा से अलग करके लिखें (जैसे h2,h3,h4)। सूची में कौन-से हेडिंग स्तर दिखें, यह आप तय करते हैं।</p>
 
         <h2>निष्कर्ष</h2>
         <p>ghost-toc-plugin MIT लाइसेंस के तहत ओपन सोर्स है; कोड और issues GitHub पर हैं। बाएँ पैनल में विकल्प आज़माएँ, प्रीव्यू को लाइव बदलते देखें और पसंद आने पर एम्बेड कोड कॉपी करें। अगर यह आपके काम आया, तो एक कॉफ़ी का स्वागत है ☕।</p>
